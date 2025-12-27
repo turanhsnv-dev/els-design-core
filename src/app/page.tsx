@@ -1,8 +1,10 @@
 import Navbar from "@/components/shared/nav/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import About from "@/components/sections/about/About";
-import Projects from "@/components/sections/projects/Projects"; // <--- Yeni
+import Process from "@/components/sections/process/Process";
+import Projects from "@/components/sections/projects/Projects";
 import Resources from "@/components/sections/resources/Resources";
+import Contact from "@/components/sections/contact/Contact"; // <--- Final Hissə
 
 export default function Home() {
   return (
@@ -10,8 +12,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Projects /> {/* <--- Burada çağır */}
+      <Process />
+      <Projects />
       <Resources />
+      <Contact /> {/* <--- Burada */}
     </main>
   );
 }
