@@ -29,7 +29,7 @@ export default function Hero() {
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 pointer-events-none">
          {/* Grid Pattern */}
-         <div className="absolute inset-0 bg-grid-pattern opacity-30 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] transform perspective-1000 rotateX-60 scale-150" />
+         <div className="absolute inset-0 bg-grid-pattern opacity-30 mask-[linear-gradient(to_bottom,black_40%,transparent_100%)] transform perspective-1000 rotateX-60 scale-150" />
          
          {/* Glow Effects */}
          <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse-slow" />
@@ -53,7 +53,7 @@ export default function Hero() {
           <h1 className="hero-anim text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1]">
             <span className="block text-white">{HERO_CONTENT.title.line1}</span>
             <span className="block text-white">{HERO_CONTENT.title.line2}</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-white">
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-primary via-indigo-400 to-white">
               {HERO_CONTENT.title.highlight}
             </span>
           </h1>
@@ -85,7 +85,7 @@ export default function Hero() {
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-purple-400 p-[2px]">
+                  <div className="w-10 h-10 rounded-full bg-linear-to-tr from-primary to-purple-400 p-[2px]">
                     <Image 
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100" 
                       width={40}
@@ -103,7 +103,7 @@ export default function Hero() {
 
               {/* Visual Content */}
               <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 group cursor-pointer border border-white/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 z-10" />
+                <div className="absolute inset-0 bg-linear-to-br from-indigo-500/20 to-purple-500/20 z-10" />
                 <Image 
                   src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" 
                   fill
@@ -136,12 +136,12 @@ export default function Hero() {
               </div>
               
               {/* Glow Behind */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur-xl opacity-20 -z-10 group-hover:opacity-30 transition-opacity" />
+              <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-2xl blur-xl opacity-20 -z-10 group-hover:opacity-30 transition-opacity" />
             </div>
 
             {/* Floating Element */}
             <div className="absolute top-1/2 -right-8 z-30 animate-float delay-700">
-               <div className="glass-panel p-3 rounded-lg flex items-center gap-3 bg-[#0B0C15]/90">
+               <div className="glass-panel p-3 rounded-lg flex items-center gap-3 bg-background-dark/90">
                   <CheckCircle size={20} className="text-green-400" />
                   <div>
                      <p className="text-xs text-slate-400">Status</p>

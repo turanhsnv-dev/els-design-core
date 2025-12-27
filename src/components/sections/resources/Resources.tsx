@@ -97,12 +97,12 @@ export default function Resources() {
       
       {/* SECTION HEADER */}
       <div className="flex flex-col items-center text-center gap-4 mb-12 animate-fade-in-up">
-        <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.02]">
+        <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/5 bg-white/2">
             <Sparkles size={16} className="text-primary" />
             <span className="text-primary text-xs font-bold uppercase tracking-widest">Knowledge Hub</span>
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 tracking-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white via-slate-200 to-slate-400 tracking-tight">
             The Creative Lab
         </h2>
         
@@ -163,11 +163,11 @@ export default function Resources() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#13131e] to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#13131e] to-transparent opacity-80" />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6 flex flex-col flex-grow">
+                <div className="p-6 flex flex-col grow">
                     <div className="flex items-center gap-2 mb-3 text-xs text-slate-400 font-mono">
                         <Calendar size={14} /> {item.date}
                         <span>•</span>
@@ -178,7 +178,7 @@ export default function Resources() {
                         {item.title}
                     </h3>
                     
-                    <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                    <p className="text-slate-400 text-sm leading-relaxed mb-6 grow line-clamp-3">
                         {item.description}
                     </p>
                     
@@ -196,7 +196,7 @@ export default function Resources() {
       {/* LOAD MORE BUTTON */}
       <div className="flex justify-center mt-12">
         <button className="group relative px-8 py-3 rounded-full bg-transparent border border-white/10 text-white font-bold overflow-hidden transition-all hover:border-primary/50 hover:shadow-[0_0_20px_rgba(100,103,242,0.3)]">
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+            <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
             <span className="relative flex items-center gap-2">
                 Load More Experiments
                 <ChevronDown size={18} className="group-hover:translate-y-1 transition-transform" />

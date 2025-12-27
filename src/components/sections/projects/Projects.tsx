@@ -72,11 +72,11 @@ export default function Projects() {
       <div className="relative z-10 px-6 lg:px-12 max-w-7xl mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-primary text-sm font-bold tracking-[0.2em] uppercase mb-2">
-                <span className="w-8 h-[1px] bg-primary"></span>
+                <span className="w-8 h-px bg-primary"></span>
                 Selected Works
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
-                Featured <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Projects</span>
+                Featured <br/><span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/40">Projects</span>
             </h2>
         </div>
         <div className="max-w-md pb-2">
@@ -96,11 +96,11 @@ export default function Projects() {
           {PROJECTS.map((project) => (
             <article 
                 key={project.id} 
-                className="snap-center shrink-0 w-[85vw] md:w-[420px] group relative glass-card rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden cursor-pointer hover:border-primary/30 transition-all duration-500 hover:-translate-y-2"
+                className="snap-center shrink-0 w-[85vw] md:w-[420px] group relative glass-card rounded-2xl border border-white/5 bg-white/2 overflow-hidden cursor-pointer hover:border-primary/30 transition-all duration-500 hover:-translate-y-2"
             >
               {/* Image Area - Height azaldıldı (h-[260px]) */}
               <div className="relative h-[260px] w-full bg-slate-900 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c15] via-transparent to-transparent opacity-60 z-10"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-[#0b0c15] via-transparent to-transparent opacity-60 z-10"></div>
                 
                 <Image 
                     src={project.image} 
@@ -142,7 +142,7 @@ export default function Projects() {
               </div>
 
               {/* Hover Glow Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+              <div className={`absolute inset-0 bg-linear-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
             </article>
           ))}
         </div>

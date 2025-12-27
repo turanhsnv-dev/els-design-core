@@ -18,20 +18,20 @@ export default function Contact() {
     <footer id="contact" className="relative pt-24 pb-8 overflow-hidden">
       
       {/* Background Glows */}
-      <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-primary/10 via-background-dark to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-[500px] bg-linear-to-t from-primary/10 via-background-dark to-transparent pointer-events-none" />
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8">
         
         {/* MAIN CTA CARD */}
-        <div className="w-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-16 text-center backdrop-blur-md overflow-hidden relative group">
+        <div className="w-full bg-linear-to-br from-white/5 to-white/2 border border-white/10 rounded-3xl p-8 md:p-16 text-center backdrop-blur-md overflow-hidden relative group">
            
            {/* Animated Background Pattern */}
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
            
            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
              Let's build the <br />
-             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-white">
+             <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-white">
                next big thing
              </span>
            </h2>
@@ -73,7 +73,7 @@ export default function Contact() {
            <p>© 2025 Elza Design. All rights reserved.</p>
            
            {/* THE ROMANTIC TOUCH */}
-           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.02] border border-white/5 hover:border-primary/20 transition-colors">
+           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/2 border border-white/5 hover:border-primary/20 transition-colors">
               <span>Designed by Elza</span>
               <span className="text-slate-700">•</span>
               <span className="flex items-center gap-1.5">

@@ -28,7 +28,7 @@ export default function About() {
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/60 mb-6">
           Crafting Digital Universes
         </h2>
         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ export default function About() {
                  fill
                  className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c15] via-[#0b0c15]/50 to-transparent z-10" />
+               <div className="absolute inset-0 bg-linear-to-t from-[#0b0c15] via-[#0b0c15]/50 to-transparent z-10" />
             </div>
 
             <div className="relative z-20 h-full flex flex-col justify-end p-6 md:p-8">
@@ -78,7 +78,7 @@ export default function About() {
             
             <div className="relative flex-1 overflow-y-auto pr-2 space-y-8 custom-scrollbar">
                 {/* Timeline Line */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-linear-to-b from-primary via-primary/50 to-transparent"></div>
                 
                 {/* Item 1 */}
                 <div className="relative pl-8 group">
@@ -178,7 +178,7 @@ export default function About() {
 
         {/* 6. CONTACT CTA */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-3xl bg-[#0f0f13] border border-white/5 p-6 flex items-center justify-between relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
-             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c15] to-transparent opacity-50"></div>
+             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-primary/10 via-[#0b0c15] to-transparent opacity-50"></div>
              <div className="relative z-10">
                 <h3 className="text-xl font-bold text-white mb-1">Ready to launch?</h3>
                 <p className="text-slate-400 text-sm">Let&apos;s build something extraordinary.</p>

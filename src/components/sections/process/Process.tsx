@@ -57,7 +57,7 @@ export default function Process() {
         </div>
         <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
           How I turn <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-purple-400">
             Chaos into Order
           </span>
         </h2>
@@ -76,7 +76,7 @@ export default function Process() {
                 group relative rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden
                 ${activeStep === step.id 
                     ? "bg-[#1c1c27]/80 border-primary/30 shadow-[0_0_30px_rgba(100,103,242,0.15)]" 
-                    : "bg-white/[0.02] border-white/5 hover:border-white/10 hover:bg-white/[0.05]"}
+                    : "bg-white/2 border-white/5 hover:border-white/10 hover:bg-white/5"}
             `}
           >
             {/* Step Header */}
@@ -109,7 +109,7 @@ export default function Process() {
             {/* Expanded Content */}
             <div className={`grid transition-all duration-500 ease-in-out ${activeStep === step.id ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                 <div className="overflow-hidden">
-                    <div className="px-6 pb-8 pt-0 pl-[4.5rem]">
+                    <div className="px-6 pb-8 pt-0 pl-18">
                         <p className="text-slate-300 leading-relaxed mb-6 border-l-2 border-white/10 pl-4">
                             {step.description}
                         </p>
