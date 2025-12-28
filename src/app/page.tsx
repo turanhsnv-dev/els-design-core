@@ -1,10 +1,13 @@
+// src/app/page.tsx
+"use client";
+
 import Navbar from "@/components/shared/nav/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import About from "@/components/sections/about/About";
 import Process from "@/components/sections/process/Process";
 import Projects from "@/components/sections/projects/Projects";
 import Resources from "@/components/sections/resources/Resources";
-import Contact from "@/components/sections/contact/Contact"; // <--- Final Hissə
+import Contact from "@/components/sections/contact/Contact";
 import Comparison from "@/components/sections/comparison/Comparison";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Services from "@/components/sections/services/Services";
@@ -18,7 +21,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Toolkit />
+      <Toolkit /> 
       <Process />
       <Comparison />
       <Projects />
@@ -27,7 +30,7 @@ export default function Home() {
       <Playground />
       <Testimonials />
       <Resources />
-      <Contact /> {/* <--- Burada */}
+      <Contact />
     </main>
   );
 }

@@ -28,7 +28,7 @@ export default function About() {
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/60 mb-6">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6">
           Crafting Digital Universes
         </h2>
         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
@@ -36,25 +36,31 @@ export default function About() {
         </p>
       </div>
 
-      {/* BENTO GRID - GÜNCELLENMİŞ YAPI */}
-      {/* lg:grid-rows-[280px_280px_220px]: 
-         - İlk iki satır 280px (Büyük kartlar iki katı yer kaplayıp devasa olacak)
-         - Son satır 220px (Location ve Contact küçük kalacak)
-      */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 lg:grid-rows-[280px_280px_220px] auto-rows-[minmax(240px,auto)]">
+      {/* BENTO GRID */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(280px,auto)]">
         
-        {/* 1. BIO & VISION (Large Square) */}
+        {/* 1. BIO & VISION (RESİM BURADA) */}
         <div className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[32px] overflow-hidden border border-white/5 bg-[#151621] hover:border-primary/40 hover:shadow-[0_0_40px_-10px_rgba(100,103,242,0.3)] transition-all duration-500">
-            {/* Background Image overlay */}
+            
+            {/* --- SİNEMATİK FOTOĞRAF ALANI --- */}
             <div className="absolute inset-0 z-0">
-               {/* Buraya Elzanın havalı bir fotoğrafı gelecek */}
                <Image 
-                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" 
+                 src="/elza-main.jpg" // Resmi public klasörüne bu isimle atman lazım!
                  alt="Elza Portrait" 
                  fill
-                 className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                 // CSS FİLTRELERİ:
+                 // grayscale-[0.2]: Renkleri çok hafif soldurur (daha ciddi durur)
+                 // contrast-110: Kontrastı artırır
+                 // brightness-[0.85]: Hafif karartır (yazılar okunsun diye)
+                 style={{ filter: 'grayscale(20%) contrast(110%) brightness(85%)' }}
                />
-               <div className="absolute inset-0 bg-linear-to-t from-[#0b0c15] via-[#0b0c15]/40 to-transparent z-10" />
+               
+               {/* KATMAN 1: Koyu Gradyan (Aşağıdan yukarı) - Yazılar okunsun diye */}
+               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c15] via-[#0b0c15]/60 to-transparent z-10 opacity-90" />
+               
+               {/* KATMAN 2: Mor Sinematik Filtre (Mix Blend Mode) */}
+               <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
             </div>
 
             <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-10">
@@ -63,7 +69,7 @@ export default function About() {
                     <span className="text-primary font-bold text-sm tracking-wide uppercase">The Vision</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">Humanizing the <br/> Digital Space</h3>
-                <p className="text-slate-300 text-base md:text-lg line-clamp-3 mb-8 max-w-lg font-light leading-relaxed">
+                <p className="text-slate-300 text-base md:text-lg line-clamp-3 mb-8 max-w-lg font-light leading-relaxed drop-shadow-md">
                     I don&apos;t just design screens; I choreograph experiences. My work combines technical precision with artistic flair to create web experiences that feel alive.
                 </p>
                 <button className="w-max flex items-center gap-2 text-white font-bold group/btn hover:text-primary transition-colors">
@@ -73,7 +79,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 2. EXPERIENCE (Tall Vertical) */}
+        {/* 2. EXPERIENCE (Daha önceki düzenlenmiş hali korundu) */}
         <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 p-8 flex flex-col hover:border-primary/40 transition-all duration-500 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none group-hover:bg-primary/20 transition-colors"></div>
             
@@ -83,10 +89,8 @@ export default function About() {
             </div>
             
             <div className="relative flex-1 overflow-y-auto pr-2 space-y-10 custom-scrollbar z-10">
-                {/* Timeline Line */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-linear-to-b from-primary via-primary/30 to-transparent"></div>
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-transparent"></div>
                 
-                {/* Item 1 */}
                 <div className="relative pl-8 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-primary flex items-center justify-center z-10 shadow-[0_0_10px_rgba(100,103,242,0.5)]">
                         <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
@@ -98,7 +102,6 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* Item 2 */}
                 <div className="relative pl-8 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-slate-700 group-hover/item:border-primary transition-colors flex items-center justify-center z-10">
                         <div className="w-2 h-2 rounded-full bg-slate-500 group-hover/item:bg-primary transition-colors"></div>
@@ -110,7 +113,6 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* Item 3 */}
                 <div className="relative pl-8 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-slate-700 group-hover/item:border-primary transition-colors flex items-center justify-center z-10">
                          <div className="w-2 h-2 rounded-full bg-slate-500 group-hover/item:bg-primary transition-colors"></div>
@@ -124,7 +126,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 3. TECH STACK (Medium Box) */}
+        {/* 3. TECH STACK (Aynı kaldı) */}
         <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 p-8 flex flex-col justify-between hover:border-primary/40 transition-all duration-500 group">
             <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">Tech Stack</h3>
@@ -142,7 +144,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 4. STATS (Medium Box) */}
+        {/* 4. STATS (Aynı kaldı) */}
         <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-primary text-white p-8 flex flex-col justify-center relative overflow-hidden group hover:shadow-[0_0_50px_rgba(100,103,242,0.6)] transition-all duration-500">
              <div className="absolute -right-6 -bottom-6 opacity-20 transform rotate-12 group-hover:scale-110 transition-transform duration-700">
                 <Trophy size={140} strokeWidth={1} />
@@ -160,10 +162,9 @@ export default function About() {
              </div>
         </div>
 
-        {/* 5. LOCATION (Wide Strip - KISA KALDI) */}
+        {/* 5. LOCATION (Aynı kaldı) */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-500 flex items-stretch group">
             <div className="w-2/5 relative min-h-full overflow-hidden">
-                 {/* Map Image Placeholder */}
                  <Image 
                    src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=600&q=80" 
                    alt="Location" 
@@ -182,7 +183,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 6. CONTACT CTA (KISA KALDI) */}
+        {/* 6. CONTACT CTA (Aynı kaldı) */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#0f0f13] border border-white/5 p-8 flex items-center justify-between relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))] from-primary/20 via-[#0b0c15] to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
              <div className="relative z-10">
@@ -202,7 +203,6 @@ export default function About() {
   );
 }
 
-// Stack Icon Component
 function StackIcon({ icon, color }: { icon: React.ReactNode; color: string }) {
     return (
         <div className={`size-12 rounded-2xl bg-white/5 flex items-center justify-center text-slate-400 ${color} hover:text-white hover:scale-110 hover:shadow-lg transition-all cursor-pointer border border-white/5 group`}>
