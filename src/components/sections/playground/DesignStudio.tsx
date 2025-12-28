@@ -2,12 +2,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, Reorder } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Square, 
   Circle, 
   Type, 
-  Image as ImageIcon, 
   Trash2, 
   MousePointer2, 
   RotateCw, 
@@ -56,13 +55,13 @@ export default function DesignStudio() {
     const newElement: CanvasElement = {
       id: Math.random().toString(36).substr(2, 9),
       type,
-      x: Math.random() * 200 + 100, // Random mövqe
+      x: Math.random() * 200 + 100,
       y: Math.random() * 200 + 100,
       width: type === "text" ? 200 : 100,
       height: type === "text" ? 50 : 100,
       rotation: 0,
       borderRadius: type === "circle" ? 50 : 0,
-      color: COLORS[Math.floor(Math.random() * 4)], // Random ilk 4 rəngdən biri
+      color: COLORS[Math.floor(Math.random() * 4)],
       text: type === "text" ? "Double Click to Edit" : undefined,
       zIndex: elements.length + 1,
     };
@@ -70,21 +69,18 @@ export default function DesignStudio() {
     setSelectedId(newElement.id);
   };
 
-  // Seçimi ləğv etmək (boşluğa basanda)
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (e.target === containerRef.current) {
       setSelectedId(null);
     }
   };
 
-  // Xüsusiyyətləri dəyişdirmək
   const updateElement = (id: string, key: keyof CanvasElement, value: any) => {
     setElements((prev) =>
       prev.map((el) => (el.id === id ? { ...el, [key]: value } : el))
     );
   };
 
-  // Silmək (Delete düyməsi ilə)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
@@ -116,10 +112,10 @@ export default function DesignStudio() {
       </div>
 
       {/* EDITOR CONTAINER */}
-      <div className="relative w-full h-[700px] bg-background-dark rounded-3xl border border-white/10 overflow-hidden shadow-2xl flex">
+      <div className="relative w-full h-[700px] bg-[#050508] rounded-3xl border border-white/10 overflow-hidden shadow-2xl flex ring-1 ring-white/5">
         
         {/* --- LEFT TOOLBAR --- */}
-        <div className="w-16 md:w-20 bg-[#151621] border-r border-white/5 flex flex-col items-center py-6 gap-6 z-20">
+        <div className="w-16 md:w-20 bg-background-dark border-r border-white/5 flex flex-col items-center py-6 gap-6 z-20 shadow-xl">
             <ToolButton icon={<MousePointer2 size={20} />} label="Select" active />
             <div className="w-8 h-px bg-white/10" />
             <ToolButton icon={<Square size={20} />} label="Rectangle" onClick={() => addElement("rect")} />
@@ -130,16 +126,24 @@ export default function DesignStudio() {
             </div>
         </div>
 
-        {/* --- CENTER CANVAS --- */}
-        <div 
+        {/* --- CENTER CANVAS (Düzələn Hissə) --- */}
+       {/* --- CENTER CANVAS (YENİLƏNƏN HİSSƏ) --- */}
+       <div 
             ref={containerRef}
             onClick={handleBackgroundClick}
-            className="flex-1 relative overflow-hidden cursor-default bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-opacity-5"
+            className="flex-1 relative overflow-hidden cursor-default bg-[#0f111a]" // <--- Bax bura dəyişdi (Dərin Göy)
         >
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                 style={{ backgroundImage: 'linear-gradient(#4a4a5e 1px, transparent 1px), linear-gradient(90deg, #4a4a5e 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
+            {/* Dot Grid Pattern - Rəngi biraz uyğunlaşdırdım */}
+            <div 
+                className="absolute inset-0 pointer-events-none opacity-20" 
+                style={{ 
+                    backgroundImage: 'radial-gradient(#6467f2 1.5px, transparent 1.5px)', // Nöqtələri də layihənin "Primary Blue" rənginə uyğunlaşdırdım
+                    backgroundSize: '24px 24px' 
+                }} 
             />
+            
+            {/* Ortada zərif mavi parıltı (Vignette Blue) */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(11,12,21,0.6)_100%)] pointer-events-none" />
 
             {/* Elements */}
             {elements.map((el) => (
@@ -156,26 +160,26 @@ export default function DesignStudio() {
             ))}
 
             {elements.length === 0 && (
-                <div className="absolute inset-0 flex items-center justify-center text-slate-600 pointer-events-none">
-                    <p>Select a tool to start designing</p>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500/50 pointer-events-none gap-4">
+                    <div className="w-16 h-16 rounded-2xl border-2 border-dashed border-indigo-500/20 flex items-center justify-center">
+                        <Square className="text-indigo-500/40" />
+                    </div>
+                    <p className="text-sm font-medium tracking-wide">Select a tool to start designing</p>
                 </div>
             )}
         </div>
 
         {/* --- RIGHT PROPERTIES PANEL --- */}
         {selectedElement ? (
-            <div className="w-64 bg-[#151621] border-l border-white/5 p-6 flex flex-col gap-6 z-20 animate-slide-in-right">
+            <div className="w-64 bg-background-dark border-l border-white/5 p-6 flex flex-col gap-6 z-20 animate-slide-in-right shadow-xl">
                 <div>
                     <h3 className="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-white/5 pb-2">Properties</h3>
-                    
-                    {/* Position Info (Read only) */}
                     <div className="grid grid-cols-2 gap-2 mb-4">
                         <PropDisplay label="X" value={Math.round(selectedElement.x)} />
                         <PropDisplay label="Y" value={Math.round(selectedElement.y)} />
                     </div>
                 </div>
 
-                {/* Color Picker */}
                 <div>
                     <label className="text-slate-400 text-xs font-bold mb-2 flex items-center gap-2"><Palette size={14} /> Fill Color</label>
                     <div className="grid grid-cols-4 gap-2">
@@ -190,7 +194,6 @@ export default function DesignStudio() {
                     </div>
                 </div>
 
-                {/* Size & Rotation Controls */}
                 <div className="space-y-4">
                      <RangeControl 
                         label="Rotation" 
@@ -199,18 +202,16 @@ export default function DesignStudio() {
                         min={0} max={360} 
                         onChange={(val: number) => updateElement(selectedElement.id, "rotation", val)} 
                      />
-                     
                      <RangeControl 
-                        label="Size (Scale)" 
+                        label="Size" 
                         icon={<Maximize size={14} />} 
                         value={selectedElement.width} 
                         min={50} max={400} 
                         onChange={(val: number) => {
                             updateElement(selectedElement.id, "width", val);
-                            if(selectedElement.type !== 'text') updateElement(selectedElement.id, "height", val); // Keep aspect ratio roughly
+                            if(selectedElement.type !== 'text') updateElement(selectedElement.id, "height", val);
                         }} 
                      />
-                     
                      {selectedElement.type !== "circle" && selectedElement.type !== "text" && (
                          <RangeControl 
                             label="Corner Radius" 
@@ -222,7 +223,6 @@ export default function DesignStudio() {
                      )}
                 </div>
 
-                {/* Actions */}
                 <div className="mt-auto pt-4 border-t border-white/5">
                     <button 
                         onClick={() => {
@@ -236,9 +236,9 @@ export default function DesignStudio() {
                 </div>
             </div>
         ) : (
-            <div className="w-64 bg-[#151621] border-l border-white/5 p-6 flex flex-col items-center justify-center text-center z-20">
-                <Layers className="text-slate-600 mb-4" size={48} />
-                <p className="text-slate-500 text-sm">Select an element to edit properties</p>
+            <div className="w-64 bg-background-dark border-l border-white/5 p-6 flex flex-col items-center justify-center text-center z-20">
+                <Layers className="text-slate-700 mb-4 opacity-50" size={48} />
+                <p className="text-slate-600 text-sm">Select an element to edit properties</p>
             </div>
         )}
 
@@ -247,27 +247,25 @@ export default function DesignStudio() {
   );
 }
 
-// --- SUB COMPONENTS ---
+// --- SUB COMPONENTS (Eyni qalır) ---
 
-// 1. Tool Button
 function ToolButton({ icon, label, onClick, active }: { icon: any, label: string, onClick?: () => void, active?: boolean }) {
     return (
         <button 
             onClick={onClick}
             className={`
                 group relative w-10 h-10 flex items-center justify-center rounded-xl transition-all
-                ${active ? "bg-primary text-white" : "text-slate-400 hover:bg-white/10 hover:text-white"}
+                ${active ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-slate-500 hover:bg-white/5 hover:text-white"}
             `}
         >
             {icon}
-            <span className="absolute left-full ml-4 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+            <span className="absolute left-full ml-4 px-2 py-1 bg-black/90 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-white/10">
                 {label}
             </span>
         </button>
     )
 }
 
-// 2. Draggable Canvas Item
 function CanvasItem({ data, isSelected, onSelect, onChange }: { data: CanvasElement, isSelected: boolean, onSelect: () => void, onChange: (pos: {x: number, y: number}) => void }) {
     return (
         <motion.div
@@ -297,43 +295,40 @@ function CanvasItem({ data, isSelected, onSelect, onChange }: { data: CanvasElem
             }}
             className={`
                 flex items-center justify-center font-bold text-xl
-                ${isSelected ? "ring-2 ring-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]" : "hover:ring-1 hover:ring-white/30"}
+                ${isSelected ? "ring-2 ring-primary shadow-[0_0_20px_rgba(100,103,242,0.4)]" : "hover:ring-1 hover:ring-white/20"}
             `}
         >
             {data.type === 'text' ? (
-                <span className="whitespace-nowrap px-2">{data.text}</span>
+                <span className="whitespace-nowrap px-2 drop-shadow-lg">{data.text}</span>
             ) : null}
             
-            {/* Selection Handles (Visual only) */}
             {isSelected && data.type !== 'text' && (
                 <>
-                    <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-blue-500 rounded-full" />
-                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-blue-500 rounded-full" />
-                    <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-blue-500 rounded-full" />
-                    <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-blue-500 rounded-full" />
+                    <div className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-white border border-primary rounded-full shadow-sm" />
+                    <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-white border border-primary rounded-full shadow-sm" />
+                    <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 bg-white border border-primary rounded-full shadow-sm" />
+                    <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-white border border-primary rounded-full shadow-sm" />
                 </>
             )}
         </motion.div>
     )
 }
 
-// 3. Property Display
 function PropDisplay({ label, value }: { label: string, value: number }) {
     return (
-        <div className="bg-white/5 rounded px-2 py-1 flex justify-between items-center">
-            <span className="text-slate-500 text-xs">{label}</span>
+        <div className="bg-white/5 border border-white/5 rounded px-2 py-1.5 flex justify-between items-center">
+            <span className="text-slate-500 text-[10px] font-bold uppercase">{label}</span>
             <span className="text-white text-xs font-mono">{value}</span>
         </div>
     )
 }
 
-// 4. Range Slider Control
-function RangeControl({ label, icon, value, min, max, onChange }: { label: string, icon: any, value: number, min: number, max: number, onChange: (value: number) => void }) {
+function RangeControl({ label, icon, value, min, max, onChange }: any) {
     return (
         <div>
-            <div className="flex justify-between mb-1">
+            <div className="flex justify-between mb-2">
                 <label className="text-slate-400 text-xs font-bold flex items-center gap-2">{icon} {label}</label>
-                <span className="text-white text-xs">{Math.round(value)}</span>
+                <span className="text-white text-xs bg-white/5 px-1.5 rounded">{Math.round(value)}</span>
             </div>
             <input 
                 type="range" 
@@ -341,7 +336,7 @@ function RangeControl({ label, icon, value, min, max, onChange }: { label: strin
                 max={max} 
                 value={value} 
                 onChange={(e) => onChange(Number(e.target.value))}
-                className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary"
+                className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(100,103,242,0.5)]"
             />
         </div>
     )
