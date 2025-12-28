@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { ArrowDown, Play, CheckCircle, TrendingUp, Trophy } from "lucide-react";
+import { ArrowRight, MousePointer2, Zap, Layers, Palette } from "lucide-react";
 import gsap from "gsap";
 import { HERO_CONTENT } from "@/constants/hero/hero";
 
@@ -10,148 +10,177 @@ export default function Hero() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Sadə giriş animasiyası (Yüklənəndə)
     const ctx = gsap.context(() => {
-      gsap.from(".hero-anim", {
-        y: 30,
+      // Metinler sırayla gelsin
+      gsap.from(".hero-text", {
+        y: 50,
         opacity: 0,
         duration: 1,
-        stagger: 0.1,
+        stagger: 0.15,
         ease: "power3.out",
+      });
+
+      // Sağ taraftaki UI elementleri hafifçe süzülsün (Floating effect)
+      gsap.to(".floating-ui", {
+        y: -20,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.5,
+          from: "random"
+        }
       });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#0B0C15]">
       
-      {/* BACKGROUND ELEMENTS */}
+      {/* ARKA PLAN EFEKTLERİ */}
       <div className="absolute inset-0 pointer-events-none">
-         {/* Grid Pattern */}
-         <div className="absolute inset-0 bg-grid-pattern opacity-30 mask-[linear-gradient(to_bottom,black_40%,transparent_100%)] transform perspective-1000 rotateX-60 scale-150" />
+         {/* Izgara Deseni */}
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
          
-         {/* Glow Effects */}
-         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse-slow" />
-         <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-indigo-900/30 rounded-full blur-[100px]" />
+         {/* Spot Işıklar - Elza'nın renkleri */}
+         <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen" />
+         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
-        {/* LEFT COLUMN: TEXT */}
-        <div className="lg:col-span-7 flex flex-col gap-8 text-center lg:text-left">
+        {/* --- SOL TARAF: ELEGANT METİN --- */}
+        <div className="flex flex-col gap-8 text-center lg:text-left pt-10 lg:pt-0">
           
           {/* Badge */}
-          <div className="hero-anim inline-flex items-center gap-2 self-center lg:self-start px-3 py-1 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            <span className="text-xs font-semibold text-primary tracking-wide uppercase">
+          <div className="hero-text inline-flex items-center gap-2 self-center lg:self-start px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-xs font-bold text-primary tracking-widest uppercase">
               {HERO_CONTENT.badge}
             </span>
           </div>
 
-          {/* Title */}
-          <h1 className="hero-anim text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1]">
-            <span className="block text-white">{HERO_CONTENT.title.line1}</span>
-            <span className="block text-white">{HERO_CONTENT.title.line2}</span>
-            <span className="block text-transparent bg-clip-text bg-linear-to-r from-primary via-indigo-400 to-white">
+          {/* Başlık - Boyutlar dengelendi */}
+          <h1 className="hero-text text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white">
+            {HERO_CONTENT.title.line1} <br />
+            {HERO_CONTENT.title.line2} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-400 animate-gradient-x">
               {HERO_CONTENT.title.highlight}
             </span>
           </h1>
 
-          {/* Desc */}
-          <p className="hero-anim text-slate-400 text-lg max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+          {/* Açıklama */}
+          <p className="hero-text text-slate-400 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
             {HERO_CONTENT.description}
           </p>
 
-          {/* Buttons */}
-          <div className="hero-anim flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-4">
-            <button className="h-14 px-8 rounded-lg bg-primary text-white font-bold flex items-center gap-2 hover:bg-primary/90 transition-all shadow-[0_0_20px_rgba(100,103,242,0.4)] group">
-              Explore Projects
-              <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" />
+          {/* Butonlar */}
+          <div className="hero-text flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2">
+            <button className="h-12 px-8 rounded-full bg-primary text-white font-bold text-sm flex items-center gap-2 hover:bg-primary/90 transition-all hover:scale-105 shadow-[0_0_30px_-10px_rgba(100,103,242,0.6)] group">
+              View My Work
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="h-14 px-8 rounded-lg border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all">
-              View Showreel
+            <button className="h-12 px-8 rounded-full border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 hover:border-white/20 transition-all backdrop-blur-sm">
+              Contact Me
             </button>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: 3D CARD */}
-        <div className="lg:col-span-5 relative h-[500px] w-full flex items-center justify-center perspective-1000">
-          <div className="relative w-full max-w-md animate-float preserve-3d">
+        {/* --- SAĞ TARAF: YÜZEN UI KOMPOZİSYONU --- */}
+        <div className="relative h-[500px] w-full flex items-center justify-center lg:justify-end perspective-1000">
+          
+          {/* Ana Konteyner - UI Stack */}
+          <div className="relative w-[320px] md:w-[380px] h-[500px]">
             
-            {/* GLASS CARD */}
-            <div className="glass-card rounded-2xl p-6 relative z-20 transform rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-700 ease-out">
-              
-              {/* Header */}
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-linear-to-tr from-primary to-purple-400 p-[2px]">
-                    <Image 
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100" 
-                      width={40}
-                      height={40}
-                      className="rounded-full w-full h-full object-cover" 
-                      alt="Avatar" 
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-white text-sm font-bold">Alex Morgan</h3>
-                    <p className="text-xs text-slate-400">Senior Designer</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Visual Content */}
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 group cursor-pointer border border-white/10">
-                <div className="absolute inset-0 bg-linear-to-br from-indigo-500/20 to-purple-500/20 z-10" />
-                <Image 
-                  src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" 
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  alt="Abstract" 
-                />
-                <div className="absolute inset-0 z-20 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform">
-                    <Play size={20} className="text-white fill-white" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-black/20 rounded-xl p-4 border border-white/5">
-                   <div className="flex items-center gap-2 mb-1">
-                      <TrendingUp size={16} className="text-green-400" />
-                      <span className="text-xs text-slate-400 uppercase">Conversion</span>
+            {/* 1. ARKA KATMAN: Kod Bloğu / Blur */}
+            <div className="floating-ui absolute -right-12 top-20 w-64 h-40 bg-[#1e1e2e] rounded-xl border border-white/10 p-4 opacity-60 blur-[1px] transform rotate-12 z-0">
+               <div className="space-y-2">
+                   <div className="flex gap-2 mb-2">
+                       <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                       <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                       <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
                    </div>
-                   <p className="text-2xl font-bold text-white">+45%</p>
-                </div>
-                <div className="bg-black/20 rounded-xl p-4 border border-white/5">
-                   <div className="flex items-center gap-2 mb-1">
-                      <Trophy size={16} className="text-yellow-400" />
-                      <span className="text-xs text-slate-400 uppercase">Awards</span>
-                   </div>
-                   <p className="text-2xl font-bold text-white">4 Won</p>
-                </div>
-              </div>
-              
-              {/* Glow Behind */}
-              <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-2xl blur-xl opacity-20 -z-10 group-hover:opacity-30 transition-opacity" />
+                   <div className="w-full h-2 bg-white/10 rounded-full"></div>
+                   <div className="w-3/4 h-2 bg-white/10 rounded-full"></div>
+                   <div className="w-1/2 h-2 bg-purple-500/20 rounded-full"></div>
+               </div>
             </div>
 
-            {/* Floating Element */}
-            <div className="absolute top-1/2 -right-8 z-30 animate-float delay-700">
-               <div className="glass-panel p-3 rounded-lg flex items-center gap-3 bg-background-dark/90">
-                  <CheckCircle size={20} className="text-green-400" />
-                  <div>
-                     <p className="text-xs text-slate-400">Status</p>
-                     <p className="text-sm font-bold text-white">Completed</p>
+            {/* 2. ORTA KATMAN: Mobil Arayüz Mockup */}
+            <div className="floating-ui absolute inset-0 bg-[#151520] rounded-[32px] border border-white/10 shadow-2xl overflow-hidden z-10">
+               {/* Mockup Header */}
+               <div className="h-16 border-b border-white/5 flex items-center justify-between px-6">
+                  <div className="w-8 h-8 rounded-full bg-white/10"></div>
+                  <div className="w-24 h-2 bg-white/10 rounded-full"></div>
+               </div>
+               {/* Mockup Content */}
+               <div className="p-6 space-y-6">
+                  <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 border border-white/5 relative overflow-hidden group">
+                      <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/20 transition-all"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
+                              <Zap size={20} className="text-white" />
+                          </div>
+                      </div>
+                  </div>
+                  <div className="space-y-3">
+                      <div className="flex justify-between">
+                         <div className="w-1/3 h-3 bg-white/20 rounded-full"></div>
+                         <div className="w-10 h-3 bg-primary/40 rounded-full"></div>
+                      </div>
+                      <div className="w-full h-2 bg-white/5 rounded-full"></div>
+                      <div className="w-5/6 h-2 bg-white/5 rounded-full"></div>
+                  </div>
+                  <div className="flex gap-4 mt-8">
+                      <div className="w-1/2 h-24 rounded-2xl bg-white/5 border border-white/5"></div>
+                      <div className="w-1/2 h-24 rounded-2xl bg-white/5 border border-white/5"></div>
                   </div>
                </div>
             </div>
 
+            {/* 3. ÖN KATMAN: Uçan Araçlar (Tools) */}
+            
+            {/* Color Palette Card */}
+            <div className="floating-ui absolute -left-8 top-32 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-3 rounded-2xl shadow-xl z-20">
+                <div className="flex flex-col gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary border-2 border-white/20"></div>
+                    <div className="w-8 h-8 rounded-full bg-purple-500 border-2 border-white/20"></div>
+                    <div className="w-8 h-8 rounded-full bg-pink-500 border-2 border-white/20"></div>
+                    <div className="mt-1 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/50">
+                        <Palette size={14} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Cursor & Label */}
+            <div className="floating-ui absolute -right-6 bottom-32 flex items-center gap-3 z-30">
+                <div className="relative">
+                    <MousePointer2 size={32} className="text-white fill-primary drop-shadow-[0_0_15px_rgba(100,103,242,0.8)]" />
+                </div>
+                <div className="px-3 py-1.5 rounded-lg bg-primary text-white text-xs font-bold shadow-lg">
+                    Elza <span className="opacity-70">is editing...</span>
+                </div>
+            </div>
+
+            {/* Stats Badge */}
+            <div className="floating-ui absolute -left-4 bottom-12 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                    <Layers size={20} />
+                </div>
+                <div>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wider">Projects</p>
+                    <p className="text-lg font-bold text-white">45+ Done</p>
+                </div>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
