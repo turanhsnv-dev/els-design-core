@@ -36,7 +36,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-24 flex flex-col items-center">
+    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* HEADER */}
       <div className="text-center mb-16 animate-fade-in-up max-w-2xl">

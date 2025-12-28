@@ -69,7 +69,7 @@ export default function Projects() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Heading */}
-      <div className="relative z-10 px-6 lg:px-12 max-w-7xl mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-primary text-sm font-bold tracking-[0.2em] uppercase mb-2">
                 <span className="w-8 h-px bg-primary"></span>
@@ -87,10 +87,10 @@ export default function Projects() {
       </div>
 
       {/* Horizontal Scroll Container */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto">
         <div 
             ref={scrollRef}
-            className="flex gap-6 px-6 lg:px-12 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 no-scrollbar"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 no-scrollbar pl-4 md:pl-8"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {PROJECTS.map((project) => (
@@ -149,7 +149,7 @@ export default function Projects() {
       </div>
 
       {/* Controls */}
-      <div className="relative z-10 px-6 lg:px-12 mt-2 max-w-7xl mx-auto flex items-center justify-end gap-4">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mt-2 flex items-center justify-end gap-4">
         <button 
             onClick={() => scroll('left')}
             className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white/10 transition-colors active:scale-95"

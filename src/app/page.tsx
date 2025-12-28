@@ -9,6 +9,8 @@ import Comparison from "@/components/sections/comparison/Comparison";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Services from "@/components/sections/services/Services";
 import Playground from "@/components/sections/playground/DesignStudio";
+import Toolkit from "@/components/sections/toolkit/Toolkit";
+import Showreel from "@/components/sections/showreel/Showreel";
 
 export default function Home() {
   return (
@@ -16,10 +18,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Toolkit />
       <Process />
       <Comparison />
       <Projects />
       <Services />
+      <Showreel />
       <Playground />
       <Testimonials />
       <Resources />

@@ -36,7 +36,7 @@ export default function Hero() {
          <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-indigo-900/30 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* LEFT COLUMN: TEXT */}
         <div className="lg:col-span-7 flex flex-col gap-8 text-center lg:text-left">

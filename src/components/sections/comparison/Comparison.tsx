@@ -43,7 +43,7 @@ export default function Comparison() {
   }, [isResizing]);
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-24 flex flex-col items-center">
+    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* SECTION HEADER */}
       <div className="text-center mb-12 animate-fade-in-up max-w-3xl">
@@ -66,35 +66,41 @@ export default function Comparison() {
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       >
-        {/* AFTER IMAGE (NEW DESIGN) - Alt təbəqə */}
+        {/* AFTER IMAGE (NEW DESIGN) - Modern Website Design */}
         <div className="absolute inset-0 w-full h-full">
             <Image 
-                src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop" 
-                alt="New Design" 
+                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2000&auto=format&fit=crop" 
+                alt="New Modern Website Design" 
                 fill
                 className="object-cover"
                 priority
             />
             {/* Label */}
-            <div className="absolute top-6 right-6 px-4 py-2 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-white font-bold text-sm z-10">
-                ✨ After: 2025 Redesign
+            <div className="absolute top-6 right-6 px-4 py-2 bg-gradient-to-r from-primary/90 to-purple-500/90 backdrop-blur-md rounded-lg border border-white/20 text-white font-bold text-sm z-10 shadow-lg">
+                ✨ Sonra: Şimdi böyle görünüyor
             </div>
         </div>
 
-        {/* BEFORE IMAGE (OLD DESIGN) - Üst təbəqə, kəsilir */}
+        {/* BEFORE IMAGE (OLD DESIGN) - Eski, Kötü Website Tasarımı */}
         <div 
             className="absolute inset-0 w-full h-full overflow-hidden bg-slate-200"
             style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
             <Image 
-                src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2000&auto=format&fit=crop" 
-                alt="Old Design" 
+                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2000&auto=format&fit=crop" 
+                alt="Old Website Design" 
                 fill
-                className="object-cover grayscale contrast-125" // Köhnə dizaynı biraz "köhnə" göstərmək üçün effekt
+                className="object-cover grayscale brightness-50 contrast-200 saturate-0" 
             />
+            {/* Overlay to make it look old and bad */}
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/40 via-orange-900/30 to-red-900/40 mix-blend-multiply" />
+            {/* Add old design visual noise - scanlines effect */}
+            <div className="absolute inset-0 opacity-20" style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)'
+            }} />
              {/* Label */}
-             <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-lg text-black font-bold text-sm z-10 shadow-lg">
-                💀 Before: Outdated UI
+             <div className="absolute top-6 left-6 px-4 py-2 bg-red-500/90 backdrop-blur-md rounded-lg text-white font-bold text-sm z-10 shadow-lg border border-red-400/30">
+                💀 Önce: Website böyle görünüyordu
             </div>
         </div>
 

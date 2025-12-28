@@ -20,7 +20,7 @@ import {
 
 export default function About() {
   return (
-    <section id="about" className="w-full max-w-7xl mx-auto px-4 md:px-8 py-20 flex flex-col items-center">
+    <section id="about" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-20 flex flex-col items-center">
       
       {/* SECTION HEADER */}
       <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">

@@ -93,7 +93,7 @@ const RESOURCES = [
 
 export default function Resources() {
   return (
-    <section id="lab" className="w-full max-w-7xl mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
+    <section id="lab" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col items-center text-center gap-4 mb-12 animate-fade-in-up">

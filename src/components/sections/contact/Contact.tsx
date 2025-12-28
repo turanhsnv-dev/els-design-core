@@ -21,7 +21,7 @@ export default function Contact() {
       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-linear-to-t from-primary/10 via-background-dark to-transparent pointer-events-none" />
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
         
         {/* MAIN CTA CARD */}
         <div className="w-full bg-linear-to-br from-white/5 to-white/2 border border-white/10 rounded-3xl p-8 md:p-16 text-center backdrop-blur-md overflow-hidden relative group">
