@@ -15,7 +15,8 @@ import {
   Box, 
   Globe, 
   Mail,
-  Trophy 
+  Trophy,
+  GraduationCap 
 } from "lucide-react";
 
 export default function About() {
@@ -39,27 +40,19 @@ export default function About() {
       {/* BENTO GRID */}
       <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(280px,auto)]">
         
-        {/* 1. BIO & VISION (RESİM BURADA) */}
+        {/* 1. BIO & VISION */}
         <div className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[32px] overflow-hidden border border-white/5 bg-[#151621] hover:border-primary/40 hover:shadow-[0_0_40px_-10px_rgba(100,103,242,0.3)] transition-all duration-500">
             
-            {/* --- SİNEMATİK FOTOĞRAF ALANI --- */}
+            {/* PHOTO AREA */}
             <div className="absolute inset-0 z-0">
                <Image 
-                 src="/elza-main.jpg" // Resmi public klasörüne bu isimle atman lazım!
+                 src="/elza-main.jpg" 
                  alt="Elza Portrait" 
                  fill
                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                 // CSS FİLTRELERİ:
-                 // grayscale-[0.2]: Renkleri çok hafif soldurur (daha ciddi durur)
-                 // contrast-110: Kontrastı artırır
-                 // brightness-[0.85]: Hafif karartır (yazılar okunsun diye)
                  style={{ filter: 'grayscale(20%) contrast(110%) brightness(85%)' }}
                />
-               
-               {/* KATMAN 1: Koyu Gradyan (Aşağıdan yukarı) - Yazılar okunsun diye */}
                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c15] via-[#0b0c15]/60 to-transparent z-10 opacity-90" />
-               
-               {/* KATMAN 2: Mor Sinematik Filtre (Mix Blend Mode) */}
                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
             </div>
 
@@ -79,7 +72,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 2. EXPERIENCE (Daha önceki düzenlenmiş hali korundu) */}
+        {/* 2. EXPERIENCE */}
         <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 p-8 flex flex-col hover:border-primary/40 transition-all duration-500 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none group-hover:bg-primary/20 transition-colors"></div>
             
@@ -126,7 +119,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 3. TECH STACK (Aynı kaldı) */}
+        {/* 3. TECH STACK (Eski Haline Döndü) */}
         <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 p-8 flex flex-col justify-between hover:border-primary/40 transition-all duration-500 group">
             <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">Tech Stack</h3>
@@ -144,25 +137,38 @@ export default function About() {
             </div>
         </div>
 
-        {/* 4. STATS (Aynı kaldı) */}
-        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-primary text-white p-8 flex flex-col justify-center relative overflow-hidden group hover:shadow-[0_0_50px_rgba(100,103,242,0.6)] transition-all duration-500">
-             <div className="absolute -right-6 -bottom-6 opacity-20 transform rotate-12 group-hover:scale-110 transition-transform duration-700">
-                <Trophy size={140} strokeWidth={1} />
+        {/* 4. EDUCATION (YENİLENEN KISIM) */}
+        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-gradient-to-br from-orange-700 to-amber-800 text-white p-8 flex flex-col relative overflow-hidden group hover:shadow-[0_0_10px_rgba(245,158,11,0.5)] transition-all duration-500">
+             {/* Arkaplan Süsü */}
+             <div className="absolute -right-6 -bottom-6 opacity-20 transform -rotate-12 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                <GraduationCap size={140} strokeWidth={1} />
              </div>
-             <div className="relative z-10 space-y-6">
+             
+             <div className="flex items-center justify-between mb-6 relative z-10">
+                 <h3 className="text-2xl font-bold text-white">Education</h3>
+                 <GraduationCap className="text-white/70 group-hover:text-white transition-colors" size={28} />
+             </div>
+
+             <div className="relative z-10 flex flex-col gap-6">
+                {/* 1. Eğitim */}
                 <div className="flex flex-col">
-                    <h2 className="text-5xl font-black mb-1">12</h2>
-                    <span className="text-white/80 font-medium tracking-wider text-sm uppercase">Awards Won</span>
+                    <span className="text-white/80 font-bold text-xs uppercase tracking-wider mb-1">2024 - 2025</span>
+                    <h4 className="text-white font-black text-lg leading-tight">IT Brains Academy</h4>
+                    <p className="text-white/90 text-sm font-medium">UX & UI Design</p>
                 </div>
-                <div className="w-12 h-1 bg-white/30 rounded-full"></div>
+                
+                <div className="w-full h-[1px] bg-white/20"></div>
+
+                {/* 2. Eğitim */}
                 <div className="flex flex-col">
-                    <h2 className="text-5xl font-black mb-1">8+</h2>
-                    <span className="text-white/80 font-medium tracking-wider text-sm uppercase">Years Experience</span>
+                    <span className="text-white/80 font-bold text-xs uppercase tracking-wider mb-1">2020 - 2025</span>
+                    <h4 className="text-white font-black text-lg leading-tight">Baku Slavic Uni.</h4>
+                    <p className="text-white/90 text-sm font-medium">Rus Dili Müellimliyi</p>
                 </div>
              </div>
         </div>
 
-        {/* 5. LOCATION (Aynı kaldı) */}
+        {/* 5. LOCATION */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-500 flex items-stretch group">
             <div className="w-2/5 relative min-h-full overflow-hidden">
                  <Image 
@@ -183,7 +189,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 6. CONTACT CTA (Aynı kaldı) */}
+        {/* 6. CONTACT CTA */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#0f0f13] border border-white/5 p-8 flex items-center justify-between relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))] from-primary/20 via-[#0b0c15] to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
              <div className="relative z-10">
