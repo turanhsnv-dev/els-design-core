@@ -49,7 +49,7 @@ export default function Showreel() {
         <video
           ref={videoRef}
           className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
-          src="/elsvidedo.mp4"
+          src="./motion-2.mp4"
           autoPlay
           loop
           muted={isMuted}

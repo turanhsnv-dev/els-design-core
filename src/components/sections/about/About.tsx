@@ -23,12 +23,12 @@ export default function About() {
     <section id="about" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* SECTION HEADER */}
-      <div className="text-center max-w-3xl mx-auto mb-20">
+      <div className="text-center max-w-3xl mx-auto mb-20 overflow-visible">
         <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6 leading-[1.1] pb-1 overflow-visible">
           Crafting Digital Universes
         </h2>
         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">

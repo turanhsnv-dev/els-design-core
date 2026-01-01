@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, X, Download } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -87,11 +87,15 @@ export default function Navbar() {
             Menu
           </button>
 
-          {/* Button */}
-          <button className="bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-full transition-all flex items-center gap-2 group hover:border-primary/50">
-            Let's Talk
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-primary" />
-          </button>
+          {/* Download CV Button */}
+          <a 
+            href="/cv.pdf" 
+            download
+            className="bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-full transition-all flex items-center gap-2 group hover:border-primary/50"
+          >
+            Download CV
+            <Download size={16} className="group-hover:translate-y-0.5 transition-transform text-primary" />
+          </a>
         </nav>
       </div>
 
@@ -145,10 +149,14 @@ export default function Navbar() {
 
           {/* Panel Footer */}
           <div className="p-6 border-t border-white/10">
-            <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all flex items-center justify-center gap-2 group">
-              Let's Talk
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            <a 
+              href="/cv.pdf" 
+              download
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all flex items-center justify-center gap-2 group"
+            >
+              Download CV
+              <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>
