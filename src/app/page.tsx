@@ -13,6 +13,7 @@ import Services from "@/components/sections/services/Services";
 import Playground from "@/components/sections/playground/DesignStudio";
 import Toolkit from "@/components/sections/toolkit/Toolkit";
 import Showreel from "@/components/sections/showreel/Showreel";
+import Motivation from "@/components/sections/motivation/Motivation";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <Showreel />
       <Playground />
       <Testimonials />
+      <Motivation />
       <Resources />
       <Contact />
     </main>
