@@ -8,7 +8,6 @@ import Process from "@/components/sections/process/Process";
 import Projects from "@/components/sections/projects/Projects";
 import Resources from "@/components/sections/resources/Resources";
 import Contact from "@/components/sections/contact/Contact";
-import Comparison from "@/components/sections/comparison/Comparison";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Services from "@/components/sections/services/Services";
 import Playground from "@/components/sections/playground/DesignStudio";
@@ -23,7 +22,6 @@ export default function Home() {
       <About />
       <Toolkit /> 
       <Process />
-      <Comparison />
       <Projects />
       <Services />
       <Showreel />
