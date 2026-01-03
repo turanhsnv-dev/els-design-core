@@ -43,7 +43,7 @@ export default function Comparison() {
   }, [isResizing]);
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
+    <section id="comparison" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* SECTION HEADER */}
       <div className="text-center mb-12 animate-fade-in-up max-w-3xl">

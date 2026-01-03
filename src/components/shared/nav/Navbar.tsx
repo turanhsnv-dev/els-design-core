@@ -59,6 +59,9 @@ export default function Navbar() {
 
   const handleSectionClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    
+    // Önce body scroll'u aç
+    document.body.style.overflow = "unset";
     closeMenu();
     
     // Kısa bir delay ile scroll - panel kapanma animasyonu için
@@ -75,6 +78,9 @@ export default function Navbar() {
           top: offsetPosition,
           behavior: "smooth"
         });
+      } else {
+        // Element bulunamazsa console'a log yaz
+        console.warn(`Section with id "${targetId}" not found`);
       }
     }, 300); // Panel kapanma animasyonu süresi
   };

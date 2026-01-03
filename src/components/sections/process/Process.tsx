@@ -47,7 +47,7 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState<string | null>("01");
 
   return (
-    <section className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col md:flex-row gap-12 items-start">
+    <section id="process" className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col md:flex-row gap-12 items-start">
       
       {/* LEFT SIDE: HEADER */}
       <div className="md:w-1/3 sticky top-32">

@@ -46,7 +46,7 @@ const BRANDS = [ "Coinbase", "Spotify", "Slack", "Figma", "Linear", "Vercel", "N
 
 export default function Testimonials() {
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-background-dark">
+    <section id="testimonials" className="relative w-full py-24 overflow-hidden bg-background-dark">
       
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/10 via-background-dark to-background-dark" />

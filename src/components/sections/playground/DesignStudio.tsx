@@ -95,7 +95,7 @@ export default function DesignStudio() {
   const selectedElement = elements.find((el) => el.id === selectedId);
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
+    <section id="playground" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
       
       {/* HEADER */}
       <div className="text-center mb-10 animate-fade-in-up">

@@ -72,6 +72,7 @@ export default function Toolkit() {
 
   return (
     <section 
+        id="toolkit"
         onMouseMove={handleMouseMove}
         className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0B0C15]"
     >
