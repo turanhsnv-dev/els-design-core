@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, X, Download } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,6 +37,26 @@ export default function Navbar() {
     document.body.style.overflow = "unset";
   };
 
+  const handleDownloadCV = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    toast.success("CV downloaded!", {
+      icon: "✓",
+      style: {
+        background: "rgba(11, 12, 21, 0.95)",
+        color: "#fff",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(12px)",
+        borderRadius: "12px",
+        padding: "16px 24px",
+        minWidth: "320px",
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.3)",
+      },
+      iconTheme: {
+        primary: "#10b981",
+        secondary: "rgba(11, 12, 21, 0.95)",
+      },
+    });
+  };
+
   const handleSectionClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     closeMenu();
@@ -63,39 +84,63 @@ export default function Navbar() {
       {/* Glass effect arka plan - blur'lu içerik görünsün */}
       <div className="absolute inset-0 bg-background-dark/40 backdrop-blur-xl border-b border-white/5"></div>
       
-      {/* HİZALAMA: Hero ile birebir aynı genişlik ve boşluklar korundu */}
+      {/* HİZALAMA: Section'larla aynı genişlik ve boşluklar */}
       <div className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-2">
         
-        <nav className="rounded-none px-6 py-2 flex items-center justify-between transition-all duration-300 bg-transparent">
+        <nav className="rounded-none py-2 grid grid-cols-3 items-center transition-all duration-300 bg-transparent relative">
           
-          {/* LOGO: ElsDesign */}
-          <Link href="/" className="cursor-pointer group relative flex items-center">
-            <span className="text-xl sm:text-2xl font-black text-white tracking-tight transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">
-              <span className="text-primary">Els</span>
-              <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">Design</span>
-            </span>
-            {/* Hover glow effect */}
-            <span className="absolute -inset-1 bg-primary/20 rounded blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
-          </Link>
+          {/* Sol: Hamburger Menu Button */}
+          <div className="flex justify-start">
+            <button
+              onClick={toggleMenu}
+              className="relative w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors z-10"
+              aria-label="Toggle menu"
+            >
+              {/* Hamburger Icon - Animasyonlu */}
+              <div className="relative w-6 h-5">
+                <span
+                  className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? "top-1/2 rotate-45 -translate-y-1/2" : "top-0"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-1/2 w-full h-0.5 bg-current -translate-y-1/2 transition-all duration-300 ${
+                    isMenuOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? "top-1/2 -rotate-45 -translate-y-1/2" : "bottom-0"
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
 
-          {/* Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="text-sm font-medium text-white hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            Menu
-          </button>
+          {/* Orta: LOGO - Merkez */}
+          <div className="flex justify-center">
+            <Link href="/" className="cursor-pointer group relative flex items-center z-10">
+              <span className="text-xl sm:text-2xl font-black text-white tracking-tight transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">
+                <span className="text-primary">Els</span>
+                <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">Design</span>
+              </span>
+              {/* Hover glow effect */}
+              <span className="absolute -inset-1 bg-primary/20 rounded blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+            </Link>
+          </div>
 
-          {/* Download CV Button */}
-          <a 
-            href="/cv.pdf" 
-            download
-            className="bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-full transition-all flex items-center gap-2 group hover:border-primary/50"
-          >
-            Download CV
-            <Download size={16} className="group-hover:translate-y-0.5 transition-transform text-primary" />
-          </a>
+          {/* Sağ: Download CV Button */}
+          <div className="flex justify-end">
+            <a 
+              href="/elzaxuudiyeva.cv.pdf" 
+              download
+              onClick={handleDownloadCV}
+              className="bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-full transition-all flex items-center gap-2 group hover:border-primary/50 z-10"
+            >
+              Download CV
+              <Download size={16} className="group-hover:translate-y-0.5 transition-transform text-primary" />
+            </a>
+          </div>
         </nav>
       </div>
 
@@ -109,8 +154,8 @@ export default function Navbar() {
 
       {/* Side Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-md bg-background-dark/95 backdrop-blur-2xl border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 left-0 h-full w-full max-w-md bg-background-dark/95 backdrop-blur-2xl border-r border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
@@ -150,8 +195,9 @@ export default function Navbar() {
           {/* Panel Footer */}
           <div className="p-6 border-t border-white/10">
             <a 
-              href="/cv.pdf" 
+              href="/elzaxuudiyeva.cv.pdf" 
               download
+              onClick={handleDownloadCV}
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all flex items-center justify-center gap-2 group"
             >
               Download CV

@@ -19,6 +19,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-manrope)"],
         display: ["var(--font-syne)"],
+        logo: ["var(--font-logo)"],
       },
       animation: {
         float: "float 6s ease-in-out infinite",
