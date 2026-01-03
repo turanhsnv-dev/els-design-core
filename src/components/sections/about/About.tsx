@@ -16,7 +16,8 @@ import {
   Globe, 
   Mail,
   Trophy,
-  GraduationCap 
+  GraduationCap,
+  MapPin
 } from "lucide-react";
 
 export default function About() {
@@ -81,39 +82,63 @@ export default function About() {
                 <History className="text-slate-500 group-hover:text-primary transition-colors" size={24} />
             </div>
             
-            <div className="relative flex-1 overflow-y-auto pr-2 space-y-10 custom-scrollbar z-10">
+            <div className="relative flex-1 overflow-y-auto pr-2 custom-scrollbar z-10 flex flex-col">
                 <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-transparent"></div>
                 
-                <div className="relative pl-8 group/item">
+                {/* En yeni - En üstte */}
+                <div className="relative pl-8 mb-10 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-primary flex items-center justify-center z-10 shadow-[0_0_10px_rgba(100,103,242,0.5)]">
                         <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs text-primary font-bold mb-1 tracking-wider">2021 - Present</span>
-                        <h4 className="text-white font-bold text-lg">Senior Product Designer</h4>
-                        <p className="text-slate-400 text-sm">TechCorp Inc.</p>
+                        <span className="text-xs text-primary font-bold mb-1 tracking-wider">09.2025 - Present</span>
+                        <h4 className="text-white font-bold text-lg">UX/UI Designer</h4>
+                        <p className="text-slate-400 text-sm">Burncode Company</p>
                     </div>
                 </div>
 
-                <div className="relative pl-8 group/item">
+                <div className="relative pl-8 mb-10 group/item">
+                    <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-primary flex items-center justify-center z-10 shadow-[0_0_10px_rgba(100,103,242,0.5)]">
+                        <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-xs text-primary font-bold mb-1 tracking-wider">07.2025 - Present</span>
+                        <h4 className="text-white font-bold text-lg">UX/UI Designer</h4>
+                        <p className="text-slate-400 text-sm">Innoland Incubation Center</p>
+                    </div>
+                </div>
+
+                <div className="relative pl-8 mb-10 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-slate-700 group-hover/item:border-primary transition-colors flex items-center justify-center z-10">
                         <div className="w-2 h-2 rounded-full bg-slate-500 group-hover/item:bg-primary transition-colors"></div>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs text-slate-500 font-bold mb-1 tracking-wider">2018 - 2021</span>
-                        <h4 className="text-white font-bold text-lg">Lead Motion Designer</h4>
-                        <p className="text-slate-400 text-sm">Creative Agency</p>
+                        <span className="text-xs text-slate-500 font-bold mb-1 tracking-wider">03.2025 - 07.2025</span>
+                        <h4 className="text-white font-bold text-lg">UX/UI Design Mentor</h4>
+                        <p className="text-slate-400 text-sm">IT Brains Academy</p>
                     </div>
                 </div>
 
+                <div className="relative pl-8 mb-10 group/item">
+                    <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-slate-700 group-hover/item:border-primary transition-colors flex items-center justify-center z-10">
+                         <div className="w-2 h-2 rounded-full bg-slate-500 group-hover/item:bg-primary transition-colors"></div>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-xs text-slate-500 font-bold mb-1 tracking-wider">09.2024 - 07.2025</span>
+                        <h4 className="text-white font-bold text-lg">UX/UI Designer</h4>
+                        <p className="text-slate-400 text-sm">ITB Techno</p>
+                    </div>
+                </div>
+
+                {/* En eski - En altta */}
                 <div className="relative pl-8 group/item">
                     <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1c1c27] border border-slate-700 group-hover/item:border-primary transition-colors flex items-center justify-center z-10">
                          <div className="w-2 h-2 rounded-full bg-slate-500 group-hover/item:bg-primary transition-colors"></div>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs text-slate-500 font-bold mb-1 tracking-wider">2016 - 2018</span>
-                        <h4 className="text-white font-bold text-lg">UI Designer</h4>
-                        <p className="text-slate-400 text-sm">StartUp Ltd.</p>
+                        <span className="text-xs text-slate-500 font-bold mb-1 tracking-wider">08.2024 - 06.2025</span>
+                        <h4 className="text-white font-bold text-lg">UX/UI Designer</h4>
+                        <p className="text-slate-400 text-sm">Pelcare (startup/freelance)</p>
                     </div>
                 </div>
             </div>
@@ -170,14 +195,22 @@ export default function About() {
 
         {/* 5. LOCATION */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-500 flex items-stretch group">
-            <div className="w-2/5 relative min-h-full overflow-hidden">
-                 <Image 
-                   src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=600&q=80" 
-                   alt="Location" 
-                   fill
-                   className="object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                 />
-                 <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+            <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-transparent group-hover:from-primary/20 group-hover:via-primary/10 transition-all duration-500">
+                {/* Concentric circles with icon in center */}
+                <div className="relative flex items-center justify-center">
+                    {/* Outer circle */}
+                    <div className="absolute w-40 h-40 rounded-full border border-primary/20 group-hover:border-primary/40 transition-all duration-500"></div>
+                    {/* Inner circle */}
+                    <div className="absolute w-28 h-28 rounded-full border border-primary/30 group-hover:border-primary/50 transition-all duration-500"></div>
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 -z-10"></div>
+                    {/* Location Icon - Centered */}
+                    <MapPin 
+                        size={60} 
+                        className="text-primary relative z-10 group-hover:scale-110 group-hover:text-primary/80 transition-all duration-500" 
+                        strokeWidth={1.5}
+                    />
+                </div>
             </div>
             <div className="w-3/5 p-8 flex flex-col justify-center">
                 <div className="flex items-center gap-2 text-primary mb-3">
@@ -197,10 +230,13 @@ export default function About() {
                 <p className="text-slate-400 text-sm max-w-xs">Let&apos;s turn your ideas into a digital reality.</p>
              </div>
              <div className="relative z-10">
-                <button className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-8 py-4 font-bold text-sm hover:bg-slate-200 hover:scale-105 transition-all shadow-lg">
+                <a 
+                    href="mailto:uxuielza@gmail.com"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-8 py-4 font-bold text-sm hover:bg-slate-200 hover:scale-105 transition-all shadow-lg"
+                >
                     <span>Get in touch</span>
                     <Mail size={18} />
-                </button>
+                </a>
              </div>
         </div>
 
