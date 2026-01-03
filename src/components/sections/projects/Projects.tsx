@@ -69,20 +69,15 @@ export default function Projects() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Heading */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex flex-col gap-2">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-16">
+        <div className="flex flex-col items-center text-center gap-4">
             <div className="flex items-center gap-2 text-primary text-sm font-bold tracking-[0.2em] uppercase mb-2">
                 <span className="w-8 h-px bg-primary"></span>
                 Selected Works
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
-                Featured <br/><span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/40">Projects</span>
+                Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/40">Projects</span>
             </h2>
-        </div>
-        <div className="max-w-md pb-2">
-            <p className="text-slate-400 text-lg font-light leading-relaxed">
-                A curated collection of digital experiences designed with precision, motion, and user-centric philosophy.
-            </p>
         </div>
       </div>
 
@@ -96,11 +91,11 @@ export default function Projects() {
           {PROJECTS.map((project) => (
             <article 
                 key={project.id} 
-                className="snap-center shrink-0 w-[85vw] md:w-[420px] group relative glass-card rounded-2xl border border-white/5 bg-white/2 overflow-hidden cursor-pointer hover:border-primary/30 transition-all duration-500 hover:-translate-y-2"
+                className="snap-center shrink-0 w-[85vw] md:w-[420px] group relative rounded-3xl border border-white/10 bg-white/3 backdrop-blur-xl overflow-hidden cursor-pointer hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10"
             >
-              {/* Image Area - Height azaldıldı (h-[260px]) */}
-              <div className="relative h-[260px] w-full bg-slate-900 overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-t from-[#0b0c15] via-transparent to-transparent opacity-60 z-10"></div>
+              {/* Image Area */}
+              <div className="relative h-[280px] w-full bg-slate-900 overflow-hidden border-b-0">
+                <div className="absolute inset-0 bg-linear-to-t from-background-dark via-transparent to-transparent opacity-70 z-10"></div>
                 
                 <Image 
                     src={project.image} 
@@ -109,40 +104,46 @@ export default function Projects() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 
-                {/* Floating Tag */}
+                {/* Floating Category Badge */}
                 <div className="absolute top-5 left-5 z-20">
-                    <span className="px-3 py-1 rounded-full border border-white/10 bg-black/40 backdrop-blur-sm text-[10px] font-bold text-white uppercase tracking-wider">
+                    <span className="px-4 py-1.5 rounded-full border border-white/20 bg-black/60 backdrop-blur-md text-xs font-bold text-white uppercase tracking-wider shadow-lg">
                         {project.category}
                     </span>
                 </div>
+
+                {/* Gradient Overlay on Hover */}
+                <div className={`absolute inset-0 bg-linear-to-t ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10`}></div>
               </div>
 
-              {/* Content Area */}
-              <div className="relative p-6 z-20 -mt-6">
-                <div className="flex justify-between items-start mb-3">
-                    <div>
-                        <h3 className={`text-2xl font-bold text-white mb-1 transition-colors ${project.color}`}>
+              {/* Content Area - Resimden ayrı */}
+              <div className="relative p-6 pt-8 bg-white/2 backdrop-blur-xl">
+                <div className="flex justify-between items-start mb-4">
+                    <div className="flex-1">
+                        <h3 className={`text-2xl md:text-3xl font-black text-white mb-2 transition-colors ${project.color}`}>
                             {project.title}
                         </h3>
-                        <p className="text-slate-400 text-sm font-medium">{project.description}</p>
+                        <p className="text-slate-400 text-sm font-medium leading-relaxed">{project.description}</p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 ml-4 shrink-0 shadow-lg">
                         <ArrowUpRight size={20} className="text-white transition-transform duration-300 group-hover:rotate-45" />
                     </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mt-4 border-t border-white/5 pt-4">
+                {/* Tags - Modern Design */}
+                <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/10">
                     {project.tags.map((tag, i) => (
-                        <span key={i} className="text-slate-500 text-xs flex items-center">
-                            {i > 0 && <span className="mr-2 text-slate-700">•</span>}
+                        <span 
+                            key={i} 
+                            className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 hover:border-primary/30 transition-all"
+                        >
                             {tag}
                         </span>
                     ))}
                 </div>
               </div>
 
-              {/* Hover Glow Effect */}
-              <div className={`absolute inset-0 bg-linear-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+              {/* Hover Glow Effect - Enhanced */}
+              <div className={`absolute inset-0 bg-linear-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl`} />
             </article>
           ))}
         </div>

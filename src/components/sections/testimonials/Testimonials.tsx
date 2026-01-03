@@ -42,8 +42,6 @@ const REVIEWS = [
   },
 ];
 
-const BRANDS = [ "Coinbase", "Spotify", "Slack", "Figma", "Linear", "Vercel", "Notion" ];
-
 export default function Testimonials() {
   return (
     <section id="testimonials" className="relative w-full py-24 overflow-hidden bg-background-dark">
@@ -58,24 +56,6 @@ export default function Testimonials() {
           <h3 className="text-3xl md:text-4xl font-black text-white">
             Client <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-slate-500">Echoes</span>
           </h3>
-        </div>
-      </div>
-
-      {/* MARQUEE 1: LOGOS (Avtomatik Axın) */}
-      <div className="relative flex overflow-x-hidden group mb-20 opacity-60 hover:opacity-100 transition-opacity duration-500">
-        <div className="flex animate-marquee whitespace-nowrap items-center gap-16 px-8 min-w-full">
-          {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((brand, i) => (
-            <span key={`brand-marquee1-${brand}-${i}`} className="text-2xl font-bold text-white/30 font-display uppercase tracking-wider hover:text-white transition-colors cursor-default select-none">
-              {brand}
-            </span>
-          ))}
-        </div>
-        <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap items-center gap-16 px-8 min-w-full">
-          {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((brand, i) => (
-            <span key={`brand-marquee2-${brand}-${i}`} className="text-2xl font-bold text-white/30 font-display uppercase tracking-wider hover:text-white transition-colors cursor-default select-none">
-              {brand}
-            </span>
-          ))}
         </div>
       </div>
 
