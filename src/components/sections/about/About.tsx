@@ -144,7 +144,7 @@ export default function About() {
             </div>
         </div>
 
-        {/* 3. TECH STACK (Eski Haline Döndü) */}
+        {/* 3. TECH STACK */}
         <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 p-8 flex flex-col justify-between hover:border-primary/40 transition-all duration-500 group">
             <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">Tech Stack</h3>
@@ -162,9 +162,8 @@ export default function About() {
             </div>
         </div>
 
-        {/* 4. EDUCATION (YENİLENEN KISIM) */}
+        {/* 4. EDUCATION */}
         <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-gradient-to-br from-orange-700 to-amber-800 text-white p-8 flex flex-col relative overflow-hidden group hover:shadow-[0_0_10px_rgba(245,158,11,0.5)] transition-all duration-500">
-             {/* Arkaplan Süsü */}
              <div className="absolute -right-6 -bottom-6 opacity-20 transform -rotate-12 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
                 <GraduationCap size={140} strokeWidth={1} />
              </div>
@@ -175,7 +174,6 @@ export default function About() {
              </div>
 
              <div className="relative z-10 flex flex-col gap-6">
-                {/* 1. Eğitim */}
                 <div className="flex flex-col">
                     <span className="text-white/80 font-bold text-xs uppercase tracking-wider mb-1">2024 - 2025</span>
                     <h4 className="text-white font-black text-lg leading-tight">IT Brains Academy</h4>
@@ -184,7 +182,6 @@ export default function About() {
                 
                 <div className="w-full h-[1px] bg-white/20"></div>
 
-                {/* 2. Eğitim */}
                 <div className="flex flex-col">
                     <span className="text-white/80 font-bold text-xs uppercase tracking-wider mb-1">2020 - 2025</span>
                     <h4 className="text-white font-black text-lg leading-tight">Baku Slavic Uni.</h4>
@@ -196,15 +193,10 @@ export default function About() {
         {/* 5. LOCATION */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-500 flex items-stretch group">
             <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-transparent group-hover:from-primary/20 group-hover:via-primary/10 transition-all duration-500">
-                {/* Concentric circles with icon in center */}
                 <div className="relative flex items-center justify-center">
-                    {/* Outer circle */}
                     <div className="absolute w-40 h-40 rounded-full border border-primary/20 group-hover:border-primary/40 transition-all duration-500"></div>
-                    {/* Inner circle */}
                     <div className="absolute w-28 h-28 rounded-full border border-primary/30 group-hover:border-primary/50 transition-all duration-500"></div>
-                    {/* Glow effect */}
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 -z-10"></div>
-                    {/* Location Icon - Centered */}
                     <MapPin 
                         size={60} 
                         className="text-primary relative z-10 group-hover:scale-110 group-hover:text-primary/80 transition-all duration-500" 
@@ -222,17 +214,19 @@ export default function About() {
             </div>
         </div>
 
-        {/* 6. CONTACT CTA */}
-        <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#0f0f13] border border-white/5 p-8 flex items-center justify-between relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
+        {/* 6. CONTACT CTA - DƏYİŞİKLİK BURADA */}
+        <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#0f0f13] border border-white/5 p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0 relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))] from-primary/20 via-[#0b0c15] to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+             
              <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-white mb-2">Ready to launch?</h3>
                 <p className="text-slate-400 text-sm max-w-xs">Let&apos;s turn your ideas into a digital reality.</p>
              </div>
-             <div className="relative z-10">
+             
+             <div className="relative z-10 w-full md:w-auto">
                 <a 
                     href="mailto:uxuielza@gmail.com"
-                    className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-8 py-4 font-bold text-sm hover:bg-slate-200 hover:scale-105 transition-all shadow-lg"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-8 py-4 font-bold text-sm hover:bg-slate-200 hover:scale-105 transition-all shadow-lg w-full md:w-auto"
                 >
                     <span>Get in touch</span>
                     <Mail size={18} />
