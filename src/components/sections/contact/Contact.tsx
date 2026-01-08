@@ -48,7 +48,7 @@ export default function Contact() {
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px] opacity-30" />
         
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
@@ -60,7 +60,7 @@ export default function Contact() {
         
         {/* MAIN CTA SECTION */}
         <div className="mb-32">
-          <div className="w-full bg-gradient-to-br from-white/5 via-white/3 to-white/5 border border-white/10 rounded-3xl p-12 md:p-20 text-center backdrop-blur-xl overflow-hidden relative group">
+          <div className="w-full bg-linear-to-br from-white/5 via-white/3 to-white/5 border border-white/10 rounded-3xl p-12 md:p-20 text-center backdrop-blur-xl overflow-hidden relative group">
              
              {/* Animated Background Pattern */}
              <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
@@ -83,7 +83,7 @@ export default function Contact() {
 
                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-8 leading-[1.1]">
                  Let's build the <br />
-                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-400">
+                 <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-pink-400">
                    next big thing
                  </span>
                </h2>

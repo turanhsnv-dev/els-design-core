@@ -30,7 +30,7 @@ export default function About() {
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6 leading-[1.1] pb-1 overflow-visible">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/60 mb-6 leading-[1.1] pb-1 overflow-visible">
           Crafting Digital Universes
         </h2>
         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
@@ -53,7 +53,7 @@ export default function About() {
                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                  style={{ filter: 'grayscale(20%) contrast(110%) brightness(85%)' }}
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c15] via-[#0b0c15]/60 to-transparent z-10 opacity-90" />
+               <div className="absolute inset-0 bg-linear-to-t from-[#0b0c15] via-[#0b0c15]/60 to-transparent z-10 opacity-90" />
                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
             </div>
 
@@ -83,7 +83,7 @@ export default function About() {
             </div>
             
             <div className="relative flex-1 overflow-y-auto pr-2 custom-scrollbar z-10 flex flex-col">
-                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-transparent"></div>
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-linear-to-b from-primary via-primary/30 to-transparent"></div>
                 
                 {/* En yeni - En üstte */}
                 <div className="relative pl-8 mb-10 group/item">
@@ -163,7 +163,7 @@ export default function About() {
         </div>
 
         {/* 4. EDUCATION */}
-        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-gradient-to-br from-orange-700 to-amber-800 text-white p-8 flex flex-col relative overflow-hidden group hover:shadow-[0_0_10px_rgba(245,158,11,0.5)] transition-all duration-500">
+        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[32px] bg-linear-to-br from-orange-700 to-amber-800 text-white p-8 flex flex-col relative overflow-hidden group hover:shadow-[0_0_10px_rgba(245,158,11,0.5)] transition-all duration-500">
              <div className="absolute -right-6 -bottom-6 opacity-20 transform -rotate-12 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
                 <GraduationCap size={140} strokeWidth={1} />
              </div>
@@ -180,7 +180,7 @@ export default function About() {
                     <p className="text-white/90 text-sm font-medium">UX & UI Design</p>
                 </div>
                 
-                <div className="w-full h-[1px] bg-white/20"></div>
+                <div className="w-full h-px bg-white/20"></div>
 
                 <div className="flex flex-col">
                     <span className="text-white/80 font-bold text-xs uppercase tracking-wider mb-1">2020 - 2025</span>
@@ -192,7 +192,7 @@ export default function About() {
 
         {/* 5. LOCATION */}
         <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[32px] bg-[#151621]/80 backdrop-blur-md border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-500 flex items-stretch group">
-            <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-transparent group-hover:from-primary/20 group-hover:via-primary/10 transition-all duration-500">
+            <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-linear-to-br from-primary/10 via-primary/5 to-transparent group-hover:from-primary/20 group-hover:via-primary/10 transition-all duration-500">
                 <div className="relative flex items-center justify-center">
                     <div className="absolute w-40 h-40 rounded-full border border-primary/20 group-hover:border-primary/40 transition-all duration-500"></div>
                     <div className="absolute w-28 h-28 rounded-full border border-primary/30 group-hover:border-primary/50 transition-all duration-500"></div>

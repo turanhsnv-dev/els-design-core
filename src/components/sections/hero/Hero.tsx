@@ -4,45 +4,161 @@ import { useRef, useEffect } from "react";
 import { ArrowRight, MousePointer2, Zap, Layers } from "lucide-react";
 import gsap from "gsap";
 import { HERO_CONTENT } from "@/constants/hero/hero";
-import DarkVeil from "@/components/shared/backgrounds/DarkVeil";
-import BlurText from "@/components/shared/text/BlurText"; // Yeni komponenti import etdik
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const titleLine1Ref = useRef<HTMLHeadingElement>(null);
+  const titleLine2Ref = useRef<HTMLHeadingElement>(null);
+  const titleHighlightRef = useRef<HTMLHeadingElement>(null);
+  const mainCardRef = useRef<HTMLDivElement>(null);
+  const floatingCard1Ref = useRef<HTMLDivElement>(null);
+  const floatingCard2Ref = useRef<HTMLDivElement>(null);
+  const floatingCard3Ref = useRef<HTMLDivElement>(null);
+  const editingBadgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // DƏYİŞİKLİK: ".hero-text" selectorunu çıxartdıq, çünki mətni artıq BlurText idarə edir.
-      // Yalnız digər elementlər (Description, Buttons, Badge) üçün GSAP qalıb.
+      // Mətn sətirləri üçün yuxarıdan düşmə animasiyası
+      if (titleLine1Ref.current && titleLine2Ref.current && titleHighlightRef.current) {
+        gsap.fromTo(
+          [titleLine1Ref.current, titleLine2Ref.current, titleHighlightRef.current],
+          {
+            y: -80,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.2,
+            delay: 0.3,
+          }
+        );
+      }
+
+      // Sağ tərəfdəki card animasiyası - sağdan gəlir
+      if (mainCardRef.current) {
+        gsap.fromTo(
+          mainCardRef.current,
+          {
+            x: 100,
+            opacity: 0,
+            scale: 0.8,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.5,
+          }
+        );
+      }
+
+      // Floating card-lar üçün animasiya
+      if (floatingCard1Ref.current) {
+        gsap.fromTo(
+          floatingCard1Ref.current,
+          {
+            x: 50,
+            opacity: 0,
+            rotation: -15,
+          },
+          {
+            x: 0,
+            opacity: 0.6,
+            rotation: 12,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.7,
+          }
+        );
+      }
+
+      if (floatingCard2Ref.current) {
+        gsap.fromTo(
+          floatingCard2Ref.current,
+          {
+            x: -50,
+            opacity: 0,
+            scale: 0.8,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.9,
+          }
+        );
+      }
+
+      if (floatingCard3Ref.current) {
+        gsap.fromTo(
+          floatingCard3Ref.current,
+          {
+            y: 50,
+            opacity: 0,
+            scale: 0.8,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 1.1,
+          }
+        );
+      }
+
+      // "Elza is editing..." badge animasiyası
+      if (editingBadgeRef.current) {
+        gsap.fromTo(
+          editingBadgeRef.current,
+          {
+            x: 50,
+            opacity: 0,
+            scale: 0.8,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 1.3,
+          }
+        );
+      }
+
+      // Digər elementlər üçün fade-in
       gsap.from(".hero-fade-in", {
         y: 20, 
         opacity: 0, 
         duration: 1, 
         stagger: 0.15, 
         ease: "power3.out",
-        delay: 0.5 // Mətn gələndən sonra başlasınlar
+        delay: 0.8
       });
 
-      gsap.to(".floating-ui", {
-        y: -20, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: { each: 0.5, from: "random" }
-      });
+      // Floating UI animasiyası - silindi, card-lar sabit qalır
+      // gsap.to(".floating-ui", {
+      //   y: -20, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: { each: 0.5, from: "random" }
+      // });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 pb-12 lg:pt-20 overflow-hidden bg-[#0B0C15]">
+    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 pb-12 lg:pt-20 overflow-hidden bg-background-dark">
       
-      {/* --- ARKA PLAN (DarkVeil) --- */}
+      {/* --- ARKA PLAN --- */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-        <DarkVeil 
-            speed={0.6}
-            scanlineFrequency={0.5} 
-            warpAmount={0.5}
-            noiseIntensity={0}
-            hueShift={0}
-        />
-        <div className="absolute inset-0 bg-background-dark/50 backdrop-blur-[0px]"></div>
+        <div className="absolute inset-0 bg-background-dark/50"></div>
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen opacity-40" />
       </div>
 
@@ -62,34 +178,31 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* BAŞLIQ - BLURTEXT İLƏ */}
+          {/* BAŞLIQ - Animasiyalı */}
           <div className="flex flex-col items-center lg:items-start">
-             {/* Sətir 1 */}
-             <BlurText 
-               text={HERO_CONTENT.title.line1} 
-               delay={50}
-               animateBy="words"
-               direction="bottom"
+             <h1 
+               ref={titleLine1Ref}
                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white mb-2"
-             />
+               style={{ opacity: 0 }}
+             >
+               {HERO_CONTENT.title.line1}
+             </h1>
              
-             {/* Sətir 2 */}
-             <BlurText 
-               text={HERO_CONTENT.title.line2} 
-               delay={200}
-               animateBy="words"
-               direction="bottom"
+             <h1 
+               ref={titleLine2Ref}
                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white mb-2"
-             />
+               style={{ opacity: 0 }}
+             >
+               {HERO_CONTENT.title.line2}
+             </h1>
 
-             {/* Highlighted Sətir - Rəngli */}
-             <BlurText 
-               text={HERO_CONTENT.title.highlight} 
-               delay={350}
-               animateBy="letters" // Bunu hərflərlə edək daha effektli olsun
-               direction="bottom"
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-400"
-             />
+             <h1 
+               ref={titleHighlightRef}
+               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-pink-400"
+               style={{ opacity: 0 }}
+             >
+               {HERO_CONTENT.title.highlight}
+             </h1>
           </div>
 
           {/* Açıklama (Fade-in) */}
@@ -113,7 +226,11 @@ export default function Hero() {
         <div className="relative h-[350px] md:h-[500px] w-full flex items-center justify-center lg:justify-end perspective-1000 order-1 lg:order-2 mb-8 lg:mb-0">
           <div className="relative w-[280px] md:w-[380px] h-full flex items-center justify-center transform scale-90 md:scale-100 origin-center">
             
-            <div className="floating-ui absolute -right-4 md:-right-12 top-10 md:top-20 w-56 md:w-64 h-32 md:h-40 bg-[#1e1e2e] rounded-xl border border-white/10 p-4 opacity-60 blur-[1px] transform rotate-12 z-0 hidden sm:block">
+            <div 
+              ref={floatingCard1Ref}
+              className="floating-ui absolute -right-4 md:-right-12 top-10 md:top-20 w-56 md:w-64 h-32 md:h-40 bg-[#1e1e2e] rounded-xl border border-white/10 p-4 opacity-60 blur-[1px] transform rotate-12 z-0 hidden sm:block"
+              style={{ opacity: 0 }}
+            >
                <div className="space-y-2">
                    <div className="flex gap-2 mb-2">
                        <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
@@ -125,13 +242,17 @@ export default function Hero() {
                </div>
             </div>
 
-            <div className="floating-ui relative w-[260px] md:w-[300px] bg-[#151520] rounded-[24px] md:rounded-[32px] border border-white/10 shadow-2xl overflow-hidden z-10">
+            <div 
+              ref={mainCardRef}
+              className="floating-ui relative w-[260px] md:w-[300px] bg-[#151520] rounded-[24px] md:rounded-[32px] border border-white/10 shadow-2xl overflow-hidden z-10"
+              style={{ opacity: 0 }}
+            >
                <div className="h-12 md:h-16 border-b border-white/5 flex items-center justify-between px-4 md:px-6">
                   <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/10"></div>
                   <div className="w-16 md:w-24 h-2 bg-white/10 rounded-full"></div>
                </div>
                <div className="p-4 md:p-6 space-y-4 md:space-y-6">
-                  <div className="w-full aspect-video rounded-xl md:rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 border border-white/5 relative overflow-hidden group">
+                  <div className="w-full aspect-video rounded-xl md:rounded-2xl bg-linear-to-br from-primary/20 to-purple-500/20 border border-white/5 relative overflow-hidden group">
                       <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/20 transition-all"></div>
                       <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
@@ -154,7 +275,11 @@ export default function Hero() {
                </div>
             </div>
 
-            <div className="floating-ui absolute -left-4 md:-left-8 top-20 md:top-32 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl z-20">
+            <div 
+              ref={floatingCard2Ref}
+              className="floating-ui absolute -left-4 md:-left-8 top-20 md:top-32 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl z-20"
+              style={{ opacity: 0 }}
+            >
                 <div className="flex flex-col gap-2 md:gap-3">
                     <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary border-2 border-white/20"></div>
                     <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-purple-500 border-2 border-white/20"></div>
@@ -162,7 +287,11 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="floating-ui absolute -right-2 md:-right-6 bottom-20 md:bottom-32 flex items-center gap-2 md:gap-3 z-30">
+            <div 
+              ref={editingBadgeRef}
+              className="floating-ui absolute -right-2 md:-right-6 bottom-20 md:bottom-32 flex items-center gap-2 md:gap-3 z-30"
+              style={{ opacity: 0 }}
+            >
                 <div className="relative">
                     <MousePointer2 size={24} className="md:w-8 md:h-8 text-white fill-primary drop-shadow-[0_0_15px_rgba(100,103,242,0.8)]" />
                 </div>
@@ -171,7 +300,11 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="floating-ui absolute -left-2 md:-left-4 bottom-8 md:bottom-12 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl z-20 flex items-center gap-2 md:gap-3">
+            <div 
+              ref={floatingCard3Ref}
+              className="floating-ui absolute -left-2 md:-left-4 bottom-8 md:bottom-12 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl z-20 flex items-center gap-2 md:gap-3"
+              style={{ opacity: 0 }}
+            >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
                     <Layers size={16} className="md:w-5 md:h-5" />
                 </div>
