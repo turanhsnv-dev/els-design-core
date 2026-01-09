@@ -30,7 +30,7 @@ export default function About() {
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/60 mb-6 leading-[1.1] pb-1 overflow-visible">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/60 mb-6 leading-[1.2] pb-2 overflow-visible">
           Crafting Digital Universes
         </h2>
         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">

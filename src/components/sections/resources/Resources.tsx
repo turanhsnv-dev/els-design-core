@@ -102,7 +102,7 @@ export default function Resources() {
             <span className="text-primary text-xs font-bold uppercase tracking-widest">Knowledge Hub</span>
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white via-slate-200 to-slate-400 tracking-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white via-slate-200 to-slate-400 tracking-tight leading-[1.2] pb-2">
             Yaradıcı Laboratoriya
         </h2>
         
@@ -113,7 +113,7 @@ export default function Resources() {
 
       {/* FILTERS & SEARCH */}
       <div className="w-full sticky top-24 z-30 mb-10">
-        <div className="mx-auto max-w-5xl backdrop-blur-xl rounded-2xl border border-white/10 bg-[#151520]/80 shadow-2xl p-2 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="w-full backdrop-blur-xl rounded-2xl border border-white/10 bg-[#151520]/80 shadow-2xl p-2 flex flex-col md:flex-row items-center justify-between gap-4">
             
             {/* Filter Chips */}
             <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">

@@ -2,8 +2,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { ArrowRight, ArrowLeft, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -49,17 +49,6 @@ const PROJECTS = [
 ];
 
 export default function Projects() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 400; // Hər basışda nə qədər sürüşsün
-      scrollRef.current.scrollBy({
-        left: direction === 'right' ? scrollAmount : -scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <section id="work" className="relative py-20 overflow-hidden bg-background-dark">
@@ -81,89 +70,114 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Horizontal Scroll Container */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto">
-        <div 
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 no-scrollbar pl-4 md:pl-8"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {PROJECTS.map((project) => (
-            <article 
-                key={project.id} 
-                className="snap-center shrink-0 w-[85vw] md:w-[420px] group relative rounded-3xl border border-white/10 bg-white/3 backdrop-blur-xl overflow-hidden cursor-pointer hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10"
+      {/* Projects Grid */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {PROJECTS.map((project, index) => (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              whileHover={{ y: -8 }}
+              className="group relative rounded-2xl border border-white/10 bg-[#151621]/60 backdrop-blur-xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-500 hover:shadow-[0_20px_40px_-12px_rgba(100,103,242,0.3)]"
             >
-              {/* Image Area */}
-              <div className="relative h-[280px] w-full bg-slate-900 overflow-hidden border-b-0">
-                <div className="absolute inset-0 bg-linear-to-t from-background-dark via-transparent to-transparent opacity-70 z-10"></div>
+              {/* Image Area - Daha küçük */}
+              <div className="relative h-[200px] w-full bg-slate-900 overflow-hidden">
+                <motion.div
+                  className="absolute inset-0 bg-linear-to-t from-background-dark via-transparent to-transparent opacity-60 z-10"
+                  initial={{ opacity: 0.6 }}
+                  whileHover={{ opacity: 0.3 }}
+                  transition={{ duration: 0.3 }}
+                />
                 
-                <Image 
+                <motion.div
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                  <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                    className="object-cover"
+                  />
+                </motion.div>
                 
-                {/* Floating Category Badge */}
-                <div className="absolute top-5 left-5 z-20">
-                    <span className="px-4 py-1.5 rounded-full border border-white/20 bg-black/60 backdrop-blur-md text-xs font-bold text-white uppercase tracking-wider shadow-lg">
-                        {project.category}
+                {/* Category Badge - Daha küçük ve şık */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0.8 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  className="absolute top-3 left-3 z-20"
+                >
+                  <span className="px-2.5 py-1 rounded-lg border border-white/20 bg-black/70 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-wider">
+                    {project.category}
+                  </span>
+                </motion.div>
+
+                {/* Gradient Overlay */}
+                <motion.div
+                  className={`absolute inset-0 bg-linear-to-t ${project.glow} opacity-0 group-hover:opacity-100 z-10`}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
+
+              {/* Content Area - Kompakt */}
+              <div className="relative p-4 bg-[#151621]/80 backdrop-blur-xl">
+                <div className="flex justify-between items-start gap-3 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <motion.h3
+                      className={`text-lg font-bold text-white mb-1 transition-colors ${project.color} truncate`}
+                      whileHover={{ x: 2 }}
+                    >
+                      {project.title}
+                    </motion.h3>
+                    <p className="text-slate-400 text-xs font-medium leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
+                  <motion.div
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shrink-0"
+                    whileHover={{ scale: 1.1, rotate: 45 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <ArrowUpRight size={16} className="text-white" />
+                  </motion.div>
+                </div>
+
+                {/* Tags - Daha kompakt */}
+                <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/5">
+                  {project.tags.slice(0, 2).map((tag, i) => (
+                    <motion.span
+                      key={i}
+                      whileHover={{ scale: 1.05 }}
+                      className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-400 text-[10px] font-medium hover:bg-white/10 hover:border-primary/30 transition-all"
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+                  {project.tags.length > 2 && (
+                    <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-400 text-[10px] font-medium">
+                      +{project.tags.length - 2}
                     </span>
-                </div>
-
-                {/* Gradient Overlay on Hover */}
-                <div className={`absolute inset-0 bg-linear-to-t ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10`}></div>
-              </div>
-
-              {/* Content Area - Resimden ayrı */}
-              <div className="relative p-6 pt-8 bg-white/2 backdrop-blur-xl">
-                <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                        <h3 className={`text-2xl md:text-3xl font-black text-white mb-2 transition-colors ${project.color}`}>
-                            {project.title}
-                        </h3>
-                        <p className="text-slate-400 text-sm font-medium leading-relaxed">{project.description}</p>
-                    </div>
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 ml-4 shrink-0 shadow-lg">
-                        <ArrowUpRight size={20} className="text-white transition-transform duration-300 group-hover:rotate-45" />
-                    </div>
-                </div>
-
-                {/* Tags - Modern Design */}
-                <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/10">
-                    {project.tags.map((tag, i) => (
-                        <span 
-                            key={i} 
-                            className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 hover:border-primary/30 transition-all"
-                        >
-                            {tag}
-                        </span>
-                    ))}
+                  )}
                 </div>
               </div>
 
-              {/* Hover Glow Effect - Enhanced */}
-              <div className={`absolute inset-0 bg-linear-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl`} />
-            </article>
+              {/* Hover Glow Effect */}
+              <motion.div
+                className={`absolute inset-0 bg-linear-to-b from-transparent ${project.glow} opacity-0 group-hover:opacity-100 pointer-events-none rounded-2xl`}
+                transition={{ duration: 0.4 }}
+              />
+            </motion.article>
           ))}
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mt-2 flex items-center justify-end gap-4">
-        <button 
-            onClick={() => scroll('left')}
-            className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white/10 transition-colors active:scale-95"
-        >
-            <ArrowLeft size={20} />
-        </button>
-        <button 
-            onClick={() => scroll('right')}
-            className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-primary hover:border-primary transition-colors active:scale-95"
-        >
-            <ArrowRight size={20} />
-        </button>
-      </div>
 
     </section>
   );

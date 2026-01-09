@@ -1,16 +1,35 @@
 // src/components/sections/motivation/Motivation.tsx
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, Star, Rocket, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import gsap from "gsap";
 
+interface StarPosition {
+  x: number;
+  y: number;
+  opacity: number;
+  duration: number;
+  delay: number;
+}
+
 export default function Motivation() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [stars, setStars] = useState<StarPosition[]>([]);
 
   useEffect(() => {
+    // Generate random positions only on client side
+    const starPositions: StarPosition[] = Array.from({ length: 12 }, () => ({
+      x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+      y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+      opacity: Math.random() * 0.5 + 0.3,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2
+    }));
+    setStars(starPositions);
+    
     if (typeof window === 'undefined') return;
     
     const ctx = gsap.context(() => {
@@ -50,32 +69,28 @@ export default function Motivation() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/10 rounded-full blur-[220px]" />
         
         {/* Floating Stars */}
-        {[...Array(12)].map((_, i) => {
-          const randomX = typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1200;
-          const randomY = typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 800;
-          return (
-            <motion.div
-              key={i}
-              className="floating-star absolute"
-              initial={{
-                x: randomX,
-                y: randomY,
-                opacity: Math.random() * 0.5 + 0.3
-              }}
-              animate={{
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            >
-              <Star size={20} className="text-primary/40" fill="currentColor" />
-            </motion.div>
-          );
-        })}
+        {stars.map((star, i) => (
+          <motion.div
+            key={i}
+            className="floating-star absolute"
+            initial={{
+              x: star.x,
+              y: star.y,
+              opacity: star.opacity
+            }}
+            animate={{
+              opacity: [0.3, 0.8, 0.3],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              delay: star.delay
+            }}
+          >
+            <Star size={20} className="text-primary/40" fill="currentColor" />
+          </motion.div>
+        ))}
       </div>
 
       {/* Main Content */}
