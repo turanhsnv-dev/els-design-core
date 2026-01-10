@@ -40,7 +40,7 @@ export default function Showreel() {
       </div>
 
       {/* VIDEO CONTAINER */}
-      <div className="relative w-full aspect-video md:aspect-21/9 rounded-[32px] md:rounded-[48px] overflow-hidden border border-white/10 shadow-2xl group">
+      <div className="relative w-full aspect-[4/3] md:aspect-21/9 rounded-[32px] md:rounded-[48px] overflow-hidden border border-white/10 shadow-2xl group">
         
         {/* Glow Effect Behind */}
         <div className="absolute -inset-4 bg-linear-to-r from-primary/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-50 -z-10 group-hover:opacity-75 transition-opacity duration-700"></div>

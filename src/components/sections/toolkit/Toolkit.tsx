@@ -150,7 +150,7 @@ export default function Toolkit() {
   return (
     <section 
       id="toolkit"
-      className="relative w-full min-h-screen flex flex-col items-center justify-center py-32 overflow-hidden bg-background-dark"
+      className="relative w-full md:min-h-screen flex flex-col items-center md:justify-center py-10 md:py-32 overflow-hidden bg-background-dark"
     >
       
       {/* Animated Background */}
@@ -166,17 +166,17 @@ export default function Toolkit() {
 
       {/* HEADER */}
       <motion.div 
-        className="relative z-10 text-center px-4 mb-20"
+        className="relative z-10 text-center px-4 mb-6 md:mb-20"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-md">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 backdrop-blur-md">
           <Sparkles size={14} />
           <span>My Arsenal</span>
         </div>
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-4 md:mb-6 tracking-tight leading-tight">
           Creative <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-400">
             Toolkit
@@ -189,7 +189,28 @@ export default function Toolkit() {
 
       {/* TOOLS GRID - Creative Layout */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        {/* Mobile Slider */}
+        <div className="md:hidden relative">
+          <div 
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 no-scrollbar"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {TOOLS.map((tool, index) => (
+              <div key={tool.id} className="snap-center shrink-0 w-[85vw] max-w-[320px]">
+                <ToolCard 
+                  tool={tool} 
+                  index={index}
+                  isHovered={hoveredId === tool.id}
+                  onHover={() => setHoveredId(tool.id)}
+                  onLeave={() => setHoveredId(null)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
           {TOOLS.map((tool, index) => (
             <ToolCard 
               key={tool.id} 
