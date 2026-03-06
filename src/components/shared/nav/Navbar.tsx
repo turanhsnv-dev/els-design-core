@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, X, Download } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -16,19 +17,14 @@ export default function Navbar() {
     { name: "Projects", href: "#work" },
     { name: "Services", href: "#services" },
     { name: "Showreel", href: "#showreel" },
-    { name: "Playground", href: "#playground" },
+    { name: "Impact", href: "#impact" },
     { name: "Testimonials", href: "#testimonials" },
-    { name: "Resources", href: "#lab" },
     { name: "Contact", href: "#contact" },
   ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = !isMenuOpen ? "hidden" : "unset";
   };
 
   const closeMenu = () => {
@@ -36,158 +32,139 @@ export default function Navbar() {
     document.body.style.overflow = "unset";
   };
 
-  const handleDownloadCV = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleDownloadCV = () => {
     toast.success("CV downloaded!", {
       icon: "✓",
       style: {
-        background: "rgba(11, 12, 21, 0.95)",
+        background: "rgba(5, 5, 5, 0.97)",
         color: "#fff",
-        border: "1px solid rgba(255, 255, 255, 0.1)",
-        backdropFilter: "blur(12px)",
-        borderRadius: "12px",
-        padding: "16px 24px",
-        minWidth: "320px",
-        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.3)",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        backdropFilter: "blur(20px)",
+        borderRadius: "10px",
+        padding: "14px 20px",
+        minWidth: "280px",
+        boxShadow: "0 16px 40px rgba(0, 0, 0, 0.5)",
       },
       iconTheme: {
-        primary: "#10b981",
-        secondary: "rgba(11, 12, 21, 0.95)",
+        primary: "#00E5FF",
+        secondary: "rgba(5, 5, 5, 0.97)",
       },
     });
   };
 
   const handleSectionClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    document.body.style.overflow = "unset";
     closeMenu();
-    
     setTimeout(() => {
-      const targetId = href.replace("#", "");
-      const element = document.getElementById(targetId);
-      
+      const element = document.getElementById(href.replace("#", ""));
       if (element) {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+        const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     }, 300);
   };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="absolute inset-0 bg-background-dark/40 backdrop-blur-xl border-b border-white/5"></div>
-      
-      <div className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-2">
-        <nav className="rounded-none py-2 grid grid-cols-3 items-center transition-all duration-300 bg-transparent relative">
-          
+      <div className="absolute inset-0 bg-background-dark/60 backdrop-blur-2xl border-b border-white/[0.04]" />
+
+      <div className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-3">
+        <nav className="grid grid-cols-3 items-center">
+
+          {/* Hamburger */}
           <div className="flex justify-start">
             <button
               onClick={toggleMenu}
-              className="relative w-9 h-9 flex items-center justify-center text-white hover:text-primary transition-colors z-10"
+              className="relative w-9 h-9 flex items-center justify-center text-slate-400 hover:text-white transition-colors duration-300 z-10"
               aria-label="Toggle menu"
             >
               <div className="relative w-5 h-4">
-                <span
-                  className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ${
-                    isMenuOpen ? "top-1/2 rotate-45 -translate-y-1/2" : "top-0"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 top-1/2 w-full h-0.5 bg-current -translate-y-1/2 transition-all duration-300 ${
-                    isMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ${
-                    isMenuOpen ? "top-1/2 -rotate-45 -translate-y-1/2" : "bottom-0"
-                  }`}
-                />
+                <span className={`absolute left-0 w-full h-px bg-current transition-all duration-500 ${isMenuOpen ? "top-1/2 rotate-45 -translate-y-1/2" : "top-0"}`} />
+                <span className={`absolute left-0 top-1/2 w-full h-px bg-current -translate-y-1/2 transition-all duration-500 ${isMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"}`} />
+                <span className={`absolute left-0 w-full h-px bg-current transition-all duration-500 ${isMenuOpen ? "top-1/2 -rotate-45 -translate-y-1/2" : "bottom-0"}`} />
               </div>
             </button>
           </div>
 
+          {/* Logo */}
           <div className="flex justify-center">
             <Link href="/" className="cursor-pointer group relative flex items-center z-10">
-              <span className="text-xl sm:text-2xl font-black text-white tracking-tight transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">
-                <span className="text-primary">Els</span>
-                <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-primary group-hover:to-purple-400">Design</span>
-              </span>
-              <span className="absolute -inset-1 bg-primary/20 rounded blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+              <Image
+                src="/logo/image.png"
+                alt="Els Design logo"
+                width={230}
+                height={40}
+                className="h-10 w-auto object-contain transition-opacity duration-500 group-hover:opacity-70"
+                priority
+              />
             </Link>
           </div>
 
+          {/* CV download */}
           <div className="flex justify-end">
-            <a 
-              href="/elzaxuudiyeva.cv.pdf" 
+            <a
+              href="/elzaxuudiyeva.cv.pdf"
               download
               onClick={handleDownloadCV}
-              className="hidden md:flex bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold uppercase tracking-wider px-5 py-2 rounded-full transition-all items-center gap-2 group hover:border-primary/50 z-10"
+              className="hidden md:flex items-center gap-2 bg-transparent hover:bg-white/[0.04] border border-white/10 hover:border-white/20 text-white/70 hover:text-white text-xs font-medium uppercase tracking-widest px-5 py-2 rounded-full transition-all duration-500 group z-10"
             >
               Download CV
-              <Download size={16} className="group-hover:translate-y-0.5 transition-transform text-primary" />
+              <Download size={14} className="group-hover:translate-y-0.5 transition-transform duration-300 text-primary" />
             </a>
           </div>
         </nav>
       </div>
 
+      {/* Backdrop */}
       {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:z-50"
-          onClick={closeMenu}
-        />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40" onClick={closeMenu} />
       )}
 
+      {/* Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-[85%] max-w-md bg-background-dark/95 backdrop-blur-2xl border-r border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-[80%] max-w-sm bg-[#080808]/98 backdrop-blur-3xl border-r border-white/[0.06] z-50 transform transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <h2 className="text-xl font-bold text-white">Navigation</h2>
+          <div className="flex items-center justify-between px-8 py-6 border-b border-white/[0.06]">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">Menu</span>
             <button
               onClick={closeMenu}
-              className="p-2 text-white hover:text-primary transition-colors"
+              className="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-white transition-colors duration-300"
               aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={20} strokeWidth={1.5} />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6">
-            <nav className="flex flex-col gap-2">
-              {allSections.map((section, index) => (
-                <a
-                  key={section.name}
-                  href={section.href}
-                  onClick={(e) => handleSectionClick(section.href, e)}
-                  className="group relative px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-between cursor-pointer"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <span className="text-sm font-medium">{section.name}</span>
-                  <ArrowRight
-                    size={16}
-                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-primary"
-                  />
-                </a>
-              ))}
-            </nav>
-          </div>
+          <nav className="flex-1 overflow-y-auto px-8 py-8 flex flex-col gap-1">
+            {allSections.map((section, index) => (
+              <a
+                key={section.name}
+                href={section.href}
+                onClick={(e) => handleSectionClick(section.href, e)}
+                className="group flex items-center justify-between py-3.5 border-b border-white/[0.04] text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer"
+                style={{ transitionDelay: `${index * 30}ms` }}
+              >
+                <span className="text-sm font-light tracking-wide">{section.name}</span>
+                <ArrowRight
+                  size={14}
+                  className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary"
+                />
+              </a>
+            ))}
+          </nav>
 
-          <div className="p-6 border-t border-white/10">
-            <a 
-              href="/elzaxuudiyeva.cv.pdf" 
+          <div className="px-8 py-8 border-t border-white/[0.06]">
+            <a
+              href="/elzaxuudiyeva.cv.pdf"
               download
               onClick={handleDownloadCV}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg transition-all flex items-center justify-center gap-2 group"
+              className="w-full flex items-center justify-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-medium text-sm uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-300 group"
             >
               Download CV
-              <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
+              <Download size={14} className="group-hover:translate-y-0.5 transition-transform duration-300 text-primary" />
             </a>
           </div>
         </div>

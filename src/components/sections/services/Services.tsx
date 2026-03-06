@@ -1,126 +1,177 @@
 // src/components/sections/services/Services.tsx
 "use client";
 
-import { useRef, useState } from "react";
-import { Layers, Zap, Smartphone, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Layers, Zap, Smartphone, ArrowUpRight } from "lucide-react";
 
 const SERVICES = [
   {
     id: 1,
+    number: "01",
     title: "Product Design",
-    description: "End-to-end digital product design. From user research to polished UI, I build apps that users actually love to use.",
-    icon: <Smartphone size={32} />,
-    features: ["User Experience (UX)", "User Interface (UI)", "Mobile & Web Apps", "Interactive Prototyping"],
-    gradient: "from-blue-500/20 to-purple-500/20",
-    border: "group-hover:border-blue-500/50"
+    shortDesc: "From user research to polished UI",
+    description: "End-to-end digital product design. I take products from ambiguous problem statements to pixel-perfect interfaces that users genuinely love to use.",
+    icon: <Smartphone size={22} strokeWidth={1.5} />,
+    tags: ["User Experience (UX)", "User Interface (UI)", "Mobile & Web Apps", "Interactive Prototyping"],
   },
   {
     id: 2,
+    number: "02",
     title: "Design Systems",
-    description: "Scalable design languages for growing teams. I create the 'LEGO' blocks that keep your product consistent and fast to build.",
-    icon: <Layers size={32} />,
-    features: ["Component Libraries", "Style Guides", "Documentation", "Token Systems"],
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    border: "group-hover:border-emerald-500/50"
+    shortDesc: "Scalable component ecosystems",
+    description: "I build the 'LEGO' blocks that keep your product consistent and your team moving fast. Scalable design languages that become the single source of truth.",
+    icon: <Layers size={22} strokeWidth={1.5} />,
+    tags: ["Component Libraries", "Style Guides", "Token Systems", "Documentation"],
   },
   {
     id: 3,
+    number: "03",
     title: "Motion & Interaction",
-    description: "Bringing static screens to life. Micro-interactions and animations that guide users and create 'delight' moments.",
-    icon: <Zap size={32} />,
-    features: ["Lottie Animations", "Interaction Design", "After Effects", "Developer Handoff"],
-    gradient: "from-orange-500/20 to-red-500/20",
-    border: "group-hover:border-orange-500/50"
-  }
+    shortDesc: "Bringing static screens to life",
+    description: "Micro-interactions and animations that guide users and create delight moments. Static is forgettable. Motion makes interfaces feel intelligent.",
+    icon: <Zap size={22} strokeWidth={1.5} />,
+    tags: ["Lottie Animations", "Interaction Design", "After Effects", "Developer Handoff"],
+  },
 ];
 
 export default function Services() {
-  return (
-    <section id="services" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
-      
-      {/* HEADER */}
-      <div className="text-center mb-16 animate-fade-in-up max-w-2xl">
-        <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-3">Capabilities</h2>
-        <h3 className="text-3xl md:text-5xl font-black text-white mb-6">
-           Beyond just <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-400">Pretty Pixels</span>
-        </h3>
-        <p className="text-slate-400 text-lg">
-            I help startups and brands solve complex problems through strategic design. Here is how I can help you.
-        </p>
-      </div>
+  const [active, setActive] = useState(0);
 
-      {/* CARDS GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-        {SERVICES.map((service) => (
-            <TiltCard key={service.id} service={service} />
-        ))}
+  return (
+    <section id="services" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 md:py-32">
+
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+        className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20"
+      >
+        <div>
+          <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Capabilities</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+            Beyond just <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
+              Pretty Pixels
+            </span>
+          </h2>
+        </div>
+        <p className="text-slate-500 text-lg font-light max-w-sm leading-relaxed md:text-right">
+          Strategic design that solves real business problems. Here is how I can help you.
+        </p>
+      </motion.div>
+
+      {/* Two-panel layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-12 items-start">
+
+        {/* LEFT: Service list */}
+        <div className="flex flex-col border border-white/[0.06] rounded-2xl overflow-hidden">
+          {SERVICES.map((service, index) => (
+            <motion.button
+              key={service.id}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              onClick={() => setActive(index)}
+              className={`group relative text-left px-8 py-7 border-b last:border-b-0 border-white/[0.06] transition-all duration-500 flex items-center gap-6 ${
+                active === index
+                  ? "bg-[#111118]"
+                  : "bg-[#0a0a0e] hover:bg-[#0e0e13]"
+              }`}
+            >
+              {/* Active left indicator */}
+              <div className={`absolute left-0 top-0 bottom-0 w-px transition-all duration-500 ${active === index ? "bg-primary" : "bg-transparent"}`} />
+
+              {/* Number */}
+              <span className={`text-xs font-mono tabular-nums transition-colors duration-300 shrink-0 ${active === index ? "text-primary/80" : "text-slate-700 group-hover:text-slate-600"}`}>
+                {service.number}
+              </span>
+
+              {/* Text */}
+              <div className="flex-1 min-w-0">
+                <h3 className={`text-lg font-semibold transition-colors duration-300 ${active === index ? "text-white" : "text-slate-400 group-hover:text-slate-200"}`}>
+                  {service.title}
+                </h3>
+                <p className={`text-sm font-light transition-colors duration-300 mt-0.5 ${active === index ? "text-slate-400" : "text-slate-600"}`}>
+                  {service.shortDesc}
+                </p>
+              </div>
+
+              {/* Icon */}
+              <div className={`shrink-0 w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-500 ${
+                active === index
+                  ? "border-primary/30 bg-primary/10 text-primary"
+                  : "border-white/[0.06] bg-white/[0.02] text-slate-600 group-hover:text-slate-400"
+              }`}>
+                {service.icon}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* RIGHT: Detail panel */}
+        <div className="relative min-h-[320px] lg:min-h-[380px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className="h-full bg-[#0e0e13] border border-white/[0.08] rounded-2xl p-8 md:p-10 flex flex-col justify-between group"
+            >
+              {/* Top: number + icon */}
+              <div className="flex items-start justify-between mb-8">
+                <span className="text-7xl font-black text-white/[0.04] leading-none tabular-nums select-none">
+                  {SERVICES[active].number}
+                </span>
+                <div className="w-12 h-12 rounded-xl border border-primary/20 bg-primary/[0.06] flex items-center justify-center text-primary">
+                  {SERVICES[active].icon}
+                </div>
+              </div>
+
+              {/* Title + description */}
+              <div className="flex-1">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
+                  {SERVICES[active].title}
+                </h3>
+                <p className="text-slate-400 text-base leading-relaxed font-light">
+                  {SERVICES[active].description}
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div className="mt-8 pt-7 border-t border-white/[0.06]">
+                <div className="flex flex-wrap gap-2">
+                  {SERVICES[active].tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-400 text-xs font-light"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA link */}
+              <div className="mt-6">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 text-primary/70 text-sm font-medium hover:text-primary transition-colors duration-300 group/link"
+                >
+                  Discuss this service
+                  <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
     </section>
   );
-}
-
-// 3D TILT CARD COMPONENT
-function TiltCard({ service }: { service: any }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [rotateX, setRotateX] = useState(0);
-    const [rotateY, setRotateY] = useState(0);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
-        const rect = ref.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        setRotateX(yPct * -20); // Tilt amount
-        setRotateY(xPct * 20);
-    };
-
-    const handleMouseLeave = () => {
-        setRotateX(0);
-        setRotateY(0);
-    };
-
-    return (
-        <div 
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ 
-                transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-                transition: "transform 0.1s ease-out"
-            }}
-            className={`
-                group relative p-8 rounded-3xl bg-[#151520] border border-white/5 ${service.border}
-                hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden
-            `}
-        >
-            {/* Gradient Glow Background */}
-            <div className={`absolute inset-0 bg-linear-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-            
-            {/* Content */}
-            <div className="relative z-10 flex flex-col h-full">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-                    {service.icon}
-                </div>
-                
-                <h4 className="text-2xl font-bold text-white mb-4">{service.title}</h4>
-                <p className="text-slate-400 leading-relaxed mb-8 grow">
-                    {service.description}
-                </p>
-
-                <ul className="space-y-3 mt-auto">
-                    {service.features.map((feature: string, i: number) => (
-                        <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                            <CheckCircle2 size={16} className="text-primary shrink-0" />
-                            {feature}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
 }

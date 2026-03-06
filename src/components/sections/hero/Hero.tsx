@@ -1,323 +1,191 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { ArrowRight, MousePointer2, Zap, Layers } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import gsap from "gsap";
+import Image from "next/image";
 import { HERO_CONTENT } from "@/constants/hero/hero";
 
 export default function Hero() {
   const containerRef = useRef(null);
-  const titleLine1Ref = useRef<HTMLHeadingElement>(null);
-  const titleLine2Ref = useRef<HTMLHeadingElement>(null);
-  const titleHighlightRef = useRef<HTMLHeadingElement>(null);
-  const mainCardRef = useRef<HTMLDivElement>(null);
-  const floatingCard1Ref = useRef<HTMLDivElement>(null);
-  const floatingCard2Ref = useRef<HTMLDivElement>(null);
-  const floatingCard3Ref = useRef<HTMLDivElement>(null);
-  const editingBadgeRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
+  const subRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Mətn sətirləri üçün yuxarıdan düşmə animasiyası
-      if (titleLine1Ref.current && titleLine2Ref.current && titleHighlightRef.current) {
+      // Heading drops in cinematic
+      if (headRef.current) {
         gsap.fromTo(
-          [titleLine1Ref.current, titleLine2Ref.current, titleHighlightRef.current],
-          {
-            y: -80,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.2,
-            delay: 0.3,
-          }
+          headRef.current,
+          { y: -50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.4, ease: "power3.out", delay: 0.3 }
         );
       }
-
-      // Sağ tərəfdəki card animasiyası - sağdan gəlir
-      if (mainCardRef.current) {
+      // Sub content fades up
+      if (subRef.current) {
         gsap.fromTo(
-          mainCardRef.current,
-          {
-            x: 100,
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power3.out",
-            delay: 0.5,
-          }
+          subRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.7 }
         );
       }
-
-      // Floating card-lar üçün animasiya
-      if (floatingCard1Ref.current) {
+      // Photo slides in from right
+      if (photoRef.current) {
         gsap.fromTo(
-          floatingCard1Ref.current,
-          {
-            x: 50,
-            opacity: 0,
-            rotation: -15,
-          },
-          {
-            x: 0,
-            opacity: 0.6,
-            rotation: 12,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 0.7,
-          }
+          photoRef.current,
+          { x: 60, opacity: 0 },
+          { x: 0, opacity: 1, duration: 1.4, ease: "power3.out", delay: 0.5 }
         );
       }
-
-      if (floatingCard2Ref.current) {
+      // Stats bar rises
+      if (statsRef.current) {
         gsap.fromTo(
-          floatingCard2Ref.current,
-          {
-            x: -50,
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 0.9,
-          }
+          statsRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.0, ease: "power3.out", delay: 1.1 }
         );
       }
-
-      if (floatingCard3Ref.current) {
-        gsap.fromTo(
-          floatingCard3Ref.current,
-          {
-            y: 50,
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 1.1,
-          }
-        );
-      }
-
-      // "Elza is editing..." badge animasiyası
-      if (editingBadgeRef.current) {
-        gsap.fromTo(
-          editingBadgeRef.current,
-          {
-            x: 50,
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 1.3,
-          }
-        );
-      }
-
-      // Digər elementlər üçün fade-in
-      gsap.from(".hero-fade-in", {
-        y: 20, 
-        opacity: 0, 
-        duration: 1, 
-        stagger: 0.15, 
-        ease: "power3.out",
-        delay: 0.8
-      });
-
-      // Floating UI animasiyası - silindi, card-lar sabit qalır
-      // gsap.to(".floating-ui", {
-      //   y: -20, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: { each: 0.5, from: "random" }
-      // });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 pb-12 lg:pt-20 overflow-hidden bg-background-dark">
-      
-      {/* --- ARKA PLAN --- */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-background-dark/50"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen opacity-40" />
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col overflow-hidden bg-background-dark"
+    >
+      {/* Ambient glow — very restrained */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/[0.04] rounded-full blur-[180px] pointer-events-none" />
+
+      {/* ── MAIN CONTENT ── */}
+      <div className="flex-1 flex items-center w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-28 pb-10">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-center">
+
+          {/* LEFT — Editorial headline */}
+          <div className="flex flex-col gap-8 order-2 lg:order-1">
+
+            {/* Availability badge */}
+            <div className="inline-flex items-center gap-2.5 self-start px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.02]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+              </span>
+              <span className="text-xs font-medium text-slate-400 tracking-[0.2em] uppercase">
+                {HERO_CONTENT.badge}
+              </span>
+            </div>
+
+            {/* Giant headline */}
+            <div ref={headRef} style={{ opacity: 0 }}>
+              <h1 className="text-[clamp(3rem,7vw,6rem)] font-black tracking-tight leading-[1.0] text-white">
+                {HERO_CONTENT.title.line1}
+                <br />
+                {HERO_CONTENT.title.line2}
+                <br />
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
+                  {HERO_CONTENT.title.highlight}
+                </span>
+              </h1>
+            </div>
+
+            {/* Description + CTAs */}
+            <div ref={subRef} className="flex flex-col gap-6" style={{ opacity: 0 }}>
+              <p className="text-slate-400 text-lg leading-relaxed max-w-md font-light">
+                {HERO_CONTENT.description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start gap-3">
+                <a
+                  href="#work"
+                  className="group inline-flex h-12 items-center gap-2 px-8 rounded-full bg-primary text-black font-semibold text-sm hover:opacity-90 transition-opacity duration-300 shadow-[0_0_40px_-12px_rgba(0,229,255,0.5)]"
+                >
+                  View My Work
+                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex h-12 items-center px-8 rounded-full border border-white/[0.08] bg-white/[0.02] text-slate-300 font-medium text-sm hover:bg-white/[0.06] hover:text-white hover:border-white/[0.14] transition-all duration-400"
+                >
+                  Contact Me
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — Portrait */}
+          <div ref={photoRef} className="relative order-1 lg:order-2 flex justify-center lg:justify-end" style={{ opacity: 0 }}>
+            <div className="relative w-[280px] sm:w-[340px] lg:w-full max-w-[420px]">
+
+              {/* Portrait frame */}
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0e0e13]">
+                <Image
+                  src="/elza-main.jpg"
+                  alt="Elza Xudiyeva — Senior UX/UI & Motion Designer"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                {/* Bottom gradient overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-[#050505]/80 via-[#050505]/10 to-transparent" />
+
+                {/* Role badge — bottom left of photo */}
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white/40 text-[10px] uppercase tracking-[0.2em] mb-0.5">Currently at</p>
+                      <p className="text-white font-medium text-sm">Burncode Company</p>
+                    </div>
+                    <div className="w-8 h-8 rounded-full border border-white/[0.15] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating stat — top right corner */}
+              <div className="absolute -top-4 -right-4 bg-[#0e0e13] border border-white/[0.1] rounded-2xl px-5 py-4 shadow-xl">
+                <p className="text-3xl font-black text-white tabular-nums leading-none mb-1">45+</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wider">Projects</p>
+              </div>
+
+              {/* Floating award badge — bottom right */}
+              <div className="absolute -bottom-4 -right-4 bg-[#0e0e13] border border-white/[0.1] rounded-2xl px-5 py-4 shadow-xl">
+                <p className="text-3xl font-black text-primary tabular-nums leading-none mb-1">4</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wider">Awards</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-        
-        {/* SOL TARAF */}
-        <div className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left order-2 lg:order-1">
-          
-          {/* Badge (Fade-in ilə gəlir) */}
-          <div className="hero-fade-in inline-flex items-center gap-2 self-center lg:self-start px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-xs font-bold text-primary tracking-widest uppercase">
-              {HERO_CONTENT.badge}
-            </span>
-          </div>
-
-          {/* BAŞLIQ - Animasiyalı */}
-          <div className="flex flex-col items-center lg:items-start">
-             <h1 
-               ref={titleLine1Ref}
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white mb-2"
-               style={{ opacity: 0 }}
-             >
-               {HERO_CONTENT.title.line1}
-             </h1>
-             
-             <h1 
-               ref={titleLine2Ref}
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white mb-2"
-               style={{ opacity: 0 }}
-             >
-               {HERO_CONTENT.title.line2}
-             </h1>
-
-             <h1 
-               ref={titleHighlightRef}
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-pink-400"
-               style={{ opacity: 0 }}
-             >
-               {HERO_CONTENT.title.highlight}
-             </h1>
-          </div>
-
-          {/* Açıklama (Fade-in) */}
-          <p className="hero-fade-in text-slate-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
-            {HERO_CONTENT.description}
-          </p>
-
-          {/* Butonlar (Fade-in) */}
-          <div className="hero-fade-in flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2">
-            <button className="w-full sm:w-auto h-12 px-8 rounded-full bg-primary text-white font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all hover:scale-105 shadow-[0_0_30px_-10px_rgba(100,103,242,0.6)] group">
-              View My Work
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="w-full sm:w-auto h-12 px-8 rounded-full border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 hover:border-white/20 transition-all backdrop-blur-sm">
-              Contact Me
-            </button>
+      {/* ── STATS BAR ── */}
+      <div ref={statsRef} className="w-full border-t border-white/[0.06]" style={{ opacity: 0 }}>
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/[0.06]">
+            {[
+              { label: "Avg. Conversion Lift", value: "+45%" },
+              { label: "Industry Awards", value: "4 Won" },
+              { label: "Projects Shipped", value: "45+" },
+              { label: "Years Active", value: "2+" },
+            ].map((stat, i) => (
+              <div key={i} className="px-6 md:px-8 py-5 flex flex-col gap-1 group">
+                <p className="text-xl md:text-2xl font-black text-white tabular-nums">{stat.value}</p>
+                <p className="text-slate-600 text-xs uppercase tracking-wider font-light">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* SAĞ TARAF - Floating UI (Dəyişməyib) */}
-        <div className="relative h-[350px] md:h-[500px] w-full flex items-center justify-center lg:justify-end perspective-1000 order-1 lg:order-2 mb-8 lg:mb-0">
-          <div className="relative w-[280px] md:w-[380px] h-full flex items-center justify-center transform scale-90 md:scale-100 origin-center">
-            
-            <div 
-              ref={floatingCard1Ref}
-              className="floating-ui absolute -right-4 md:-right-12 top-10 md:top-20 w-56 md:w-64 h-32 md:h-40 bg-[#1e1e2e] rounded-xl border border-white/10 p-4 opacity-60 blur-[1px] transform rotate-12 z-0 hidden sm:block"
-              style={{ opacity: 0 }}
-            >
-               <div className="space-y-2">
-                   <div className="flex gap-2 mb-2">
-                       <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                       <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                       <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-                   </div>
-                   <div className="w-full h-2 bg-white/10 rounded-full"></div>
-                   <div className="w-3/4 h-2 bg-white/10 rounded-full"></div>
-               </div>
-            </div>
-
-            <div 
-              ref={mainCardRef}
-              className="floating-ui relative w-[260px] md:w-[300px] bg-[#151520] rounded-[24px] md:rounded-[32px] border border-white/10 shadow-2xl overflow-hidden z-10"
-              style={{ opacity: 0 }}
-            >
-               <div className="h-12 md:h-16 border-b border-white/5 flex items-center justify-between px-4 md:px-6">
-                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/10"></div>
-                  <div className="w-16 md:w-24 h-2 bg-white/10 rounded-full"></div>
-               </div>
-               <div className="p-4 md:p-6 space-y-4 md:space-y-6">
-                  <div className="w-full aspect-video rounded-xl md:rounded-2xl bg-linear-to-br from-primary/20 to-purple-500/20 border border-white/5 relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/20 transition-all"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
-                              <Zap size={18} className="text-white" />
-                          </div>
-                      </div>
-                  </div>
-                  <div className="space-y-2 md:space-y-3">
-                      <div className="flex justify-between">
-                         <div className="w-1/3 h-2 md:h-3 bg-white/20 rounded-full"></div>
-                         <div className="w-8 md:w-10 h-2 md:h-3 bg-primary/40 rounded-full"></div>
-                      </div>
-                      <div className="w-full h-1.5 md:h-2 bg-white/5 rounded-full"></div>
-                      <div className="w-5/6 h-1.5 md:h-2 bg-white/5 rounded-full"></div>
-                  </div>
-                  <div className="flex gap-3 md:gap-4 mt-4 md:mt-8">
-                      <div className="w-1/2 h-16 md:h-24 rounded-xl md:rounded-2xl bg-white/5 border border-white/5"></div>
-                      <div className="w-1/2 h-16 md:h-24 rounded-xl md:rounded-2xl bg-white/5 border border-white/5"></div>
-                  </div>
-               </div>
-            </div>
-
-            <div 
-              ref={floatingCard2Ref}
-              className="floating-ui absolute -left-4 md:-left-8 top-20 md:top-32 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl z-20"
-              style={{ opacity: 0 }}
-            >
-                <div className="flex flex-col gap-2 md:gap-3">
-                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary border-2 border-white/20"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-purple-500 border-2 border-white/20"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-pink-500 border-2 border-white/20"></div>
-                </div>
-            </div>
-
-            <div 
-              ref={editingBadgeRef}
-              className="floating-ui absolute -right-2 md:-right-6 bottom-20 md:bottom-32 flex items-center gap-2 md:gap-3 z-30"
-              style={{ opacity: 0 }}
-            >
-                <div className="relative">
-                    <MousePointer2 size={24} className="md:w-8 md:h-8 text-white fill-primary drop-shadow-[0_0_15px_rgba(100,103,242,0.8)]" />
-                </div>
-                <div className="px-2 md:px-3 py-1 md:py-1.5 rounded-lg bg-primary text-white text-[10px] md:text-xs font-bold shadow-lg">
-                    Elza <span className="opacity-70">is editing...</span>
-                </div>
-            </div>
-
-            <div 
-              ref={floatingCard3Ref}
-              className="floating-ui absolute -left-2 md:-left-4 bottom-8 md:bottom-12 bg-[#1c1c27]/90 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl z-20 flex items-center gap-2 md:gap-3"
-              style={{ opacity: 0 }}
-            >
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
-                    <Layers size={16} className="md:w-5 md:h-5" />
-                </div>
-                <div>
-                    <p className="text-[8px] md:text-[10px] text-slate-400 uppercase tracking-wider">Projects</p>
-                    <p className="text-sm md:text-lg font-bold text-white">45+ Done</p>
-                </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
+
+      {/* Scroll hint */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-30">
+        <ArrowDown size={14} className="text-white animate-bounce" />
+        <span className="text-[10px] text-slate-500 uppercase tracking-widest">Scroll</span>
+      </div>
+
     </section>
   );
 }

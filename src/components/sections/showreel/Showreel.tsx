@@ -11,44 +11,49 @@ export default function Showreel() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
+    if (!videoRef.current) return;
+    if (isPlaying) videoRef.current.pause();
+    else videoRef.current.play();
+    setIsPlaying(!isPlaying);
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
   };
 
   return (
     <section id="showreel" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
-      
+
       {/* HEADER */}
-      <div className="text-center mb-12 animate-fade-in-up">
-        <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-3">Behind The Scenes</h2>
-        <h3 className="text-3xl md:text-5xl font-black text-white">
-           Design in <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Motion</span>
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-4">Behind The Scenes</p>
+        <h3 className="text-3xl md:text-5xl font-bold text-white">
+          Design in <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Motion</span>
         </h3>
-      </div>
+      </motion.div>
 
-      {/* VIDEO CONTAINER */}
-      <div className="relative w-full aspect-[4/3] md:aspect-21/9 rounded-[32px] md:rounded-[48px] overflow-hidden border border-white/10 shadow-2xl group">
-        
-        {/* Glow Effect Behind */}
-        <div className="absolute -inset-4 bg-linear-to-r from-primary/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-50 -z-10 group-hover:opacity-75 transition-opacity duration-700"></div>
+      {/* VIDEO */}
+      <motion.div
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative w-full aspect-[4/3] md:aspect-21/9 rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/[0.07] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] group"
+      >
+        {/* Very subtle cyan ambient behind */}
+        <div className="absolute -inset-2 bg-cyan-500/[0.04] blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
-        {/* THE VIDEO */}
         <video
           ref={videoRef}
-          className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover scale-[1.03] group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
           src="./motion-2.mp4"
           autoPlay
           loop
@@ -56,53 +61,55 @@ export default function Showreel() {
           playsInline
         />
 
-        {/* Overlay Gradient (Text oxunsun deyə) */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
 
-        {/* Video Content Overlay */}
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 flex items-end justify-between z-20">
-            <div>
-                <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Live Process</span>
-                </div>
-                <h4 className="text-white font-bold text-xl md:text-3xl max-w-lg leading-tight">
-                    From wireframes to polished interfaces.
-                </h4>
+        {/* Bottom controls */}
+        <div className="absolute bottom-0 left-0 w-full p-7 md:p-10 flex items-end justify-between z-20">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500/90 animate-pulse" />
+              <span className="text-white/60 text-[10px] font-medium uppercase tracking-[0.25em]">Live Process</span>
             </div>
+            <h4 className="text-white font-semibold text-xl md:text-2xl max-w-md leading-tight">
+              From wireframes to polished interfaces.
+            </h4>
+          </div>
 
-            {/* Controls */}
-            <div className="flex items-center gap-4">
-                <button 
-                    onClick={toggleMute}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all active:scale-95"
-                >
-                    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                </button>
-                <button 
-                    onClick={togglePlay}
-                    className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-[0_0_20px_rgba(100,103,242,0.4)] hover:scale-110 transition-transform active:scale-95"
-                >
-                    {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" className="ml-1" />}
-                </button>
-            </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleMute}
+              className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.12] flex items-center justify-center text-white/70 hover:text-white hover:bg-white/[0.14] transition-all duration-300 active:scale-95"
+            >
+              {isMuted ? <VolumeX size={18} strokeWidth={1.5} /> : <Volume2 size={18} strokeWidth={1.5} />}
+            </button>
+            <button
+              onClick={togglePlay}
+              className="w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center hover:opacity-90 transition-opacity duration-300 active:scale-95 shadow-[0_0_30px_-8px_rgba(0,229,255,0.6)]"
+            >
+              {isPlaying
+                ? <Pause size={20} fill="currentColor" strokeWidth={0} />
+                : <Play size={20} fill="currentColor" strokeWidth={0} className="ml-0.5" />
+              }
+            </button>
+          </div>
         </div>
 
-        {/* Center Play Button (Only shows when paused) */}
+        {/* Center play overlay (paused state) */}
         {!isPlaying && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-all">
-                <motion.button 
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={togglePlay}
-                    className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white"
-                >
-                    <Play  size={40} fill="currentColor" className="ml-2" />
-                </motion.button>
-            </div>
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ duration: 0.3 }}
+              onClick={togglePlay}
+              className="w-20 h-20 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] flex items-center justify-center text-white hover:bg-white/[0.14] transition-all duration-300"
+            >
+              <Play size={32} fill="currentColor" strokeWidth={0} className="ml-1" />
+            </motion.button>
+          </div>
         )}
-
-      </div>
+      </motion.div>
 
     </section>
   );

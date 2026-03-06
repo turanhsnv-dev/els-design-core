@@ -1,176 +1,92 @@
 // src/components/sections/motivation/Motivation.tsx
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, Star, Rocket, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import gsap from "gsap";
-
-interface StarPosition {
-  x: number;
-  y: number;
-  opacity: number;
-  duration: number;
-  delay: number;
-}
 
 export default function Motivation() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [stars, setStars] = useState<StarPosition[]>([]);
-
-  useEffect(() => {
-    // Generate random positions only on client side
-    const starPositions: StarPosition[] = Array.from({ length: 12 }, () => ({
-      x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-      y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-      opacity: Math.random() * 0.5 + 0.3,
-      duration: Math.random() * 3 + 2,
-      delay: Math.random() * 2
-    }));
-    setStars(starPositions);
-    
-    if (typeof window === 'undefined') return;
-    
-    const ctx = gsap.context(() => {
-      // Floating stars animation
-      gsap.to(".floating-star", {
-        y: -30,
-        x: "random(-20, 20)",
-        duration: "random(3, 5)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: {
-          each: 0.3,
-          from: "random"
-        }
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <section 
-      id="motivation" 
+    <section
+      id="motivation"
       ref={containerRef}
-      className="relative w-full min-h-screen flex flex-col items-center justify-center py-32 overflow-hidden bg-background-dark"
+      className="relative w-full flex flex-col items-center py-24 md:py-32 overflow-hidden bg-background-dark"
     >
-      
-      {/* Animated Background */}
+      {/* Subtle ambient glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:60px_60px] opacity-30" />
-        
-        {/* Gradient Orbs - Emotional warm colors */}
-        <div className="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-pink-500/15 rounded-full blur-[200px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] bg-purple-500/15 rounded-full blur-[180px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/10 rounded-full blur-[220px]" />
-        
-        {/* Floating Stars */}
-        {stars.map((star, i) => (
-          <motion.div
-            key={i}
-            className="floating-star absolute"
-            initial={{
-              x: star.x,
-              y: star.y,
-              opacity: star.opacity
-            }}
-            animate={{
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: star.duration,
-              repeat: Infinity,
-              delay: star.delay
-            }}
-          >
-            <Star size={20} className="text-primary/40" fill="currentColor" />
-          </motion.div>
-        ))}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/[0.03] rounded-full blur-[200px]" />
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-8">
-        
-        {/* Başlangıçtan Bugüne - İlk İş */}
+
+        {/* First Work Card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mt-8"
+          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <div className="relative bg-[#151520]/60 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 md:p-12 overflow-hidden group hover:border-primary/30 transition-all duration-500">
-            
-            {/* Decorative Elements */}
-            <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <Star size={40} className="text-primary" fill="currentColor" />
-            </div>
-            
+          <div className="relative bg-[#0e0e13] border border-white/[0.07] rounded-[28px] p-8 md:p-12 overflow-hidden group hover:border-white/[0.12] transition-all duration-700">
+
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-              
-              {/* Sol Taraf - İlk İş Görseli */}
+
+              {/* Image */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                transition={{ duration: 1.0, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                 className="relative"
               >
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-white/10 bg-[#0f111a] group/image hover:border-primary/40 transition-all duration-500 shadow-2xl">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/[0.08] bg-[#080810] shadow-2xl group/image hover:border-white/[0.14] transition-all duration-700">
                   <Image
                     src="/firsttels.jpg"
-                    alt="Elza'nın ilk dizayn işi - Turan"
+                    alt="Elza's first design work"
                     fill
-                    className="object-cover group-hover/image:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover/image:scale-[1.04] transition-transform duration-1000"
                   />
-                  
-                  {/* Nostalji efekti */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 group-hover/image:opacity-80 transition-opacity" />
-                  
-                  {/* Vintage overlay efekti */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.1)_100%)] opacity-50" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-50" />
                 </div>
-                
-                {/* Etiket */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-sm">
-                  <p className="text-primary text-xs font-bold">İlk İşim</p>
+
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#0e0e13] border border-white/[0.1] backdrop-blur-sm">
+                  <p className="text-primary/80 text-xs font-medium tracking-wider">İlk İşim</p>
                 </div>
               </motion.div>
 
-              {/* Sağ Taraf - Mesaj */}
+              {/* Text */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                transition={{ duration: 1.0, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                 className="flex flex-col justify-center"
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4 w-fit">
-                  <Star size={12} className="fill-primary" />
-                  <span>Başlanğıc</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.07] text-primary/80 text-xs font-medium uppercase tracking-[0.2em] mb-5 w-fit">
+                  Başlanğıc
                 </div>
-                
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Hər Usta Bir Zamanlar <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-pink-400">Acemi Olub</span>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
+                  Hər Usta Bir Zamanlar{" "}
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
+                    Acemi Olub
+                  </span>
                 </h3>
-                
-                <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-6">
-                  Mən də bu sadə işlə başladım. Çox sadə, çox adi görünə bilər, amma mənim üçün çox dəyərli idi. 
+
+                <p className="text-lg text-slate-400 leading-relaxed mb-4 font-light">
+                  Mən də bu sadə işlə başladım. Çox sadə, çox adi görünə bilər, amma mənim üçün çox dəyərli idi.
                   Bu, mənim dizayner kimi ilk addımımdı.
                 </p>
-                
-                <p className="text-base md:text-lg text-slate-400 leading-relaxed mb-6">
-                  İndi böyük layihələrdə işləyirəm, mürəkkəb sistemlər dizayn edirəm. Amma bu ilk işim mənə göstərdi ki, 
-                  <span className="text-primary font-semibold"> hər uğur kiçik addımlarla başlayır</span>.
+
+                <p className="text-base text-slate-500 leading-relaxed mb-6 font-light">
+                  İndi böyük layihələrdə işləyirəm, mürəkkəb sistemlər dizayn edirəm. Amma bu ilk işim mənə göstərdi ki,{" "}
+                  <span className="text-slate-300">hər uğur kiçik addımlarla başlayır</span>.
                 </p>
-                
-                <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-                  <ArrowUpRight size={16} />
+
+                <div className="flex items-center gap-2 text-primary/70 font-medium text-sm">
+                  <ArrowUpRight size={15} />
                   <span>İndi böyük layihələrdə işləyirəm</span>
                 </div>
               </motion.div>
@@ -178,48 +94,42 @@ export default function Motivation() {
           </div>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="mt-12 text-center"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-sm hover:shadow-[0_0_40px_rgba(236,72,153,0.5)] transition-all duration-300"
-          >
-            <Rocket size={16} />
-            <span>Səyahətinə Başla</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+          <button className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-white/[0.04] border border-white/[0.1] text-white font-medium text-sm hover:bg-white/[0.08] hover:border-white/[0.18] transition-all duration-500">
+            Səyahətinə Başla
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300 text-primary" />
+          </button>
         </motion.div>
 
-        {/* Inspirational Quote Cards */}
+        {/* Inspirational quotes */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
+          transition={{ duration: 1.0, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-4"
         >
           {[
-            { icon: <Sparkles size={18} />, text: "Hər uğur bir xəyalla başlayır", color: "from-blue-500/20 to-cyan-500/20", border: "border-blue-500/20" },
-            { icon: <Star size={18} />, text: "Özünə inan, gücünü kəşf et", color: "from-purple-500/20 to-pink-500/20", border: "border-purple-500/20" },
-            { icon: <Rocket size={18} />, text: "Xəyallarının ardınca get", color: "from-pink-500/20 to-red-500/20", border: "border-pink-500/20" }
+            { text: "Hər uğur bir xəyalla başlayır" },
+            { text: "Özünə inan, gücünü kəşf et" },
+            { text: "Xəyallarının ardınca get" },
           ].map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className={`relative p-6 rounded-2xl bg-gradient-to-br ${item.color} border ${item.border} backdrop-blur-sm hover:shadow-xl transition-all duration-300`}
+              className="relative p-6 rounded-2xl bg-[#0e0e13] border border-white/[0.06] hover:border-white/[0.1] backdrop-blur-sm hover:bg-[#111118] transition-all duration-500 group cursor-default"
             >
               <div className="flex flex-col items-center text-center gap-3">
-                <div className="text-primary">{item.icon}</div>
-                <p className="text-white font-semibold text-sm">{item.text}</p>
+                <div className="w-1.5 h-1.5 rounded-full bg-primary/50 group-hover:bg-primary transition-colors duration-300" />
+                <p className="text-slate-400 font-light text-sm group-hover:text-slate-300 transition-colors duration-300">{item.text}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
@@ -227,4 +137,3 @@ export default function Motivation() {
     </section>
   );
 }
-

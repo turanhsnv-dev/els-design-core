@@ -4,32 +4,30 @@
 import Navbar from "@/components/shared/nav/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import About from "@/components/sections/about/About";
+import Toolkit from "@/components/sections/toolkit/Toolkit";
 import Process from "@/components/sections/process/Process";
 import Projects from "@/components/sections/projects/Projects";
-import Resources from "@/components/sections/resources/Resources";
-import Contact from "@/components/sections/contact/Contact";
-import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Services from "@/components/sections/services/Services";
-import Playground from "@/components/sections/playground/DesignStudio";
-import Toolkit from "@/components/sections/toolkit/Toolkit";
 import Showreel from "@/components/sections/showreel/Showreel";
+import Impact from "@/components/sections/impact/Impact";
+import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Motivation from "@/components/sections/motivation/Motivation";
+import Contact from "@/components/sections/contact/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background-dark overflow-x-hidden selection:bg-primary selection:text-white">
+    <main className="min-h-screen bg-background-dark overflow-x-hidden selection:bg-cyan-500/30 selection:text-white">
       <Navbar />
       <Hero />
       <About />
-      <Toolkit /> 
+      <Toolkit />
       <Process />
       <Projects />
       <Services />
       <Showreel />
-      <Playground />
+      <Impact />
       <Testimonials />
       <Motivation />
-      <Resources />
       <Contact />
     </main>
   );
