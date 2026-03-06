@@ -340,7 +340,7 @@ export default function Projects() {
                 setIsModalOpen(false);
                 setModalType(null);
               }}
-              className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl"
+              className="fixed inset-0 z-9999 bg-black/95 backdrop-blur-xl"
             />
 
             {/* Modal Container */}
@@ -349,7 +349,7 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed inset-0 z-[10000] flex items-center justify-center p-8 md:p-12"
+              className="fixed inset-0 z-10000 flex items-center justify-center p-8 md:p-12"
               onClick={() => {
                 setIsModalOpen(false);
                 setModalType(null);
