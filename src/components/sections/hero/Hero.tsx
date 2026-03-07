@@ -101,7 +101,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex flex-col bg-background-dark overflow-hidden"
+      className="relative flex flex-col md:min-h-screen bg-background-dark overflow-hidden"
     >
 
       {/* AMBIENT */}
@@ -118,7 +118,8 @@ export default function Hero() {
       </div>
 
       {/* CENTERED CONTENT */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-5 md:px-12 pt-20 md:pt-24 pb-10 md:pb-14">
+
+      <div className="relative z-10 md:flex-1 flex flex-col items-center md:justify-center text-center px-5 md:px-12 pt-28 pb-10 md:pt-32 md:pb-14">
 
         {/* Badge */}
         <div ref={badgeRef} className="mb-8 md:mb-12" style={{ opacity: 0 }}>
@@ -233,7 +234,7 @@ export default function Hero() {
       {/* STATS BAR */}
       <div
         ref={statsRef}
-        className="relative z-10 w-full border-t border-white/[0.06]"
+        className="hidden md:block relative z-10 w-full border-t border-white/[0.06]"
         style={{ opacity: 0 }}
       >
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-12">
