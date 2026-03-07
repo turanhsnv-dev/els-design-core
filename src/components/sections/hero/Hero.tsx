@@ -101,7 +101,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex flex-col md:min-h-screen bg-background-dark overflow-hidden"
+      className="relative flex flex-col min-h-[100dvh] bg-background-dark overflow-hidden"
     >
 
       {/* AMBIENT */}
@@ -119,7 +119,7 @@ export default function Hero() {
 
       {/* CENTERED CONTENT */}
 
-      <div className="relative z-10 md:flex-1 flex flex-col items-center md:justify-center text-center px-5 md:px-12 pt-28 pb-10 md:pt-32 md:pb-14">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-5 md:px-12 pt-24 pb-10 md:pt-28 md:pb-14">
 
         {/* Badge */}
         <div ref={badgeRef} className="mb-8 md:mb-12" style={{ opacity: 0 }}>
@@ -223,7 +223,7 @@ export default function Hero() {
       {/* SCROLL HINT — hidden on small mobile */}
       <div
         ref={scrollRef}
-        className="relative z-10 hidden sm:flex flex-col items-center gap-2.5 pb-6"
+        className="relative z-10 flex flex-col items-center gap-2.5 pb-6"
         style={{ opacity: 0 }}
         aria-hidden
       >
