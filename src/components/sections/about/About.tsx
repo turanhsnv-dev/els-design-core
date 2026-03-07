@@ -22,24 +22,24 @@ import {
 
 export default function About() {
   return (
-    <section id="about" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col items-center">
+    <section id="about" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 flex flex-col items-center">
 
       {/* SECTION HEADER */}
-      <div className="text-center max-w-3xl mx-auto mb-20 overflow-visible">
-        <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-primary text-xs font-medium uppercase tracking-[0.2em] mb-6">
+      <div className="text-center max-w-3xl mx-auto mb-10 md:mb-20 overflow-visible">
+        <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-primary text-xs font-medium uppercase tracking-[0.2em] mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           Available for freelance
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/50 mb-6 leading-[1.2] pb-2 overflow-visible">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/50 mb-4 md:mb-6 leading-[1.2] pb-2 overflow-visible">
           Crafting Digital Universes
         </h2>
-        <p className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
+        <p className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
           Senior UX/UI & Motion Designer bridging the gap between functional design and cinematic storytelling.
         </p>
       </div>
 
       {/* BENTO GRID */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(280px,auto)]">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(260px,auto)]">
 
         {/* 1. BIO & VISION */}
         <div className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[28px] overflow-hidden border border-white/[0.06] bg-[#0e0e13] hover:border-white/[0.12] transition-all duration-700">
@@ -54,7 +54,7 @@ export default function About() {
             <div className="absolute inset-0 bg-linear-to-t from-[#050505] via-[#050505]/55 to-transparent z-10 opacity-95" />
           </div>
 
-          <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-10">
+          <div className="relative z-20 h-full flex flex-col justify-end p-6 md:p-10">
             <div className="flex items-center gap-2 mb-3 opacity-0 transform translate-y-3 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0">
               <Sparkles size={15} className="text-primary" />
               <span className="text-primary font-medium text-xs tracking-[0.2em] uppercase">The Vision</span>
@@ -71,7 +71,7 @@ export default function About() {
         </div>
 
         {/* 2. EXPERIENCE */}
-        <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-8 flex flex-col hover:border-white/[0.12] transition-all duration-500 relative overflow-hidden group">
+        <div className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-6 md:p-8 flex flex-col hover:border-white/[0.12] transition-all duration-500 relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/[0.04] rounded-full blur-3xl -mr-12 -mt-12 pointer-events-none group-hover:bg-cyan-500/[0.08] transition-colors duration-700" />
 
           <div className="flex items-center justify-between mb-8 relative z-10">
@@ -130,7 +130,7 @@ export default function About() {
         </div>
 
         {/* 3. TECH STACK */}
-        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-8 flex flex-col justify-between hover:border-white/[0.12] transition-all duration-500 group">
+        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-6 md:p-8 flex flex-col justify-between hover:border-white/[0.12] transition-all duration-500 group">
           <div className="flex justify-between items-start mb-5">
             <h3 className="text-lg font-semibold text-white">Tech Stack</h3>
             <Layers className="text-slate-600 group-hover:text-slate-400 transition-colors duration-300" size={20} />
@@ -148,7 +148,7 @@ export default function About() {
         </div>
 
         {/* 4. EDUCATION — monochromatic dark */}
-        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] text-white p-8 flex flex-col relative overflow-hidden group hover:border-white/[0.12] transition-all duration-500">
+        <div className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] text-white p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-white/[0.12] transition-all duration-500">
           <div className="absolute -right-6 -bottom-6 opacity-[0.04] transform -rotate-12 group-hover:scale-110 group-hover:opacity-[0.07] transition-all duration-700 pointer-events-none">
             <GraduationCap size={140} strokeWidth={1} />
           </div>
@@ -184,7 +184,7 @@ export default function About() {
               <MapPin size={52} className="text-primary/70 relative z-10 group-hover:text-primary transition-colors duration-500" strokeWidth={1.5} />
             </div>
           </div>
-          <div className="w-3/5 p-8 flex flex-col justify-center">
+          <div className="w-3/5 p-5 md:p-8 flex flex-col justify-center">
             <div className="flex items-center gap-2 text-primary/70 mb-3 group-hover:text-primary transition-colors duration-300">
               <Globe size={15} />
               <span className="text-xs font-medium uppercase tracking-[0.2em]">Base of Operations</span>
@@ -195,7 +195,7 @@ export default function About() {
         </div>
 
         {/* 6. CONTACT CTA */}
-        <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0 relative overflow-hidden group hover:border-white/[0.12] transition-all duration-500">
+        <div className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/[0.06] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-white/[0.12] transition-all duration-500">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(0,229,255,0.06)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
           <div className="relative z-10">

@@ -54,7 +54,7 @@ export default function Contact() {
   ];
 
   return (
-    <footer id="contact" className="relative pt-28 pb-14 overflow-hidden bg-background-dark">
+    <footer id="contact" className="relative pt-16 md:pt-28 pb-10 md:pb-14 overflow-hidden bg-background-dark">
 
       {/* Minimal background — just a thin top separator glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-linear-to-r from-transparent via-white/[0.08] to-transparent" />
@@ -67,9 +67,9 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-28"
+          className="mb-14 md:mb-28"
         >
-          <div className="w-full bg-white/[0.02] border border-white/[0.07] rounded-3xl p-12 md:p-20 text-center backdrop-blur-xl overflow-hidden relative group hover:border-white/[0.1] transition-all duration-700">
+          <div className="w-full bg-white/[0.02] border border-white/[0.07] rounded-2xl md:rounded-3xl p-7 sm:p-10 md:p-20 text-center backdrop-blur-xl overflow-hidden relative group hover:border-white/[0.1] transition-all duration-700">
 
             {/* Very subtle radial at center */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(0,229,255,0.04),transparent_70%)] pointer-events-none" />
@@ -80,26 +80,26 @@ export default function Contact() {
                 Let&apos;s Connect
               </div>
 
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-8 leading-[1.0]">
+              <h2 className="text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tight mb-6 md:mb-8 leading-[1.0]">
                 Let&apos;s build the <br />
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
                   next big thing
                 </span>
               </h2>
 
-              <p className="text-slate-500 text-lg md:text-xl max-w-xl mx-auto mb-14 leading-relaxed font-light">
+              <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-10 md:mb-14 leading-relaxed font-light">
                 Have a project in mind? Or just want to discuss the latest design trends?
                 I&apos;m always open to exploring new digital universes and creating something extraordinary together.
               </p>
 
               {/* Email copy button */}
-              <div className="flex justify-center mb-14">
+              <div className="flex justify-center mb-8 md:mb-14">
                 <button
                   onClick={handleCopy}
-                  className="group flex items-center gap-4 pl-7 pr-2.5 py-3 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.16] hover:bg-white/[0.06] transition-all duration-500 backdrop-blur-sm"
+                  className="group flex items-center gap-3 md:gap-4 pl-5 md:pl-7 pr-2.5 py-2.5 md:py-3 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.16] hover:bg-white/[0.06] transition-all duration-500 backdrop-blur-sm max-w-full"
                 >
-                  <Mail size={17} className="text-slate-500 group-hover:text-primary transition-colors duration-300" />
-                  <span className="text-slate-300 font-mono text-base md:text-lg group-hover:text-white transition-colors duration-300">
+                  <Mail size={15} className="text-slate-500 group-hover:text-primary transition-colors duration-300 shrink-0" />
+                  <span className="text-slate-300 font-mono text-sm md:text-base lg:text-lg group-hover:text-white transition-colors duration-300 truncate">
                     {email}
                   </span>
                   <div className={`
@@ -115,7 +115,7 @@ export default function Contact() {
               </div>
 
               {/* Social links */}
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                 {socialLinks.map((social) => (
                   <SocialLink key={social.name} href={social.href} icon={social.icon} label={social.name} />
                 ))}
@@ -125,10 +125,10 @@ export default function Contact() {
         </motion.div>
 
         {/* FOOTER GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-12 mb-10 md:mb-14">
 
           {/* Brand column */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 md:col-span-1 lg:col-span-2">
             <div className="mb-5">
               <a href="#hero" className="inline-block mb-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
                 <Image
@@ -136,7 +136,7 @@ export default function Contact() {
                   alt="Els Design"
                   width={320}
                   height={56}
-                  className="h-14 w-auto object-contain"
+                  className="h-9 sm:h-12 md:h-14 w-auto object-contain"
                 />
               </a>
               <p className="text-slate-600 text-sm leading-relaxed max-w-xs font-light">
@@ -198,8 +198,8 @@ export default function Contact() {
         </div>
 
         {/* Copyright bar */}
-        <div className="pt-10 border-t border-white/[0.05]">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5">
+        <div className="pt-7 md:pt-10 border-t border-white/[0.05]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p className="text-slate-700 text-xs font-light">
               © 2025 Elza Xudiyeva. All rights reserved.
             </p>
@@ -221,10 +221,10 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.14] hover:bg-white/[0.06] transition-all duration-500 backdrop-blur-sm"
+      className="group flex items-center gap-2 md:gap-2.5 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.14] hover:bg-white/[0.06] transition-all duration-500 backdrop-blur-sm"
     >
       <span className="text-slate-500 group-hover:text-white transition-colors duration-300">{icon}</span>
-      <span className="font-light text-sm text-slate-500 group-hover:text-slate-200 transition-colors duration-300">{label}</span>
+      <span className="font-light text-xs md:text-sm text-slate-500 group-hover:text-slate-200 transition-colors duration-300">{label}</span>
       <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-primary/70" />
     </a>
   );

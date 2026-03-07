@@ -45,7 +45,7 @@ const REVIEWS = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative w-full py-24 overflow-hidden bg-background-dark">
+    <section id="testimonials" className="relative w-full py-14 md:py-24 overflow-hidden bg-background-dark">
 
       {/* HEADER */}
       <motion.div
@@ -55,7 +55,7 @@ export default function Testimonials() {
         viewport={{ once: true }}
         transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
           <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-4">Trusted By The Best</p>
           <h3 className="text-3xl md:text-4xl font-bold text-white">
             Client <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/30">Echoes</span>
@@ -90,7 +90,7 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.9, delay: index * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
-      className={`w-full h-full ${isLarge ? "p-9 md:p-11" : "p-7"} rounded-2xl bg-[#0e0e13] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-700 cursor-default relative overflow-hidden group`}
+      className={`w-full h-full ${isLarge ? "p-6 md:p-9 lg:p-11" : "p-5 md:p-7"} rounded-2xl bg-[#0e0e13] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-700 cursor-default relative overflow-hidden group`}
     >
       <Quote
         size={isLarge ? 52 : 38}
@@ -98,7 +98,7 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
       />
 
       <div className="relative z-10 flex flex-col h-full justify-between pt-10">
-        <p className={`text-slate-300 ${isLarge ? "text-xl md:text-2xl" : "text-base"} leading-relaxed mb-8 font-light`}>
+        <p className={`text-slate-300 ${isLarge ? "text-lg md:text-xl lg:text-2xl" : "text-sm md:text-base"} leading-relaxed mb-6 md:mb-8 font-light`}>
           {review.text}
         </p>
 

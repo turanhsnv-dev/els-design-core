@@ -43,21 +43,21 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState<string | null>("01");
 
   return (
-    <section id="process" className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 flex flex-col md:flex-row gap-12 items-start">
+    <section id="process" className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 flex flex-col md:flex-row gap-8 md:gap-12 items-start">
 
       {/* LEFT: Sticky header */}
-      <div className="md:w-1/3 sticky top-32">
+      <div className="md:w-1/3 md:sticky md:top-32">
         <div className="flex items-center gap-3 mb-6">
           <div className="h-px w-10 bg-primary/60" />
           <span className="text-primary/80 font-medium uppercase tracking-[0.2em] text-xs">My Methodology</span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 md:mb-6">
           How I turn <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
             Chaos into Order
           </span>
         </h2>
-        <p className="text-slate-500 text-lg leading-relaxed font-light">
+        <p className="text-slate-500 text-sm md:text-base leading-relaxed font-light">
           Design isn't just about how it looks, it's about how it works. Here is the framework I use to deliver meaningful digital products.
         </p>
       </div>
@@ -107,7 +107,7 @@ export default function Process() {
             {/* Expandable content */}
             <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${activeStep === step.id ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <div className="px-6 pb-7 pl-[4.5rem]">
+                <div className="px-5 pb-6 pl-5 md:pl-[4.5rem]">
                   <p className="text-slate-400 leading-relaxed mb-5 border-l border-white/[0.08] pl-4 font-light">
                     {step.description}
                   </p>

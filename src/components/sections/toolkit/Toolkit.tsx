@@ -105,11 +105,11 @@ export default function Toolkit() {
   return (
     <section
       id="toolkit"
-      className="relative w-full flex flex-col items-center py-24 md:py-32 overflow-hidden bg-background-dark"
+      className="relative w-full flex flex-col items-center py-14 md:py-24 lg:py-32 overflow-hidden bg-background-dark"
     >
       {/* HEADER */}
       <motion.div
-        className="relative z-10 text-center px-4 mb-16 md:mb-20"
+        className="relative z-10 text-center px-4 mb-10 md:mb-16 lg:mb-20"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -119,13 +119,13 @@ export default function Toolkit() {
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           My Arsenal
         </div>
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-5 tracking-tight leading-none">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 md:mb-5 tracking-tight leading-none">
           Creative <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
             Toolkit
           </span>
         </h2>
-        <p className="text-slate-500 text-lg max-w-xl mx-auto leading-relaxed font-light">
+        <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
           Yaradıcılığımı gücləndirən alətlər. Hər biri layihələrimdə unikal rol oynayır.
         </p>
       </motion.div>

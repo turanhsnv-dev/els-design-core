@@ -147,16 +147,16 @@ export default function Projects() {
   const prevImage = () => setCurrentImageIndex((p) => (p === 0 ? currentImages.length - 1 : p - 1));
 
   return (
-    <section id="work" className="relative py-24 overflow-hidden bg-background-dark">
+    <section id="work" className="relative py-14 md:py-24 overflow-hidden bg-background-dark">
 
       {/* Heading */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-16">
-        <div className="flex flex-col items-center text-center gap-4">
-          <div className="flex items-center gap-3 text-xs font-medium tracking-[0.25em] uppercase mb-2 text-primary/80">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-10 md:mb-16">
+        <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+          <div className="flex items-center gap-3 text-xs font-medium tracking-[0.25em] uppercase mb-1 md:mb-2 text-primary/80">
             <span className="w-8 h-px bg-primary/50" />
             Selected Works
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-white">
             Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/30">Projects</span>
           </h2>
         </div>

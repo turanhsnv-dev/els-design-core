@@ -87,7 +87,7 @@ export default function Impact() {
       {/* Top separator */}
       <div className="w-full h-px bg-linear-to-r from-transparent via-white/[0.07] to-transparent" />
 
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-24 md:py-32">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 lg:py-32">
 
         {/* Section header */}
         <motion.div
@@ -95,18 +95,18 @@ export default function Impact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-24"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12 md:mb-20 lg:mb-24"
         >
           <div>
             <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Design Impact</p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.0] tracking-tight max-w-lg">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.0] tracking-tight max-w-lg">
               Work that moves<br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
                 numbers.
               </span>
             </h2>
           </div>
-          <p className="text-slate-500 text-lg max-w-sm leading-relaxed font-light md:text-right">
+          <p className="text-slate-500 text-sm md:text-base lg:text-lg max-w-sm leading-relaxed font-light md:text-right">
             Every design decision is a hypothesis. These are the results that proved them right.
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ export default function Impact() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
               className={`
-                group relative p-8 md:p-10 flex flex-col justify-between min-h-[220px]
+                group relative p-5 sm:p-7 md:p-10 flex flex-col justify-between min-h-[170px] md:min-h-[210px]
                 bg-[#0e0e13] hover:bg-[#111118] transition-colors duration-700
                 ${index < 3 ? "border-r border-white/[0.06]" : ""}
                 ${index < 2 ? "border-b border-white/[0.06] lg:border-b-0" : ""}
@@ -130,7 +130,7 @@ export default function Impact() {
               {/* Subtle cyan top accent on hover */}
               <div className="absolute top-0 left-0 right-0 h-px bg-primary/0 group-hover:bg-primary/40 transition-colors duration-700" />
 
-              <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none mb-4 tabular-nums">
+              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none mb-3 md:mb-4 tabular-nums">
                 <AnimatedNumber value={metric.value} prefix={metric.prefix} suffix={metric.suffix} />
               </div>
               <div>
@@ -147,7 +147,7 @@ export default function Impact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.0, delay: 0.3 }}
-          className="flex items-center gap-6 my-16 md:my-20"
+          className="flex items-center gap-6 my-10 md:my-16 lg:my-20"
         >
           <div className="h-px flex-1 bg-white/[0.06]" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-slate-600">Design Philosophy</p>
@@ -163,20 +163,22 @@ export default function Impact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: index * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
-              className="group grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-4 md:gap-10 items-start py-8 border-b border-white/[0.05] last:border-b-0 hover:bg-white/[0.01] transition-colors duration-500 cursor-default"
+              className="group grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-3 md:gap-10 items-start py-6 md:py-8 border-b border-white/[0.05] last:border-b-0 hover:bg-white/[0.01] transition-colors duration-500 cursor-default"
             >
-              {/* Number */}
-              <span className="text-xs font-mono text-slate-700 group-hover:text-primary/60 transition-colors duration-500 pt-1 tracking-widest">
-                {principle.number}
-              </span>
+              {/* Number + Title combined on mobile */}
+              <div className="flex items-center gap-4 md:contents">
+                <span className="text-xs font-mono text-slate-700 group-hover:text-primary/60 transition-colors duration-500 pt-0.5 md:pt-1 tracking-widest shrink-0">
+                  {principle.number}
+                </span>
 
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-white transition-colors duration-300 leading-tight">
-                {principle.title}
-              </h3>
+                {/* Title */}
+                <h3 className="text-lg md:text-2xl font-semibold text-white group-hover:text-white transition-colors duration-300 leading-tight">
+                  {principle.title}
+                </h3>
+              </div>
 
               {/* Body */}
-              <p className="text-slate-500 text-base leading-relaxed font-light group-hover:text-slate-400 transition-colors duration-500">
+              <p className="text-slate-500 text-sm md:text-base leading-relaxed font-light group-hover:text-slate-400 transition-colors duration-500 md:col-start-3">
                 {principle.body}
               </p>
             </motion.div>

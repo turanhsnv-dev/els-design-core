@@ -94,7 +94,7 @@ export default function Navbar() {
                 alt="Els Design logo"
                 width={320}
                 height={56}
-                className="h-14 w-auto object-contain transition-opacity duration-500 group-hover:opacity-70"
+                className="h-9 sm:h-12 md:h-14 w-auto object-contain transition-opacity duration-500 group-hover:opacity-70"
                 priority
               />
             </Link>
