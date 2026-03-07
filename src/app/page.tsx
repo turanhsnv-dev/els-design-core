@@ -11,7 +11,6 @@ import Services from "@/components/sections/services/Services";
 import Showreel from "@/components/sections/showreel/Showreel";
 import Impact from "@/components/sections/impact/Impact";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
-import Motivation from "@/components/sections/motivation/Motivation";
 import Contact from "@/components/sections/contact/Contact";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
       <Showreel />
       <Impact />
       <Testimonials />
-      <Motivation />
       <Contact />
     </main>
   );

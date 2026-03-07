@@ -92,9 +92,9 @@ export default function Navbar() {
               <Image
                 src="/logo/image.png"
                 alt="Els Design logo"
-                width={230}
-                height={40}
-                className="h-10 w-auto object-contain transition-opacity duration-500 group-hover:opacity-70"
+                width={320}
+                height={56}
+                className="h-14 w-auto object-contain transition-opacity duration-500 group-hover:opacity-70"
                 priority
               />
             </Link>

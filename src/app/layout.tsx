@@ -21,8 +21,26 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Elza Design | UX/UI & Motion", // Burayı da güncelledim :)
-  description: "Senior Product Designer Portfolio",
+  title: "Els Design | UX/UI & Motion",
+  description: "Senior UX/UI & Motion Designer portfolio — Elza Xudiyeva. Crafting digital experiences that blend functionality with cinematic storytelling.",
+  icons: {
+    icon: [
+      { url: "/logo/image.png", type: "image/png" },
+    ],
+    apple: "/logo/image.png",
+    shortcut: "/logo/image.png",
+  },
+  openGraph: {
+    title: "Els Design | UX/UI & Motion",
+    description: "Senior UX/UI & Motion Designer portfolio — Elza Xudiyeva.",
+    images: [{ url: "/logo/image.png" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Els Design | UX/UI & Motion",
+    images: ["/logo/image.png"],
+  },
 };
 
 export default function RootLayout({

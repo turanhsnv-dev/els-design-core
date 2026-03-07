@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Mail,
   Linkedin,
@@ -129,9 +130,15 @@ export default function Contact() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <div className="mb-5">
-              <h3 className="text-xl font-bold text-white mb-2">
-                <span className="text-primary">Els</span>Design
-              </h3>
+              <a href="#hero" className="inline-block mb-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <Image
+                  src="/logo/image.png"
+                  alt="Els Design"
+                  width={320}
+                  height={56}
+                  className="h-14 w-auto object-contain"
+                />
+              </a>
               <p className="text-slate-600 text-sm leading-relaxed max-w-xs font-light">
                 Senior UX/UI & Motion Designer crafting digital<br />
                 experiences that blend functionality with cinematic storytelling.
