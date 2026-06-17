@@ -10,16 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          dark: "#0B0C15", // Cosmic Midnight
-          light: "#121421", // Biraz açıq ton
+          dark: "#060606", // Deep Premium Black
+          light: "#111111", // Sleek Surface
         },
-        primary: "#6467f2", // Electric Indigo
-        accent: "#a855f7", // Purple glow
+        primary: "#FFFFFF", // Crisp White
+        accent: "#888888", // Muted Grey
       },
       fontFamily: {
         sans: ["var(--font-manrope)"],
         display: ["var(--font-syne)"],
-        logo: ["var(--font-logo)"],
       },
       animation: {
         float: "float 6s ease-in-out infinite",

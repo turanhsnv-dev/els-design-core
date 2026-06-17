@@ -6,6 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
+const scaleDown = (delay = 0) => ({
+  initial: { opacity: 0, scale: 1.35, y: 60 },
+  whileInView: { opacity: 1, scale: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 1.4, delay, ease: [0.16, 1, 0.3, 1] as const },
+});
+
 const PROJECTS = [
   {
     id: 1,
@@ -150,20 +157,23 @@ export default function Projects() {
     <section id="work" className="relative py-14 md:py-24 overflow-hidden bg-background-dark">
 
       {/* Heading */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 mb-10 md:mb-16">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 mb-10 md:mb-16">
         <div className="flex flex-col items-center text-center gap-3 md:gap-4">
           <div className="flex items-center gap-3 text-xs font-medium tracking-[0.25em] uppercase mb-1 md:mb-2 text-primary/80">
             <span className="w-8 h-px bg-primary/50" />
             Selected Works
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-white">
+          <motion.h2 
+            {...scaleDown(0.1)}
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-white origin-bottom"
+          >
             Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/30">Projects</span>
-          </h2>
+          </motion.h2>
         </div>
       </div>
 
       {/* Grid */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {PROJECTS.map((project, index) => (
             <motion.article

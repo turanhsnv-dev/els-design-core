@@ -131,7 +131,7 @@ export default function Toolkit() {
       </motion.div>
 
       {/* TOOLS GRID */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         {/* Mobile Slider */}
         <div className="md:hidden">
           <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 no-scrollbar">

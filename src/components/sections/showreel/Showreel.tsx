@@ -24,7 +24,7 @@ export default function Showreel() {
   };
 
   return (
-    <section id="showreel" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 flex flex-col items-center">
+    <section id="showreel" className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col items-center">
 
       {/* HEADER */}
       <motion.div

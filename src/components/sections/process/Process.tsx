@@ -43,7 +43,7 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState<string | null>("01");
 
   return (
-    <section id="process" className="relative w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+    <section id="process" className="relative w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col md:flex-row gap-8 md:gap-12 items-start">
 
       {/* LEFT: Sticky header */}
       <div className="md:w-1/3 md:sticky md:top-32">

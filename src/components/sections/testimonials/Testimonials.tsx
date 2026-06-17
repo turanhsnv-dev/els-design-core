@@ -49,7 +49,7 @@ export default function Testimonials() {
 
       {/* HEADER */}
       <motion.div
-        className="w-full max-w-[1400px] mx-auto px-4 md:px-8"
+        className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function Testimonials() {
       </motion.div>
 
       {/* REVIEWS LAYOUT */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+      <div className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         <div className="flex flex-col lg:flex-row gap-5">
           {/* Large featured card */}
           <div className="w-full lg:w-2/5">

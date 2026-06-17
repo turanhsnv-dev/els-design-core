@@ -1,23 +1,17 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
+import { Syne, Manrope } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import "./globals.css";
+import Providers from "@/components/shared/Providers";
+import "./globals.css";   
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-});
-
-const bebasNeue = Bebas_Neue({
-  variable: "--font-logo",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -50,9 +44,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} antialiased`}>
-        {children}
-        <Toaster
+      <body className={`${syne.variable} ${manrope.variable} font-sans antialiased`}>
+        <Providers>
+          {children}
+          <Toaster
           position="top-center"
           toastOptions={{
             success: {
@@ -74,6 +69,7 @@ export default function RootLayout({
             },
           }}
         />
+        </Providers>
       </body>
     </html>
   );

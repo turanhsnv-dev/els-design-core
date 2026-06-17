@@ -87,7 +87,7 @@ export default function Impact() {
       {/* Top separator */}
       <div className="w-full h-px bg-linear-to-r from-transparent via-white/[0.07] to-transparent" />
 
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-14 md:py-24 lg:py-32">
+      <div className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 lg:py-32">
 
         {/* Section header */}
         <motion.div

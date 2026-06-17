@@ -59,7 +59,7 @@ export default function Contact() {
       {/* Minimal background — just a thin top separator glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-linear-to-r from-transparent via-white/[0.08] to-transparent" />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
 
         {/* MAIN CTA */}
         <motion.div
