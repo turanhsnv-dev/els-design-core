@@ -24,7 +24,7 @@ export default function Showreel() {
   };
 
   return (
-    <section id="showreel" className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col items-center">
+    <section id="showreel" className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col items-center">
 
       {/* HEADER */}
       <motion.div
@@ -46,10 +46,10 @@ export default function Showreel() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative w-full aspect-[4/3] md:aspect-21/9 rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/[0.07] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] group"
+        className="relative w-full aspect-4/3 md:aspect-21/9 rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/[0.07] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] group"
       >
         {/* Very subtle cyan ambient behind */}
-        <div className="absolute -inset-2 bg-cyan-500/[0.04] blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+        <div className="absolute -inset-2 bg-cyan-500/4 blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
         <video
           ref={videoRef}
@@ -79,7 +79,7 @@ export default function Showreel() {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleMute}
-              className="w-11 h-11 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.12] flex items-center justify-center text-white/70 hover:text-white hover:bg-white/[0.14] transition-all duration-300 active:scale-95"
+              className="w-11 h-11 rounded-full bg-white/8 backdrop-blur-md border border-white/12 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/[0.14] transition-all duration-300 active:scale-95"
             >
               {isMuted ? <VolumeX size={18} strokeWidth={1.5} /> : <Volume2 size={18} strokeWidth={1.5} />}
             </button>
@@ -103,7 +103,7 @@ export default function Showreel() {
               whileTap={{ scale: 0.96 }}
               transition={{ duration: 0.3 }}
               onClick={togglePlay}
-              className="w-20 h-20 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] flex items-center justify-center text-white hover:bg-white/[0.14] transition-all duration-300"
+              className="w-20 h-20 rounded-full bg-white/8 backdrop-blur-xl border border-white/15 flex items-center justify-center text-white hover:bg-white/[0.14] transition-all duration-300"
             >
               <Play size={32} fill="currentColor" strokeWidth={0} className="ml-1" />
             </motion.button>

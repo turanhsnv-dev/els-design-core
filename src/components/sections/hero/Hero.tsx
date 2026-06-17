@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-dvh bg-[#0A0A0E] overflow-hidden pt-24 md:pt-32 pb-16 flex items-center">
+    <section id="hero" className="relative min-h-dvh bg-background-dark overflow-hidden pt-24 md:pt-32 pb-16 flex items-center">
       
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
