@@ -49,7 +49,7 @@ export default function Testimonials() {
 
       {/* HEADER */}
       <motion.div
-        className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40"
+        className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function Testimonials() {
       </motion.div>
 
       {/* REVIEWS LAYOUT */}
-      <div className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
+      <div className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         <div className="flex flex-col lg:flex-row gap-5">
           {/* Large featured card */}
           <div className="w-full lg:w-2/5">
@@ -90,11 +90,11 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.9, delay: index * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
-      className={`w-full h-full ${isLarge ? "p-6 md:p-9 lg:p-11" : "p-5 md:p-7"} rounded-2xl bg-[#0e0e13] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-700 cursor-default relative overflow-hidden group`}
+      className={`w-full h-full ${isLarge ? "p-6 md:p-9 lg:p-11" : "p-5 md:p-7"} rounded-2xl bg-[#0e0e13] border border-white/6 hover:border-white/12 transition-all duration-700 cursor-default relative overflow-hidden group`}
     >
       <Quote
         size={isLarge ? 52 : 38}
-        className="text-white/[0.04] absolute top-6 left-6 group-hover:text-primary/[0.08] transition-colors duration-700"
+        className="text-white/4 absolute top-6 left-6 group-hover:text-primary/8 transition-colors duration-700"
       />
 
       <div className="relative z-10 flex flex-col h-full justify-between pt-10">
@@ -103,7 +103,7 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
         </p>
 
         <div className="flex items-center gap-4">
-          <div className={`relative ${isLarge ? "w-12 h-12" : "w-10 h-10"} rounded-full overflow-hidden border border-white/[0.1] group-hover:border-white/[0.18] transition-colors duration-500 shrink-0`}>
+          <div className={`relative ${isLarge ? "w-12 h-12" : "w-10 h-10"} rounded-full overflow-hidden border border-white/10 group-hover:border-white/18 transition-colors duration-500 shrink-0`}>
             <Image src={review.avatar} alt={review.name} fill className="object-cover" />
           </div>
           <div>

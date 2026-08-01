@@ -17,13 +17,6 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Els Design | UX/UI & Motion",
   description: "Senior UX/UI & Motion Designer portfolio — Elza Xudiyeva. Crafting digital experiences that blend functionality with cinematic storytelling.",
-  icons: {
-    icon: [
-      { url: "/logo/image.png", type: "image/png" },
-    ],
-    apple: "/logo/image.png",
-    shortcut: "/logo/image.png",
-  },
   openGraph: {
     title: "Els Design | UX/UI & Motion",
     description: "Senior UX/UI & Motion Designer portfolio — Elza Xudiyeva.",
