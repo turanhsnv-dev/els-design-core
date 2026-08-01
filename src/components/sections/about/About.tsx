@@ -2,7 +2,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   Sparkles,
   ArrowRight,
@@ -20,49 +19,37 @@ import {
   GraduationCap,
   MapPin
 } from "lucide-react";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 1.0, delay, ease: [0.16, 1, 0.3, 1] as const },
-});
-
-const scaleDown = (delay = 0) => ({
-  initial: { opacity: 0, scale: 1.35, y: 60 },
-  whileInView: { opacity: 1, scale: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 1.4, delay, ease: [0.16, 1, 0.3, 1] as const },
-});
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
+import { scaleDownItemVariants } from "@/lib/motion";
 
 export default function About() {
   return (
     <section id="about" className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col items-center">
 
       {/* SECTION HEADER */}
-      <div className="text-center max-w-3xl mx-auto mb-10 md:mb-20 overflow-visible">
-        <motion.div {...fadeUp(0)} className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-white/3 border border-white/[0.07] text-white/70 text-xs font-medium uppercase tracking-[0.2em] mb-5">
+      <RevealContainer className="text-center max-w-3xl mx-auto mb-10 md:mb-20 overflow-visible">
+        <RevealItem className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-white/3 border border-white/[0.07] text-white/70 text-xs font-medium uppercase tracking-[0.2em] mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-white/70" />
           Available for freelance
-        </motion.div>
-        
-        <motion.h2 
-          {...scaleDown(0.1)}
+        </RevealItem>
+
+        <RevealItem
+          variants={scaleDownItemVariants}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/50 mb-4 md:mb-6 leading-[1.1] pb-2 overflow-visible origin-bottom"
         >
           Crafting Digital Universes
-        </motion.h2>
-        
-        <motion.p {...fadeUp(0.2)} className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
+        </RevealItem>
+
+        <RevealItem className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
           Senior UX/UI & Motion Designer bridging the gap between functional design and cinematic storytelling.
-        </motion.p>
-      </div>
+        </RevealItem>
+      </RevealContainer>
 
       {/* BENTO GRID */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(260px,auto)]">
+      <RevealContainer className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 lg:grid-rows-[320px_320px_220px] auto-rows-[minmax(260px,auto)]" stagger={0.06}>
 
         {/* 1. BIO & VISION */}
-        <motion.div {...fadeUp(0.05)} className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[28px] overflow-hidden border border-white/6 bg-[#0e0e13] hover:border-white/12 transition-all duration-700">
+        <RevealItem className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[28px] overflow-hidden border border-white/6 bg-[#0e0e13] hover:border-white/12 transition-all duration-700">
           <div className="absolute inset-0 z-0">
             <Image
               src="/elza-main.jpg"
@@ -88,10 +75,10 @@ export default function About() {
               <ArrowRight size={15} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
             </button>
           </div>
-        </motion.div>
+        </RevealItem>
 
         {/* 2. EXPERIENCE */}
-        <motion.div {...fadeUp(0.12)} className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col hover:border-white/12 transition-all duration-500 relative overflow-hidden group">
+        <RevealItem className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col hover:border-white/12 transition-all duration-500 relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/4 rounded-full blur-3xl -mr-12 -mt-12 pointer-events-none group-hover:bg-cyan-500/8 transition-colors duration-700" />
 
           <div className="flex items-center justify-between mb-8 relative z-10">
@@ -147,10 +134,10 @@ export default function About() {
               <p className="text-slate-500 text-sm">Pelcare (startup/freelance)</p>
             </div>
           </div>
-        </motion.div>
+        </RevealItem>
 
         {/* 3. TECH STACK */}
-        <motion.div {...fadeUp(0.19)} className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col justify-between hover:border-white/12 transition-all duration-500 group">
+        <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col justify-between hover:border-white/12 transition-all duration-500 group">
           <div className="flex justify-between items-start mb-5">
             <h3 className="text-lg font-semibold text-white">Tech Stack</h3>
             <Layers className="text-slate-600 group-hover:text-slate-400 transition-colors duration-300" size={20} />
@@ -165,10 +152,10 @@ export default function About() {
             <StackIcon icon={<Globe size={18} />} />
             <StackIcon icon={<Trophy size={18} />} />
           </div>
-        </motion.div>
+        </RevealItem>
 
         {/* 4. EDUCATION — monochromatic dark */}
-        <motion.div {...fadeUp(0.26)} className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 text-white p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-white/12 transition-all duration-500">
+        <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 text-white p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-white/12 transition-all duration-500">
           <div className="absolute -right-6 -bottom-6 opacity-[0.04] transform -rotate-12 group-hover:scale-110 group-hover:opacity-[0.07] transition-all duration-700 pointer-events-none">
             <GraduationCap size={140} strokeWidth={1} />
           </div>
@@ -193,10 +180,10 @@ export default function About() {
               <p className="text-slate-400 text-sm">Rus Dili Müellimliyi</p>
             </div>
           </div>
-        </motion.div>
+        </RevealItem>
 
         {/* 5. LOCATION */}
-        <motion.div {...fadeUp(0.1)} className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 overflow-hidden hover:border-white/12 transition-all duration-500 flex items-stretch group">
+        <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 overflow-hidden hover:border-white/12 transition-all duration-500 flex items-stretch group">
           <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-linear-to-br from-cyan-500/5 via-cyan-500/2 to-transparent group-hover:from-cyan-500/10 group-hover:via-cyan-500/4 transition-all duration-700">
             <div className="relative flex items-center justify-center">
               <div className="absolute w-40 h-40 rounded-full border border-white/4 group-hover:border-white/[0.07] transition-all duration-700" />
@@ -212,10 +199,10 @@ export default function About() {
             <h3 className="text-xl font-semibold text-white mb-1.5">Baku, Azerbaijan</h3>
             <p className="text-slate-500 text-sm leading-relaxed font-light">Available for remote collaboration worldwide.</p>
           </div>
-        </motion.div>
+        </RevealItem>
 
         {/* 6. CONTACT CTA */}
-        <motion.div {...fadeUp(0.18)} className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-white/12 transition-all duration-500">
+        <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-white/12 transition-all duration-500">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
           <div className="relative z-10">
@@ -232,9 +219,9 @@ export default function About() {
               <Mail size={16} />
             </a>
           </div>
-        </motion.div>
+        </RevealItem>
 
-      </div>
+      </RevealContainer>
     </section>
   );
 }

@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   Figma,
   Coffee,
@@ -15,6 +14,7 @@ import {
   Search,
   Music,
 } from "lucide-react";
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
 
 const TOOLS = [
   {
@@ -108,60 +108,53 @@ export default function Toolkit() {
       className="relative w-full flex flex-col items-center py-14 md:py-24 lg:py-32 overflow-hidden bg-background-dark"
     >
       {/* HEADER */}
-      <motion.div
-        className="relative z-10 text-center px-4 mb-10 md:mb-16 lg:mb-20"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.07] text-primary text-xs font-medium uppercase tracking-[0.2em] mb-6">
+      <RevealContainer className="relative z-10 text-center px-4 mb-10 md:mb-16 lg:mb-20">
+        <RevealItem className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.07] text-primary text-xs font-medium uppercase tracking-[0.2em] mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           My Arsenal
-        </div>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 md:mb-5 tracking-tight leading-none">
+        </RevealItem>
+        <RevealItem className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 md:mb-5 tracking-tight leading-none">
           Creative <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
             Toolkit
           </span>
-        </h2>
-        <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
+        </RevealItem>
+        <RevealItem className="text-slate-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
           Yaradıcılığımı gücləndirən alətlər. Hər biri layihələrimdə unikal rol oynayır.
-        </p>
-      </motion.div>
+        </RevealItem>
+      </RevealContainer>
 
       {/* TOOLS GRID */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         {/* Mobile Slider */}
-        <div className="md:hidden">
+        <RevealContainer className="md:hidden">
           <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 no-scrollbar">
-            {TOOLS.map((tool, index) => (
-              <div key={tool.id} className="snap-center shrink-0 w-[80vw] max-w-[300px]">
+            {TOOLS.map((tool) => (
+              <RevealItem key={tool.id} className="snap-center shrink-0 w-[80vw] max-w-[300px]">
                 <ToolCard
                   tool={tool}
-                  index={index}
                   isHovered={hoveredId === tool.id}
                   onHover={() => setHoveredId(tool.id)}
                   onLeave={() => setHoveredId(null)}
                 />
-              </div>
+              </RevealItem>
             ))}
           </div>
-        </div>
+        </RevealContainer>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {TOOLS.map((tool, index) => (
-            <ToolCard
-              key={tool.id}
-              tool={tool}
-              index={index}
-              isHovered={hoveredId === tool.id}
-              onHover={() => setHoveredId(tool.id)}
-              onLeave={() => setHoveredId(null)}
-            />
+        <RevealContainer className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" stagger={0.05}>
+          {TOOLS.map((tool) => (
+            <RevealItem key={tool.id}>
+              <ToolCard
+                tool={tool}
+                isHovered={hoveredId === tool.id}
+                onHover={() => setHoveredId(tool.id)}
+                onLeave={() => setHoveredId(null)}
+              />
+            </RevealItem>
           ))}
-        </div>
+        </RevealContainer>
       </div>
     </section>
   );
@@ -169,23 +162,17 @@ export default function Toolkit() {
 
 function ToolCard({
   tool,
-  index,
   isHovered,
   onHover,
   onLeave,
 }: {
   tool: (typeof TOOLS)[0];
-  index: number;
   isHovered: boolean;
   onHover: () => void;
   onLeave: () => void;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
+    <div
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className="group relative h-full p-6 rounded-2xl border border-white/[0.06] bg-[#0e0e13] backdrop-blur-xl cursor-pointer overflow-hidden transition-all duration-700 hover:border-white/[0.14]"
@@ -219,6 +206,6 @@ function ToolCard({
           {tool.description}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }

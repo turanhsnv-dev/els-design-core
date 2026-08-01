@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Reveal } from "@/components/shared/motion/Reveal";
 import {
   Mail,
   Linkedin,

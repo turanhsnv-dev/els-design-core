@@ -4,6 +4,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layers, Zap, Smartphone, ArrowUpRight } from "lucide-react";
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
+import { slideInLeftItemVariants } from "@/lib/motion";
 
 const SERVICES = [
   {
@@ -41,47 +43,40 @@ export default function Services() {
   return (
     <section id="services" className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 lg:py-32">
 
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-        className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 md:mb-16 lg:mb-20"
-      >
-        <div>
-          <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Capabilities</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight">
-            Beyond just <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
-              Pretty Pixels
-            </span>
-          </h2>
-        </div>
-        <p className="text-slate-500 text-sm md:text-base font-light max-w-sm leading-relaxed md:text-right">
-          Strategic design that solves real business problems. Here is how I can help you.
-        </p>
-      </motion.div>
+      <RevealContainer stagger={0.08}>
+        {/* Header */}
+        <RevealItem className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 md:mb-16 lg:mb-20">
+          <div>
+            <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Capabilities</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight">
+              Beyond just <br />
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
+                Pretty Pixels
+              </span>
+            </h2>
+          </div>
+          <p className="text-slate-500 text-sm md:text-base font-light max-w-sm leading-relaxed md:text-right">
+            Strategic design that solves real business problems. Here is how I can help you.
+          </p>
+        </RevealItem>
 
-      {/* Two-panel layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-12 items-start">
+        {/* Two-panel layout */}
+        <RevealItem>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-12 items-start">
 
-        {/* LEFT: Service list */}
-        <div className="flex flex-col border border-white/[0.06] rounded-2xl overflow-hidden">
-          {SERVICES.map((service, index) => (
-            <motion.button
-              key={service.id}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-              onClick={() => setActive(index)}
-              className={`group relative text-left px-5 md:px-8 py-5 md:py-7 border-b last:border-b-0 border-white/[0.06] transition-all duration-500 flex items-center gap-4 md:gap-6 ${
-                active === index
-                  ? "bg-[#111118]"
-                  : "bg-[#0a0a0e] hover:bg-[#0e0e13]"
-              }`}
-            >
+            {/* LEFT: Service list */}
+            <RevealContainer className="flex flex-col border border-white/[0.06] rounded-2xl overflow-hidden" stagger={0.08} delayChildren={0.1}>
+              {SERVICES.map((service, index) => (
+                <RevealItem key={service.id} variants={slideInLeftItemVariants}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(index)}
+                    className={`group relative text-left w-full px-5 md:px-8 py-5 md:py-7 border-b last:border-b-0 border-white/[0.06] transition-all duration-500 flex items-center gap-4 md:gap-6 ${
+                      active === index
+                        ? "bg-[#111118]"
+                        : "bg-[#0a0a0e] hover:bg-[#0e0e13]"
+                    }`}
+                  >
               {/* Active left indicator */}
               <div className={`absolute left-0 top-0 bottom-0 w-px transition-all duration-500 ${active === index ? "bg-primary" : "bg-transparent"}`} />
 
@@ -108,12 +103,13 @@ export default function Services() {
               }`}>
                 {service.icon}
               </div>
-            </motion.button>
-          ))}
-        </div>
+                  </button>
+                </RevealItem>
+              ))}
+            </RevealContainer>
 
-        {/* RIGHT: Detail panel */}
-        <div className="relative min-h-[260px] md:min-h-[320px] lg:min-h-[380px]">
+            {/* RIGHT: Detail panel */}
+            <div className="relative min-h-[260px] md:min-h-[320px] lg:min-h-[380px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -169,8 +165,10 @@ export default function Services() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
-      </div>
+            </div>
+          </div>
+        </RevealItem>
+      </RevealContainer>
 
     </section>
   );

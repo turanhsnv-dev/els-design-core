@@ -2,8 +2,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
 
 const REVIEWS = [
   {
@@ -46,50 +46,37 @@ const REVIEWS = [
 export default function Testimonials() {
   return (
     <section id="testimonials" className="relative w-full py-14 md:py-24 overflow-hidden bg-background-dark">
-
-      {/* HEADER */}
-      <motion.div
+      <RevealContainer
         className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+        stagger={0.08}
       >
-          <div className="text-center mb-10 md:mb-16">
+        <RevealItem className="text-center mb-10 md:mb-16">
           <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-4">Trusted By The Best</p>
           <h3 className="text-3xl md:text-4xl font-bold text-white">
             Client <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/30">Echoes</span>
           </h3>
-        </div>
-      </motion.div>
+        </RevealItem>
 
-      {/* REVIEWS LAYOUT */}
-      <div className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
-        <div className="flex flex-col lg:flex-row gap-5">
-          {/* Large featured card */}
-          <div className="w-full lg:w-2/5">
-            <ReviewCard review={REVIEWS[0]} isLarge index={0} />
+        <RevealItem>
+          <div className="flex flex-col lg:flex-row gap-5">
+            <div className="w-full lg:w-2/5">
+              <ReviewCard review={REVIEWS[0]} isLarge />
+            </div>
+            <div className="w-full lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-5">
+              {REVIEWS.slice(1).map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
           </div>
-          {/* 2x2 grid */}
-          <div className="w-full lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-5">
-            {REVIEWS.slice(1).map((review, i) => (
-              <ReviewCard key={review.id} review={review} index={i + 1} />
-            ))}
-          </div>
-        </div>
-      </div>
-
+        </RevealItem>
+      </RevealContainer>
     </section>
   );
 }
 
-function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEWS)[0]; isLarge?: boolean; index: number }) {
+function ReviewCard({ review, isLarge = false }: { review: (typeof REVIEWS)[0]; isLarge?: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.9, delay: index * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
+    <div
       className={`w-full h-full ${isLarge ? "p-6 md:p-9 lg:p-11" : "p-5 md:p-7"} rounded-2xl bg-[#0e0e13] border border-white/6 hover:border-white/12 transition-all duration-700 cursor-default relative overflow-hidden group`}
     >
       <Quote
@@ -110,7 +97,6 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
             <h4 className={`text-white font-medium ${isLarge ? "text-base" : "text-sm"}`}>{review.name}</h4>
             <p className={`text-slate-600 ${isLarge ? "text-xs" : "text-[11px]"} uppercase tracking-wider`}>{review.role}</p>
           </div>
-          {/* Subtle star row — elegant and understated */}
           <div className="ml-auto flex gap-0.5 opacity-30 group-hover:opacity-60 transition-opacity duration-500">
             {[1, 2, 3, 4, 5].map((s) => (
               <div key={s} className={`${isLarge ? "w-2 h-2" : "w-1.5 h-1.5"} rounded-full bg-white`} />
@@ -118,6 +104,6 @@ function ReviewCard({ review, isLarge = false, index }: { review: (typeof REVIEW
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

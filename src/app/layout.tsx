@@ -36,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${syne.variable} ${manrope.variable} font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${syne.variable} ${manrope.variable} font-sans antialiased`}>
         <Providers>
           {children}
           <Toaster

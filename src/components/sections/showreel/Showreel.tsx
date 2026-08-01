@@ -4,6 +4,7 @@
 import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
 
 export default function Showreel() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -26,28 +27,19 @@ export default function Showreel() {
   return (
     <section id="showreel" className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 flex flex-col items-center">
 
-      {/* HEADER */}
-      <motion.div
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-4">Behind The Scenes</p>
-        <h3 className="text-3xl md:text-5xl font-bold text-white">
-          Design in <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Motion</span>
-        </h3>
-      </motion.div>
+      <RevealContainer className="w-full flex flex-col items-center" stagger={0.12}>
+        {/* HEADER */}
+        <RevealItem className="text-center mb-12">
+          <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-4">Behind The Scenes</p>
+          <h3 className="text-3xl md:text-5xl font-bold text-white">
+            Design in <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Motion</span>
+          </h3>
+        </RevealItem>
 
-      {/* VIDEO */}
-      <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative w-full aspect-4/3 md:aspect-21/9 rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/[0.07] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] group"
-      >
+        {/* VIDEO */}
+        <RevealItem
+          className="relative w-full aspect-4/3 md:aspect-21/9 rounded-[28px] md:rounded-[40px] overflow-hidden border border-white/[0.07] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] group"
+        >
         {/* Very subtle cyan ambient behind */}
         <div className="absolute -inset-2 bg-cyan-500/4 blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
@@ -109,7 +101,8 @@ export default function Showreel() {
             </motion.button>
           </div>
         )}
-      </motion.div>
+        </RevealItem>
+      </RevealContainer>
 
     </section>
   );

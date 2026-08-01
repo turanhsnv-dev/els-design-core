@@ -3,6 +3,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { RevealContainer, RevealItem } from "@/components/shared/motion/Reveal";
+import { VIEWPORT_ONCE, fadeInItemVariants } from "@/lib/motion";
 
 const METRICS = [
   {
@@ -53,7 +55,7 @@ const PRINCIPLES = [
 function AnimatedNumber({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
   const [display, setDisplay] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, VIEWPORT_ONCE);
 
   useEffect(() => {
     if (!inView) return;
@@ -90,14 +92,8 @@ export default function Impact() {
       <div className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 lg:py-32">
 
         {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12 md:mb-20 lg:mb-24"
-        >
-          <div>
+        <RevealContainer className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12 md:mb-20 lg:mb-24">
+          <RevealItem>
             <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Design Impact</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.0] tracking-tight max-w-lg">
               Work that moves<br />
@@ -105,21 +101,17 @@ export default function Impact() {
                 numbers.
               </span>
             </h2>
-          </div>
-          <p className="text-slate-500 text-sm md:text-base lg:text-lg max-w-sm leading-relaxed font-light md:text-right">
+          </RevealItem>
+          <RevealItem className="text-slate-500 text-sm md:text-base lg:text-lg max-w-sm leading-relaxed font-light md:text-right">
             Every design decision is a hypothesis. These are the results that proved them right.
-          </p>
-        </motion.div>
+          </RevealItem>
+        </RevealContainer>
 
         {/* Metrics grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.06] rounded-2xl overflow-hidden mb-6">
+        <RevealContainer className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.06] rounded-2xl overflow-hidden mb-6" stagger={0.08}>
           {METRICS.map((metric, index) => (
-            <motion.div
+            <RevealItem
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
               className={`
                 group relative p-5 sm:p-7 md:p-10 flex flex-col justify-between min-h-[170px] md:min-h-[210px]
                 bg-[#0e0e13] hover:bg-[#111118] transition-colors duration-700
@@ -137,32 +129,24 @@ export default function Impact() {
                 <p className="text-sm font-semibold text-white/80 mb-2 uppercase tracking-wider">{metric.label}</p>
                 <p className="text-slate-600 text-xs leading-relaxed font-light">{metric.description}</p>
               </div>
-            </motion.div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealContainer>
 
         {/* Philosophy divider */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0, delay: 0.3 }}
-          className="flex items-center gap-6 my-10 md:my-16 lg:my-20"
-        >
-          <div className="h-px flex-1 bg-white/[0.06]" />
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-slate-600">Design Philosophy</p>
-          <div className="h-px flex-1 bg-white/[0.06]" />
-        </motion.div>
+        <RevealContainer>
+          <RevealItem variants={fadeInItemVariants} className="flex items-center gap-6 my-10 md:my-16 lg:my-20">
+            <div className="h-px flex-1 bg-white/[0.06]" />
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-slate-600">Design Philosophy</p>
+            <div className="h-px flex-1 bg-white/[0.06]" />
+          </RevealItem>
+        </RevealContainer>
 
         {/* Principles — editorial horizontal rows */}
-        <div className="flex flex-col">
+        <RevealContainer className="flex flex-col" stagger={0.1}>
           {PRINCIPLES.map((principle, index) => (
-            <motion.div
+            <RevealItem
               key={index}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: index * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
               className="group grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-3 md:gap-10 items-start py-6 md:py-8 border-b border-white/[0.05] last:border-b-0 hover:bg-white/[0.01] transition-colors duration-500 cursor-default"
             >
               {/* Number + Title combined on mobile */}
@@ -181,9 +165,9 @@ export default function Impact() {
               <p className="text-slate-500 text-sm md:text-base leading-relaxed font-light group-hover:text-slate-400 transition-colors duration-500 md:col-start-3">
                 {principle.body}
               </p>
-            </motion.div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealContainer>
 
       </div>
 
