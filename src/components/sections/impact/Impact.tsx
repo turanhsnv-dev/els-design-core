@@ -89,13 +89,13 @@ export default function Impact() {
       {/* Top separator */}
       <div className="w-full h-px bg-linear-to-r from-transparent via-white/[0.07] to-transparent" />
 
-      <div className="w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 lg:py-32">
+      <div className="w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-14 md:py-24 lg:py-32">
 
         {/* Section header */}
         <RevealContainer className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12 md:mb-20 lg:mb-24">
           <RevealItem>
             <p className="text-xs font-medium text-primary/80 uppercase tracking-[0.3em] mb-5">Design Impact</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.0] tracking-tight max-w-lg">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-none tracking-tight max-w-lg">
               Work that moves<br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
                 numbers.
@@ -108,15 +108,15 @@ export default function Impact() {
         </RevealContainer>
 
         {/* Metrics grid */}
-        <RevealContainer className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.06] rounded-2xl overflow-hidden mb-6" stagger={0.08}>
+        <RevealContainer className="grid grid-cols-2 lg:grid-cols-4 border border-white/6 rounded-2xl overflow-hidden mb-6" stagger={0.08}>
           {METRICS.map((metric, index) => (
             <RevealItem
               key={index}
               className={`
-                group relative p-5 sm:p-7 md:p-10 flex flex-col justify-between min-h-[170px] md:min-h-[210px]
+                group relative p-5 sm:p-7 md:p-10 flex flex-col justify-between min-h-42.5 md:min-h-52.5
                 bg-[#0e0e13] hover:bg-[#111118] transition-colors duration-700
-                ${index < 3 ? "border-r border-white/[0.06]" : ""}
-                ${index < 2 ? "border-b border-white/[0.06] lg:border-b-0" : ""}
+                ${index < 3 ? "border-r border-white/6" : ""}
+                ${index < 2 ? "border-b border-white/6 lg:border-b-0" : ""}
               `}
             >
               {/* Subtle cyan top accent on hover */}
@@ -136,9 +136,9 @@ export default function Impact() {
         {/* Philosophy divider */}
         <RevealContainer>
           <RevealItem variants={fadeInItemVariants} className="flex items-center gap-6 my-10 md:my-16 lg:my-20">
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="h-px flex-1 bg-white/6" />
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-slate-600">Design Philosophy</p>
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="h-px flex-1 bg-white/6" />
           </RevealItem>
         </RevealContainer>
 
@@ -147,7 +147,7 @@ export default function Impact() {
           {PRINCIPLES.map((principle, index) => (
             <RevealItem
               key={index}
-              className="group grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-3 md:gap-10 items-start py-6 md:py-8 border-b border-white/[0.05] last:border-b-0 hover:bg-white/[0.01] transition-colors duration-500 cursor-default"
+              className="group grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-3 md:gap-10 items-start py-6 md:py-8 border-b border-white/5 last:border-b-0 hover:bg-white/1 transition-colors duration-500 cursor-default"
             >
               {/* Number + Title combined on mobile */}
               <div className="flex items-center gap-4 md:contents">

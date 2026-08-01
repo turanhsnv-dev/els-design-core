@@ -2,9 +2,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const scaleDown = (delay = 0) => ({
   initial: { opacity: 0, scale: 1.35, y: 60 },
@@ -113,6 +113,103 @@ const ALL_PROJECT_IMAGES = [
   STREAMFLOW_IMAGES,
 ];
 
+function ProjectCard({
+  project,
+  index,
+  onOpenModal,
+}: {
+  project: (typeof PROJECTS)[number];
+  index: number;
+  onOpenModal: (projectIndex: number) => void;
+}) {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.2,
+    margin: "0px 0px -20% 0px",
+  });
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [hasAnimated, isInView]);
+
+  return (
+    <motion.article
+      ref={ref}
+      initial={false}
+      animate={hasAnimated ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 28, scale: 1 }}
+      transition={{
+        duration: 0.9,
+        delay: index * 0.08,
+        ease: [0.25, 0.1, 0.25, 1],
+      }}
+      onClick={() => onOpenModal(index)}
+      className="group relative rounded-2xl border border-white/6 bg-[#0e0e13] overflow-hidden cursor-pointer hover:border-white/14 transition-all duration-700"
+    >
+      {/* Image */}
+      <div className="relative h-60 w-full bg-[#080810] overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-t from-[#0e0e13] via-transparent to-transparent opacity-70 z-10 group-hover:opacity-40 transition-opacity duration-700" />
+
+        <motion.div
+          whileHover={{ scale: 1.06 }}
+          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+
+        {/* Category badge */}
+        <div className="absolute top-4 left-4 z-20">
+          <span className="px-3 py-1.5 rounded-lg border border-white/10 bg-black/60 backdrop-blur-md text-[10px] font-medium text-slate-300 uppercase tracking-[0.15em]">
+            {project.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative p-5">
+        <div className="flex justify-between items-start gap-3 mb-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-primary transition-colors duration-500 truncate">
+              {project.title}
+            </h3>
+            <p className="text-slate-500 text-sm font-light leading-relaxed">
+              {project.description}
+            </p>
+          </div>
+          <div className="w-9 h-9 rounded-xl bg-white/4 border border-white/7 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shrink-0 transition-all duration-500">
+            <ArrowUpRight size={16} className="text-slate-400 group-hover:text-black transition-colors duration-300" />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/5">
+          {project.tags.slice(0, 2).map((tag, i) => (
+            <span
+              key={i}
+              className="px-2.5 py-1 rounded-md bg-white/3 border border-white/7 text-slate-500 text-xs font-light"
+            >
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 2 && (
+            <span className="px-2.5 py-1 rounded-md bg-white/3 border border-white/7 text-slate-600 text-xs">
+              +{project.tags.length - 2}
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeProjectIndex, setActiveProjectIndex] = useState<number | null>(null);
@@ -157,7 +254,7 @@ export default function Projects() {
     <section id="work" className="relative py-14 md:py-24 overflow-hidden bg-background-dark">
 
       {/* Heading */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 mb-10 md:mb-16">
+      <div className="relative z-10 max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40 mb-10 md:mb-16">
         <div className="flex flex-col items-center text-center gap-3 md:gap-4">
           <div className="flex items-center gap-3 text-xs font-medium tracking-[0.25em] uppercase mb-1 md:mb-2 text-primary/80">
             <span className="w-8 h-px bg-primary/50" />
@@ -173,80 +270,15 @@ export default function Projects() {
       </div>
 
       {/* Grid */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
+      <div className="relative z-10 w-full max-w-350 mx-auto px-8 md:px-16 lg:px-32 xl:px-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {PROJECTS.map((project, index) => (
-            <motion.article
+            <ProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.9,
-                delay: index * 0.08,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              onClick={() => openModal(index)}
-              className="group relative rounded-2xl border border-white/[0.06] bg-[#0e0e13] overflow-hidden cursor-pointer hover:border-white/[0.14] transition-all duration-700"
-            >
-              {/* Image */}
-              <div className="relative h-[240px] w-full bg-[#080810] overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-t from-[#0e0e13] via-transparent to-transparent opacity-70 z-10 group-hover:opacity-40 transition-opacity duration-700" />
-
-                <motion.div
-                  whileHover={{ scale: 1.06 }}
-                  transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-
-                {/* Category badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <span className="px-3 py-1.5 rounded-lg border border-white/[0.1] bg-black/60 backdrop-blur-md text-[10px] font-medium text-slate-300 uppercase tracking-[0.15em]">
-                    {project.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative p-5">
-                <div className="flex justify-between items-start gap-3 mb-3">
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-primary transition-colors duration-500 truncate">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm font-light leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-                  <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-center group-hover:bg-primary group-hover:border-primary shrink-0 transition-all duration-500">
-                    <ArrowUpRight size={16} className="text-slate-400 group-hover:text-black transition-colors duration-300" />
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/[0.05]">
-                  {project.tags.slice(0, 2).map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.07] text-slate-500 text-xs font-light"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 2 && (
-                    <span className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.07] text-slate-600 text-xs">
-                      +{project.tags.length - 2}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </motion.article>
+              project={project}
+              index={index}
+              onOpenModal={openModal}
+            />
           ))}
         </div>
       </div>
@@ -261,7 +293,7 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               onClick={closeModal}
-              className="fixed inset-0 z-[9999] bg-black/97 backdrop-blur-2xl"
+              className="fixed inset-0 z-9999 bg-black/97 backdrop-blur-2xl"
             />
 
             <motion.div
@@ -269,7 +301,7 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed inset-0 z-[10000] flex items-center justify-center p-6 md:p-12"
+              className="fixed inset-0 z-10000 flex items-center justify-center p-6 md:p-12"
               onClick={closeModal}
             >
               <div
@@ -283,7 +315,7 @@ export default function Projects() {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ delay: 0.2 }}
                   onClick={closeModal}
-                  className="absolute top-0 right-0 z-50 w-11 h-11 rounded-full bg-white/[0.07] backdrop-blur-xl border border-white/[0.1] flex items-center justify-center text-white hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300"
+                  className="absolute top-0 right-0 z-50 w-11 h-11 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-white/12 hover:border-white/20 transition-all duration-300"
                 >
                   <X size={18} strokeWidth={1.5} />
                 </motion.button>
@@ -316,7 +348,7 @@ export default function Projects() {
                     exit={{ opacity: 0, x: -12 }}
                     transition={{ delay: 0.2 }}
                     onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/[0.07] backdrop-blur-xl border border-white/[0.1] flex items-center justify-center text-white hover:bg-white/[0.14] transition-all duration-300 z-40"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-white/14 transition-all duration-300 z-40"
                   >
                     <ChevronLeft size={20} strokeWidth={1.5} />
                   </motion.button>
@@ -327,7 +359,7 @@ export default function Projects() {
                     exit={{ opacity: 0, x: 12 }}
                     transition={{ delay: 0.2 }}
                     onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/[0.07] backdrop-blur-xl border border-white/[0.1] flex items-center justify-center text-white hover:bg-white/[0.14] transition-all duration-300 z-40"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-white/14 transition-all duration-300 z-40"
                   >
                     <ChevronRight size={20} strokeWidth={1.5} />
                   </motion.button>
@@ -360,7 +392,7 @@ export default function Projects() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="absolute bottom-4 right-4 z-50 px-4 py-1.5 rounded-full bg-white/[0.07] backdrop-blur-xl border border-white/[0.1] text-white/60 text-xs font-medium tabular-nums"
+                  className="absolute bottom-4 right-4 z-50 px-4 py-1.5 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 text-white/60 text-xs font-medium tabular-nums"
                 >
                   {currentImageIndex + 1} / {currentImages.length}
                 </motion.div>
