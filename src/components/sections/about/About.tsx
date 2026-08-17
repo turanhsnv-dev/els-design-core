@@ -13,7 +13,7 @@ import {
   Mail,
   MapPin,
   Palette,
-  Sparkles,
+  Target,
   Trophy,
   Video,
   type LucideIcon,
@@ -30,19 +30,19 @@ export default function About() {
   return (
     <Container as="section" id="about" className="py-14 md:py-24 flex flex-col items-center">
       <RevealContainer className="text-center max-w-3xl mx-auto mb-10 md:mb-20 overflow-visible">
-        <RevealItem className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-white/3 border border-white/[0.07] text-white/70 text-xs font-medium uppercase tracking-[0.2em] mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-white/70" />
-          Available for freelance
+        <RevealItem className="flex items-center justify-center gap-3 text-xs font-medium tracking-[0.25em] uppercase mb-5 text-primary/80">
+          <span className="w-8 h-px bg-primary/50" />
+          About
         </RevealItem>
         <RevealItem
           variants={scaleDownItemVariants}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-white/50 mb-4 md:mb-6 leading-[1.1] pb-2 overflow-visible origin-bottom"
         >
-          Crafting Digital Universes
+          Where logic meets craft
         </RevealItem>
         <RevealItem className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
-          Senior UX/UI & Motion Designer bridging the gap between functional design and cinematic
-          storytelling.
+          Senior UX/UI & Motion Designer turning ambiguous problems into interfaces that
+          perform — and feel considered at every step.
         </RevealItem>
       </RevealContainer>
 
@@ -76,17 +76,18 @@ function BioCard() {
       </div>
       <div className="relative z-20 h-full flex flex-col justify-end p-6 md:p-10">
         <div className="flex items-center gap-2 mb-3 opacity-0 translate-y-3 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0">
-          <Sparkles size={15} className="text-primary" />
+          <Target size={15} className="text-primary" />
           <span className="text-primary font-medium text-xs tracking-[0.2em] uppercase">
-            The Vision
+            Approach
           </span>
         </div>
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-          Humanizing the <br /> Digital Space
+          Structure with <br /> a human core
         </h3>
         <p className="text-slate-400 text-base leading-relaxed line-clamp-3 mb-8 max-w-lg font-light drop-shadow-md">
-          I don&apos;t just design screens; I choreograph experiences. My work combines technical
-          precision with artistic flair to create web experiences that feel alive.
+          I don&apos;t design screens in isolation. I build systems where usability, motion,
+          and business intent reinforce each other — so every product feels considered,
+          not assembled.
         </p>
       </div>
     </RevealItem>
@@ -191,11 +192,11 @@ function LocationCard() {
       <div className="w-3/5 p-5 md:p-8 flex flex-col justify-center">
         <div className="flex items-center gap-2 text-primary/70 mb-3 group-hover:text-primary transition-colors duration-300">
           <Globe size={15} />
-          <span className="text-xs font-medium uppercase tracking-[0.2em]">Base of Operations</span>
+          <span className="text-xs font-medium uppercase tracking-[0.2em]">Location</span>
         </div>
         <h3 className="text-xl font-semibold text-white mb-1.5">{SITE.location}</h3>
         <p className="text-slate-500 text-sm leading-relaxed font-light">
-          Available for remote collaboration worldwide.
+          Working remotely with teams and clients worldwide.
         </p>
       </div>
     </RevealItem>
@@ -207,9 +208,9 @@ function ContactCard() {
     <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-white/12 transition-all duration-500">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       <div className="relative z-10">
-        <h3 className="text-xl font-semibold text-white mb-1.5">Ready to launch?</h3>
+        <h3 className="text-xl font-semibold text-white mb-1.5">Have a project in mind?</h3>
         <p className="text-slate-500 text-sm max-w-xs font-light">
-          Let&apos;s turn your ideas into a digital reality.
+          Let&apos;s discuss how design can move your numbers.
         </p>
       </div>
       <div className="relative z-10 w-full md:w-auto">
