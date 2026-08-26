@@ -22,7 +22,7 @@ export default function Process() {
             My Methodology
           </span>
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 md:mb-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-4 md:mb-6">
           How I turn <br />
           <GradientText>Chaos into Order</GradientText>
         </h2>
@@ -60,8 +60,8 @@ function StepAccordion({
       onClick={onToggle}
       className={`group relative rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden ${
         active
-          ? "bg-[#0e0e13] border-white/[0.1]"
-          : "bg-white/[0.01] border-white/[0.05] hover:border-white/[0.08] hover:bg-white/[0.03]"
+          ? "bg-gray-50 dark:bg-[#0e0e13] border-black/[0.1] dark:border-white/[0.1]"
+          : "bg-black/[0.01] dark:bg-white/[0.01] border-black/[0.05] dark:border-white/[0.05] hover:border-black/[0.08] dark:border-white/[0.08] hover:bg-black/[0.03] dark:bg-white/[0.03]"
       }`}
     >
       <div
@@ -73,7 +73,7 @@ function StepAccordion({
         <div className="flex items-center gap-6">
           <span
             className={`text-2xl font-black font-mono tabular-nums transition-all duration-300 ${
-              active ? "text-primary" : "text-white/20 group-hover:text-white/40"
+              active ? "text-primary" : "text-black/20 dark:text-white/20 group-hover:text-black/40 dark:text-white/40"
             }`}
           >
             {step.id}
@@ -81,7 +81,7 @@ function StepAccordion({
           <div>
             <h3
               className={`text-lg font-semibold transition-colors duration-300 ${
-                active ? "text-white" : "text-slate-300"
+                active ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-slate-300"
               }`}
             >
               {step.title}
@@ -95,7 +95,7 @@ function StepAccordion({
           className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
             active
               ? "bg-primary/10 text-primary border-primary/30"
-              : "bg-white/[0.03] text-slate-500 border-white/[0.07] group-hover:bg-white/[0.06]"
+              : "bg-black/[0.03] dark:bg-white/[0.03] text-slate-500 border-black/[0.07] dark:border-white/[0.07] group-hover:bg-black/[0.06] dark:bg-white/[0.06]"
           }`}
         >
           {active ? <Minus size={15} /> : <Plus size={15} />}
@@ -109,14 +109,14 @@ function StepAccordion({
       >
         <div className="overflow-hidden">
           <div className="px-5 pb-6 pl-5 md:pl-[4.5rem]">
-            <p className="text-slate-400 leading-relaxed mb-5 border-l border-white/[0.08] pl-4 font-light">
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-5 border-l border-black/[0.08] dark:border-white/[0.08] pl-4 font-light">
               {step.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {step.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-xs font-medium text-slate-500"
+                  className="px-3 py-1 rounded-full bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.07] dark:border-white/[0.07] text-xs font-medium text-slate-500"
                 >
                   {tag}
                 </span>

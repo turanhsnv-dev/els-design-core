@@ -24,7 +24,7 @@ export default function Contact() {
   return (
     <footer
       id="contact"
-      className="relative pt-16 md:pt-28 pb-10 md:pb-14 overflow-hidden bg-background-dark"
+      className="relative pt-16 md:pt-28 pb-10 md:pb-14 overflow-hidden bg-white dark:bg-background-dark"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
 
@@ -36,16 +36,16 @@ export default function Contact() {
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-14 md:mb-28"
         >
-          <div className="w-full bg-white/2 border border-white/7 rounded-2xl md:rounded-3xl p-7 sm:p-10 md:p-20 text-center backdrop-blur-xl overflow-hidden relative hover:border-white/10 transition-all duration-700">
+          <div className="w-full bg-black/2 dark:bg-white/2 border border-black/7 dark:border-white/7 rounded-2xl md:rounded-3xl p-7 sm:p-10 md:p-20 text-center backdrop-blur-xl overflow-hidden relative hover:border-black/10 dark:border-white/10 transition-all duration-700">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(0,229,255,0.04),transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/3 border border-white/8 text-primary/80 text-xs font-medium uppercase tracking-[0.25em] mb-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/3 dark:bg-white/3 border border-black/8 dark:border-white/8 text-primary/80 text-xs font-medium uppercase tracking-[0.25em] mb-10">
                 <Mail size={12} />
                 Let&apos;s Connect
               </div>
 
-              <h2 className="text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tight mb-6 md:mb-8 leading-none">
+              <h2 className="text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 dark:text-white tracking-tight mb-6 md:mb-8 leading-none">
                 Let&apos;s build the <br />
                 <GradientText>next big thing</GradientText>
               </h2>
@@ -59,20 +59,20 @@ export default function Contact() {
               <div className="flex justify-center mb-8 md:mb-14">
                 <button
                   onClick={handleCopy}
-                  className="group flex items-center gap-3 md:gap-4 pl-5 md:pl-7 pr-2.5 py-2.5 md:py-3 rounded-full bg-white/3 border border-white/8 hover:border-white/16 hover:bg-white/6 transition-all duration-500 backdrop-blur-sm max-w-full"
+                  className="group flex items-center gap-3 md:gap-4 pl-5 md:pl-7 pr-2.5 py-2.5 md:py-3 rounded-full bg-black/3 dark:bg-white/3 border border-black/8 dark:border-white/8 hover:border-black/16 dark:border-white/16 hover:bg-black/6 dark:bg-white/6 transition-all duration-500 backdrop-blur-sm max-w-full"
                 >
                   <Mail
                     size={15}
                     className="text-slate-500 group-hover:text-primary transition-colors duration-300 shrink-0"
                   />
-                  <span className="text-slate-300 font-mono text-sm md:text-base lg:text-lg group-hover:text-white transition-colors duration-300 truncate">
+                  <span className="text-slate-700 dark:text-slate-300 font-mono text-sm md:text-base lg:text-lg group-hover:text-slate-900 dark:text-white transition-colors duration-300 truncate">
                     {SITE.email}
                   </span>
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-400 ${
                       copied
-                        ? "bg-emerald-500 text-white scale-105"
-                        : "bg-white/7 border border-white/12 text-slate-300 group-hover:bg-primary group-hover:text-black group-hover:border-primary"
+                        ? "bg-emerald-500 text-slate-900 dark:text-white scale-105"
+                        : "bg-black/7 dark:bg-white/7 border border-black/12 dark:border-white/12 text-slate-700 dark:text-slate-300 group-hover:bg-primary group-hover:text-black group-hover:border-primary"
                     }`}
                   >
                     {copied ? <Check size={17} /> : <Copy size={17} />}
@@ -121,14 +121,14 @@ export default function Contact() {
           <LinkColumn title="Connect" links={FOOTER_LINKS.connect} />
         </div>
 
-        <div className="pt-7 md:pt-10 border-t border-white/5">
+        <div className="pt-7 md:pt-10 border-t border-black/5 dark:border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p className="text-slate-700 text-xs font-light">
               © {new Date().getFullYear()} Elza Xudiyeva. All rights reserved.
             </p>
-            <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/2 border border-white/6 hover:border-white/10 transition-all duration-300">
+            <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/2 dark:bg-white/2 border border-black/6 dark:border-white/6 hover:border-black/10 dark:border-white/10 transition-all duration-300">
               <span className="text-slate-600 text-xs font-light">Designed by</span>
-              <span className="text-slate-400 text-xs font-medium">{SITE.designer}</span>
+              <span className="text-slate-600 dark:text-slate-400 text-xs font-medium">{SITE.designer}</span>
             </div>
           </div>
         </div>
@@ -140,13 +140,13 @@ export default function Contact() {
 function LinkColumn({ title, links }: { title: string; links: readonly NavLink[] }) {
   return (
     <div>
-      <h4 className="text-white/50 font-medium text-xs uppercase tracking-[0.2em] mb-5">{title}</h4>
+      <h4 className="text-black/50 dark:text-white/50 font-medium text-xs uppercase tracking-[0.2em] mb-5">{title}</h4>
       <ul className="space-y-3">
         {links.map((link) => (
           <li key={link.name}>
             <a
               href={link.href}
-              className="text-slate-600 hover:text-slate-300 transition-colors duration-300 flex items-center gap-2 group text-sm font-light"
+              className="text-slate-600 hover:text-slate-700 dark:text-slate-300 transition-colors duration-300 flex items-center gap-2 group text-sm font-light"
             >
               <span>{link.name}</span>
               <ArrowUpRight
@@ -168,9 +168,9 @@ function SocialLink({ social }: { social: Social }) {
       href={social.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-2 md:gap-2.5 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/3 border border-white/7 hover:border-white/14 hover:bg-white/6 transition-all duration-500 backdrop-blur-sm"
+      className="group flex items-center gap-2 md:gap-2.5 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-black/3 dark:bg-white/3 border border-black/7 dark:border-white/7 hover:border-black/14 dark:border-white/14 hover:bg-black/6 dark:bg-white/6 transition-all duration-500 backdrop-blur-sm"
     >
-      <span className="text-slate-500 group-hover:text-white transition-colors duration-300">
+      <span className="text-slate-500 group-hover:text-slate-900 dark:text-white transition-colors duration-300">
         <Icon size={18} strokeWidth={1.5} />
       </span>
       <span className="font-light text-xs md:text-sm text-slate-500 group-hover:text-slate-200 transition-colors duration-300">

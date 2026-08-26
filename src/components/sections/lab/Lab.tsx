@@ -19,7 +19,7 @@ const CHIPS = [
 
 export default function Lab() {
   return (
-    <section id="lab" className="relative w-full py-14 md:py-24 lg:py-32 overflow-hidden bg-background-dark">
+    <section id="lab" className="relative w-full py-14 md:py-24 lg:py-32 overflow-hidden bg-white dark:bg-background-dark">
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/[0.07] to-transparent" />
 
       <Container>
@@ -30,7 +30,7 @@ export default function Lab() {
               Beyond The Screen
             </RevealItem>
 
-            <RevealItem className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-5 md:mb-6">
+            <RevealItem className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-5 md:mb-6">
               I design in <GradientText>three dimensions</GradientText>
             </RevealItem>
 
@@ -44,7 +44,7 @@ export default function Lab() {
               {CHIPS.map(({ icon: Icon, label }) => (
                 <span
                   key={label}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-400 text-xs font-medium"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.03] dark:bg-white/[0.03] text-slate-600 dark:text-slate-400 text-xs font-medium"
                 >
                   <Icon size={13} className="text-primary/80" />
                   {label}
@@ -54,7 +54,7 @@ export default function Lab() {
           </RevealContainer>
 
           <RevealItem className="relative h-[360px] sm:h-[440px] md:h-[520px] lg:h-[560px] w-full">
-            <div className="absolute inset-0 rounded-[32px] border border-white/[0.06] bg-[#0a0a0f] overflow-hidden">
+            <div className="absolute inset-0 rounded-[32px] border border-black/[0.06] dark:border-white/[0.06] bg-gray-100 dark:bg-[#0a0a0f] overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(0,229,255,0.1),transparent_60%)]" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_85%,rgba(168,85,247,0.06),transparent_55%)]" />
               <LabScene />

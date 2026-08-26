@@ -7,16 +7,18 @@ import Process from "@/components/sections/process/Process";
 import Projects from "@/components/sections/projects/Projects";
 import Services from "@/components/sections/services/Services";
 import Showreel from "@/components/sections/showreel/Showreel";
+import Showcase from "@/components/sections/showcase/Showcase";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Toolkit from "@/components/sections/toolkit/Toolkit";
 import Navbar from "@/components/shared/nav/Navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background-dark overflow-x-hidden selection:bg-white/20 selection:text-white">
+    <main className="min-h-screen bg-white dark:bg-background-dark overflow-x-hidden selection:bg-black/20 dark:bg-white/20 selection:text-slate-900 dark:text-white">
       <Navbar />
       <Hero />
       <Showreel />
+      <Showcase />
       <Projects />
       <About />
       <Toolkit />

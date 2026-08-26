@@ -12,10 +12,10 @@ export default function Panel({
   children,
   ...rest
 }: Props) {
-  const hover = interactive ? "hover:border-white/12 transition-all duration-500" : "";
+  const hover = interactive ? "hover:border-black/12 dark:border-white/12 transition-all duration-500" : "";
   return (
     <Tag
-      className={`rounded-2xl bg-[#0e0e13] border border-white/6 ${hover} ${className}`}
+      className={`rounded-2xl bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 ${hover} ${className}`}
       {...rest}
     >
       {children}

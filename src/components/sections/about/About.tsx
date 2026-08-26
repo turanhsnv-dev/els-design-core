@@ -63,7 +63,7 @@ export default function About() {
 
 function BioCard() {
   return (
-    <RevealItem className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[28px] overflow-hidden border border-white/6 bg-[#0e0e13] hover:border-white/12 transition-all duration-700">
+    <RevealItem className="group relative col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-[28px] overflow-hidden border border-black/6 dark:border-white/6 bg-gray-50 dark:bg-[#0e0e13] hover:border-black/12 dark:border-white/12 transition-all duration-700">
       <div className="absolute inset-0 z-0">
         <Image
           src="/elza-main.jpg"
@@ -81,10 +81,10 @@ function BioCard() {
             Approach
           </span>
         </div>
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+        <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
           Structure with <br /> a human core
         </h3>
-        <p className="text-slate-400 text-base leading-relaxed line-clamp-3 mb-8 max-w-lg font-light drop-shadow-md">
+        <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed line-clamp-3 mb-8 max-w-lg font-light drop-shadow-md">
           I don&apos;t design screens in isolation. I build systems where usability, motion,
           and business intent reinforce each other — so every product feels considered,
           not assembled.
@@ -96,7 +96,7 @@ function BioCard() {
 
 function ExperienceCard() {
   return (
-    <RevealItem className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col hover:border-white/12 transition-all duration-500 relative overflow-hidden group">
+    <RevealItem className="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 rounded-[28px] bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 p-6 md:p-8 flex flex-col hover:border-black/12 dark:border-white/12 transition-all duration-500 relative overflow-hidden group">
       <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/4 rounded-full blur-3xl -mr-12 -mt-12 pointer-events-none group-hover:bg-cyan-500/8 transition-colors duration-700" />
       <SectionTitle title="Experience" icon={History} />
       <div className="relative flex-1 overflow-y-auto pr-1 z-10 flex flex-col no-scrollbar">
@@ -114,7 +114,7 @@ function TimelineItem({ exp, last }: { exp: Experience; last: boolean }) {
   return (
     <div className={`relative pl-7 ${last ? "" : "mb-9"} group/item`}>
       <div
-        className={`absolute left-0 top-1.5 w-5 h-5 rounded-full bg-[#0e0e13] border flex items-center justify-center z-10 transition-colors ${
+        className={`absolute left-0 top-1.5 w-5 h-5 rounded-full bg-gray-50 dark:bg-[#0e0e13] border flex items-center justify-center z-10 transition-colors ${
           active ? "border-primary" : "border-slate-700 group-hover/item:border-slate-500"
         }`}
       >
@@ -131,7 +131,7 @@ function TimelineItem({ exp, last }: { exp: Experience; last: boolean }) {
       >
         {exp.period}
       </span>
-      <h4 className="text-white font-semibold text-base">{exp.role}</h4>
+      <h4 className="text-slate-900 dark:text-white font-semibold text-base">{exp.role}</h4>
       <p className="text-slate-500 text-sm">{exp.company}</p>
     </div>
   );
@@ -139,7 +139,7 @@ function TimelineItem({ exp, last }: { exp: Experience; last: boolean }) {
 
 function StackCard() {
   return (
-    <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col justify-between hover:border-white/12 transition-all duration-500 group">
+    <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 p-6 md:p-8 flex flex-col justify-between hover:border-black/12 dark:border-white/12 transition-all duration-500 group">
       <SectionTitle title="Tech Stack" icon={Layers} className="mb-5" />
       <div className="grid grid-cols-4 gap-3 place-items-center">
         {STACK_ICONS.map((Icon, i) => (
@@ -152,7 +152,7 @@ function StackCard() {
 
 function EducationCard() {
   return (
-    <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 text-white p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-white/12 transition-all duration-500">
+    <RevealItem className="col-span-1 lg:col-span-1 row-span-1 rounded-[28px] bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 text-slate-900 dark:text-white p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-black/12 dark:border-white/12 transition-all duration-500">
       <div className="absolute -right-6 -bottom-6 opacity-[0.04] -rotate-12 group-hover:scale-110 group-hover:opacity-[0.07] transition-all duration-700 pointer-events-none">
         <GraduationCap size={140} strokeWidth={1} />
       </div>
@@ -164,10 +164,10 @@ function EducationCard() {
               <span className="text-slate-500 font-medium text-xs uppercase tracking-wider mb-1">
                 {edu.period}
               </span>
-              <h4 className="text-white font-semibold text-base">{edu.school}</h4>
-              <p className="text-slate-400 text-sm">{edu.field}</p>
+              <h4 className="text-slate-900 dark:text-white font-semibold text-base">{edu.school}</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">{edu.field}</p>
             </div>
-            {i < EDUCATION.length - 1 && <div className="w-full h-px bg-white/6 mt-5" />}
+            {i < EDUCATION.length - 1 && <div className="w-full h-px bg-black/6 dark:bg-white/6 mt-5" />}
           </div>
         ))}
       </div>
@@ -177,11 +177,11 @@ function EducationCard() {
 
 function LocationCard() {
   return (
-    <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 overflow-hidden hover:border-white/12 transition-all duration-500 flex items-stretch group">
+    <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 overflow-hidden hover:border-black/12 dark:border-white/12 transition-all duration-500 flex items-stretch group">
       <div className="w-2/5 relative min-h-full overflow-hidden flex items-center justify-center bg-linear-to-br from-cyan-500/5 via-cyan-500/2 to-transparent group-hover:from-cyan-500/10 group-hover:via-cyan-500/4 transition-all duration-700">
         <div className="relative flex items-center justify-center">
-          <div className="absolute w-40 h-40 rounded-full border border-white/4 group-hover:border-white/[0.07] transition-all duration-700" />
-          <div className="absolute w-28 h-28 rounded-full border border-white/6 group-hover:border-white/10 transition-all duration-700" />
+          <div className="absolute w-40 h-40 rounded-full border border-black/4 dark:border-white/4 group-hover:border-black/[0.07] dark:border-white/[0.07] transition-all duration-700" />
+          <div className="absolute w-28 h-28 rounded-full border border-black/6 dark:border-white/6 group-hover:border-black/10 dark:border-white/10 transition-all duration-700" />
           <MapPin
             size={52}
             className="text-primary/70 relative z-10 group-hover:text-primary transition-colors duration-500"
@@ -194,7 +194,7 @@ function LocationCard() {
           <Globe size={15} />
           <span className="text-xs font-medium uppercase tracking-[0.2em]">Location</span>
         </div>
-        <h3 className="text-xl font-semibold text-white mb-1.5">{SITE.location}</h3>
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-1.5">{SITE.location}</h3>
         <p className="text-slate-500 text-sm leading-relaxed font-light">
           Working remotely with teams and clients worldwide.
         </p>
@@ -205,10 +205,10 @@ function LocationCard() {
 
 function ContactCard() {
   return (
-    <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-[#0e0e13] border border-white/6 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-white/12 transition-all duration-500">
+    <RevealItem className="col-span-1 md:col-span-3 lg:col-span-2 row-span-1 rounded-[28px] bg-gray-50 dark:bg-[#0e0e13] border border-black/6 dark:border-white/6 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 md:gap-0 relative overflow-hidden group hover:border-black/12 dark:border-white/12 transition-all duration-500">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.06)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       <div className="relative z-10">
-        <h3 className="text-xl font-semibold text-white mb-1.5">Have a project in mind?</h3>
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-1.5">Have a project in mind?</h3>
         <p className="text-slate-500 text-sm max-w-xs font-light">
           Let&apos;s discuss how design can move your numbers.
         </p>
@@ -216,7 +216,7 @@ function ContactCard() {
       <div className="relative z-10 w-full md:w-auto">
         <a
           href={`mailto:${SITE.email}`}
-          className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-7 py-3.5 font-semibold text-sm hover:bg-white/90 transition-all duration-300 w-full md:w-auto"
+          className="flex items-center justify-center gap-2 rounded-xl bg-white text-black px-7 py-3.5 font-semibold text-sm hover:bg-black/90 dark:bg-white/90 transition-all duration-300 w-full md:w-auto"
         >
           <span>Get in touch</span>
           <Mail size={16} />
@@ -237,10 +237,10 @@ function SectionTitle({
 }) {
   return (
     <div className={`flex items-center justify-between relative z-10 ${className}`}>
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
       <Icon
         size={20}
-        className="text-slate-600 group-hover:text-slate-400 transition-colors duration-300"
+        className="text-slate-600 group-hover:text-slate-600 dark:text-slate-400 transition-colors duration-300"
       />
     </div>
   );
@@ -248,7 +248,7 @@ function SectionTitle({
 
 function StackIcon({ Icon }: { Icon: LucideIcon }) {
   return (
-    <div className="size-11 rounded-xl bg-white/3 flex items-center justify-center text-slate-500 hover:bg-white/[0.07] hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border border-white/6">
+    <div className="size-11 rounded-xl bg-black/3 dark:bg-white/3 flex items-center justify-center text-slate-500 hover:bg-black/[0.07] dark:bg-white/[0.07] hover:text-slate-900 dark:text-white hover:scale-105 transition-all duration-300 cursor-pointer border border-black/6 dark:border-white/6">
       <Icon size={18} />
     </div>
   );

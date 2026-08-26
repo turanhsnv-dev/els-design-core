@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, X } from "lucide-react";
 import toast from "react-hot-toast";
+import ThemeToggle from "./ThemeToggle";
 import { NAV_SECTIONS } from "@/constants/nav";
 import { SITE } from "@/constants/site";
 import { CV_TOAST } from "@/constants/toast";
@@ -40,14 +41,14 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="absolute inset-0 bg-background-dark/80 backdrop-blur-md border-b border-white/[0.04]" />
+      <div className="absolute inset-0 bg-white dark:bg-background-dark/80 backdrop-blur-md border-b border-black/[0.04] dark:border-white/[0.04]" />
 
       <div className="relative w-full max-w-[1400px] mx-auto px-8 md:px-16 lg:px-32 xl:px-40 py-3">
         <nav className="grid grid-cols-3 items-center">
           <div className="flex justify-start">
             <button
               onClick={toggle}
-              className="relative w-9 h-9 flex items-center justify-center text-slate-400 hover:text-white transition-colors duration-300 z-10"
+              className="relative w-9 h-9 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors duration-300 z-10"
               aria-label="Toggle menu"
             >
               <div className="relative w-5 h-4">
@@ -83,12 +84,13 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center gap-4">
+            <ThemeToggle />
             <a
               href={SITE.cv}
               download
               onClick={handleDownloadCV}
-              className="hidden md:flex items-center gap-2 bg-transparent hover:bg-white/[0.04] border border-white/10 hover:border-white/20 text-white/70 hover:text-white text-xs font-medium uppercase tracking-widest px-5 py-2 rounded-full transition-all duration-500 group z-10"
+              className="hidden md:flex items-center gap-2 bg-transparent hover:bg-white/5 dark:bg-black/5 dark:hover:bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-black/20 dark:border-white/20 text-slate-700 dark:text-white/70 hover:text-black dark:hover:text-slate-900 dark:text-white text-xs font-medium uppercase tracking-widest px-5 py-2 rounded-full transition-all duration-500 group z-10"
             >
               Download CV
               <Download
@@ -101,22 +103,22 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40" onClick={close} />
+        <div className="fixed inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-sm z-40" onClick={close} />
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-[80%] max-w-sm bg-[#080808] border-r border-white/[0.06] z-50 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`fixed top-0 left-0 h-full w-[80%] max-w-sm bg-[#080808] border-r border-black/[0.06] dark:border-white/[0.06] z-50 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between px-8 py-6 border-b border-white/[0.06]">
+          <div className="flex items-center justify-between px-8 py-6 border-b border-black/[0.06] dark:border-white/[0.06]">
             <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
               Menu
             </span>
             <button
               onClick={close}
-              className="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-white transition-colors duration-300"
+              className="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-white transition-colors duration-300"
               aria-label="Close menu"
             >
               <X size={20} strokeWidth={1.5} />
@@ -129,7 +131,7 @@ export default function Navbar() {
                 key={section.name}
                 href={section.href}
                 onClick={(e) => handleSectionClick(section.href, e)}
-                className="group flex items-center justify-between py-3.5 border-b border-white/[0.04] text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer"
+                className="group flex items-center justify-between py-3.5 border-b border-black/[0.04] dark:border-white/[0.04] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors duration-300 cursor-pointer"
                 style={{ transitionDelay: `${i * 30}ms` }}
               >
                 <span className="text-sm font-light tracking-wide">{section.name}</span>
@@ -141,12 +143,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="px-8 py-8 border-t border-white/[0.06]">
+          <div className="px-8 py-8 border-t border-black/[0.06] dark:border-white/[0.06]">
             <a
               href={SITE.cv}
               download
               onClick={handleDownloadCV}
-              className="w-full flex items-center justify-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-medium text-sm uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-300 group"
+              className="w-full flex items-center justify-center gap-2 bg-black/[0.04] dark:bg-white/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.08] border border-black/10 dark:border-white/10 text-slate-900 dark:text-white font-medium text-sm uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-300 group"
             >
               Download CV
               <Download

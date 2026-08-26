@@ -8,6 +8,7 @@ export const NAV_SECTIONS: NavLink[] = [
   { name: "Projects", href: "#work" },
   { name: "Services", href: "#services" },
   { name: "Showreel", href: "#showreel" },
+  { name: "Showcase", href: "#showcase" },
   { name: "Impact", href: "#impact" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#contact" },

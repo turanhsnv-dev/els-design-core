@@ -45,7 +45,7 @@ export default function Projects() {
   }, [isOpen, images.length]);
 
   return (
-    <section id="work" className="relative py-14 md:py-24 overflow-hidden bg-background-dark">
+    <section id="work" className="relative py-14 md:py-24 overflow-hidden bg-white dark:bg-background-dark">
       <Container className="relative z-10 mb-10 md:mb-16">
         <RevealContainer className="flex flex-col items-center text-center gap-3 md:gap-4">
           <RevealItem className="flex items-center gap-3 text-xs font-medium tracking-[0.25em] uppercase text-primary/80">
@@ -54,7 +54,7 @@ export default function Projects() {
           </RevealItem>
           <RevealItem
             variants={scaleDownItemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-white origin-bottom"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white origin-bottom"
           >
             Featured <GradientText variant="white">Projects</GradientText>
           </RevealItem>
@@ -116,7 +116,7 @@ function ProjectCard({
             <Image src={project.cover} alt={project.title} fill className="object-cover" />
           </motion.div>
           <div className="absolute top-4 left-4 z-20">
-            <span className="px-3 py-1.5 rounded-lg border border-white/10 bg-black/60 backdrop-blur-md text-[10px] font-medium text-slate-300 uppercase tracking-[0.15em]">
+            <span className="px-3 py-1.5 rounded-lg border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/60 backdrop-blur-md text-[10px] font-medium text-slate-700 dark:text-slate-300 uppercase tracking-[0.15em]">
               {project.category}
             </span>
           </div>
@@ -125,32 +125,32 @@ function ProjectCard({
         <div className="relative p-5">
           <div className="flex justify-between items-start gap-3 mb-3">
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-primary transition-colors duration-500 truncate">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors duration-500 truncate">
                 {project.title}
               </h3>
               <p className="text-slate-500 text-sm font-light leading-relaxed">
                 {project.description}
               </p>
             </div>
-            <div className="w-9 h-9 rounded-xl bg-white/4 border border-white/7 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shrink-0 transition-all duration-500">
+            <div className="w-9 h-9 rounded-xl bg-black/4 dark:bg-white/4 border border-black/7 dark:border-white/7 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shrink-0 transition-all duration-500">
               <ArrowUpRight
                 size={16}
-                className="text-slate-400 group-hover:text-black transition-colors duration-300"
+                className="text-slate-600 dark:text-slate-400 group-hover:text-black transition-colors duration-300"
               />
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/5">
+          <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-black/5 dark:border-white/5">
             {project.tags.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-md bg-white/3 border border-white/7 text-slate-500 text-xs font-light"
+                className="px-2.5 py-1 rounded-md bg-black/3 dark:bg-white/3 border border-black/7 dark:border-white/7 text-slate-500 text-xs font-light"
               >
                 {tag}
               </span>
             ))}
             {project.tags.length > 2 && (
-              <span className="px-2.5 py-1 rounded-md bg-white/3 border border-white/7 text-slate-600 text-xs">
+              <span className="px-2.5 py-1 rounded-md bg-black/3 dark:bg-white/3 border border-black/7 dark:border-white/7 text-slate-600 text-xs">
                 +{project.tags.length - 2}
               </span>
             )}
@@ -186,7 +186,7 @@ function Lightbox({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
         onClick={onClose}
-        className="fixed inset-0 z-9999 bg-black/97 backdrop-blur-2xl"
+        className="fixed inset-0 z-9999 bg-white/97 dark:bg-black/97 backdrop-blur-2xl"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
@@ -268,7 +268,7 @@ function Lightbox({
                 className={`transition-all duration-400 rounded-full ${
                   i === index
                     ? "w-8 h-1.5 bg-primary"
-                    : "w-1.5 h-1.5 bg-white/25 hover:bg-white/40"
+                    : "w-1.5 h-1.5 bg-black/25 dark:bg-white/25 hover:bg-black/40 dark:bg-white/40"
                 }`}
               />
             ))}
@@ -279,7 +279,7 @@ function Lightbox({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ delay: 0.4 }}
-            className="absolute bottom-4 right-4 z-50 px-4 py-1.5 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 text-white/60 text-xs font-medium tabular-nums"
+            className="absolute bottom-4 right-4 z-50 px-4 py-1.5 rounded-full bg-black/7 dark:bg-white/7 backdrop-blur-xl border border-black/10 dark:border-white/10 text-black/60 dark:text-white/60 text-xs font-medium tabular-nums"
           >
             {index + 1} / {images.length}
           </motion.div>
@@ -315,7 +315,7 @@ function LightboxButton({
       exit={initial}
       transition={{ delay }}
       onClick={onClick}
-      className={`absolute z-50 w-11 h-11 rounded-full bg-white/7 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-white/12 hover:border-white/20 transition-all duration-300 ${className}`}
+      className={`absolute z-50 w-11 h-11 rounded-full bg-black/7 dark:bg-white/7 backdrop-blur-xl border border-black/10 dark:border-white/10 flex items-center justify-center text-slate-900 dark:text-white hover:bg-black/12 dark:bg-white/12 hover:border-black/20 dark:border-white/20 transition-all duration-300 ${className}`}
     >
       {children}
     </motion.button>
